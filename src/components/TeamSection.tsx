@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 
 import peopleData from '../data/people.json'
+import { resolveTeamPortrait } from '../data/teamMedia'
 import type { Person, PersonLinkKind } from '../types/content'
 import { SectionHeading } from './SectionHeading'
 
@@ -33,16 +34,18 @@ export function TeamSection() {
         />
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {people.map((person) => (
+          {people.map((person) => {
+            const portraitSrc = resolveTeamPortrait(person.image)
+            return (
             <article
               key={person.id}
               className="team-card section-card overflow-hidden p-4 sm:p-5"
               style={{ '--card-accent': person.accent } as CSSProperties}
             >
               <div className="team-card__portrait">
-                {person.image ? (
+                {portraitSrc ? (
                   <img
-                    src={person.image}
+                    src={portraitSrc}
                     alt={`${person.name} profile art`}
                     className="team-card__image"
                   />
@@ -91,7 +94,8 @@ export function TeamSection() {
                 </div>
               ) : null}
             </article>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
