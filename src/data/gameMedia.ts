@@ -5,71 +5,48 @@ const mediaModules = import.meta.glob('../assets/Games/**/*.{png,jpg,jpeg,webp,m
 
 const IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'webp'])
 
-function normalizePathSegment(value: string) {
+function normalize(value: string) {
   return value.replace(/\\/g, '/').toLowerCase()
 }
 
-function getFileName(path: string) {
-  const normalizedPath = path.replace(/\\/g, '/')
-  return normalizedPath.split('/').pop() ?? normalizedPath
+function fileName(path: string) {
+  return path.replace(/\\/g, '/').split('/').pop() ?? path
 }
 
-function getAssetRelativePath(path: string, assetFolder: string) {
-  const normalizedPath = path.replace(/\\/g, '/')
+function relativeTo(path: string, assetFolder: string) {
+  const norm = path.replace(/\\/g, '/')
   const marker = `/Games/${assetFolder}/`
-  const markerIndex = normalizedPath.indexOf(marker)
-
-  if (markerIndex === -1) {
-    return undefined
-  }
-
-  return normalizedPath.slice(markerIndex + marker.length)
+  const i = norm.indexOf(marker)
+  return i === -1 ? undefined : norm.slice(i + marker.length)
 }
 
-function isInAssetFolder(path: string, assetFolder: string) {
-  return normalizePathSegment(path).includes(`/games/${normalizePathSegment(assetFolder)}/`)
+function inFolder(path: string, assetFolder: string) {
+  return normalize(path).includes(`/games/${normalize(assetFolder)}/`)
 }
 
-function getFileExtension(fileName: string) {
-  return fileName.split('.').pop()?.toLowerCase() ?? ''
-}
-
-export function resolveGameMedia(assetFolder: string, fileName?: string) {
-  if (!fileName) {
-    return undefined
-  }
-
-  const normalizedFileName = normalizePathSegment(fileName)
+export function resolveGameMedia(assetFolder: string, file?: string) {
+  if (!file) return undefined
+  const target = normalize(file)
 
   return Object.entries(mediaModules).find(([path]) => {
-    const assetRelativePath = getAssetRelativePath(path, assetFolder)
-
-    return (
-      isInAssetFolder(path, assetFolder) &&
-      (normalizePathSegment(getFileName(path)) === normalizedFileName ||
-        normalizePathSegment(assetRelativePath ?? '') === normalizedFileName)
-    )
+    if (!inFolder(path, assetFolder)) return false
+    const rel = relativeTo(path, assetFolder)
+    return normalize(fileName(path)) === target || normalize(rel ?? '') === target
   })?.[1]
 }
 
 export function getAutoGalleryImages(assetFolder: string, galleryFolder?: string) {
   return Object.entries(mediaModules)
     .filter(([path]) => {
-      const fileName = getFileName(path)
-      const assetRelativePath = getAssetRelativePath(path, assetFolder)
-      const isInGalleryFolder = galleryFolder
-        ? normalizePathSegment(assetRelativePath ?? '').startsWith(`${normalizePathSegment(galleryFolder)}/`)
-        : true
-
-      return (
-        isInAssetFolder(path, assetFolder) &&
-        isInGalleryFolder &&
-        IMAGE_EXTENSIONS.has(getFileExtension(fileName))
-      )
+      if (!inFolder(path, assetFolder)) return false
+      if (!IMAGE_EXTENSIONS.has(fileName(path).split('.').pop()?.toLowerCase() ?? '')) return false
+      if (!galleryFolder) return true
+      const rel = relativeTo(path, assetFolder)
+      return normalize(rel ?? '').startsWith(`${normalize(galleryFolder)}/`)
     })
-    .sort(([leftPath], [rightPath]) => leftPath.localeCompare(rightPath))
+    .sort(([a], [b]) => a.localeCompare(b))
     .map(([path, src]) => ({
-      file: getAssetRelativePath(path, assetFolder) ?? getFileName(path),
+      file: relativeTo(path, assetFolder) ?? fileName(path),
       src,
     }))
 }

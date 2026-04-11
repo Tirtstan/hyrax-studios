@@ -7,7 +7,20 @@
         "blurb": "",
         "accent": "#51a6af",
         "image": "src/assets/team/LukePortrait.png",
-        "links": []
+        "links": [
+            {
+                "kind": "email",
+                "href": "mailto:luke@hyrax-studios.com"
+            },
+            {
+                "kind": "itch",
+                "href": "https://bimpyton.itch.io/"
+            },
+            {
+                "kind": "website",
+                "href": "https://bimpyton.carrd.co/"
+            }
+        ]
     },
     {
         "id": "jack",
@@ -17,7 +30,20 @@
         "blurb": "",
         "accent": "#eb746d",
         "image": "src/assets/team/JackPortrait.png",
-        "links": []
+        "links": [
+            {
+                "kind": "email",
+                "href": "mailto:jack@hyrax-studios.com"
+            },
+            {
+                "kind": "itch",
+                "href": "https://jackfellow.itch.io/"
+            },
+            {
+                "kind": "website",
+                "href": "https://jackfellow.games/"
+            }
+        ]
     },
     {
         "id": "michaela",
@@ -27,7 +53,20 @@
         "blurb": "",
         "accent": "#f2be63",
         "image": "src/assets/team/MichaelaPortrait.png",
-        "links": []
+        "links": [
+            {
+                "kind": "email",
+                "href": "mailto:michaela@hyrax-studios.com"
+            },
+            {
+                "kind": "itch",
+                "href": "https://mst3r.itch.io/"
+            },
+            {
+                "kind": "website",
+                "href": "https://th3mster.myportfolio.com/"
+            }
+        ]
     },
     {
         "id": "seth",
@@ -37,7 +76,20 @@
         "blurb": "",
         "accent": "#7acb8f",
         "image": "src/assets/team/SethPortrait.png",
-        "links": []
+        "links": [
+            {
+                "kind": "email",
+                "href": "mailto:seth@hyrax-studios.com"
+            },
+            {
+                "kind": "itch",
+                "href": "https://splender-digital.itch.io/"
+            },
+            {
+                "kind": "website",
+                "href": "https://sethdavidgordon.wixsite.com/splenderdigital"
+            }
+        ]
     },
     {
         "id": "tristan",
@@ -47,7 +99,24 @@
         "blurb": "",
         "accent": "#78b6ff",
         "image": "src/assets/team/TristanPortrait.png",
-        "links": []
+        "links": [
+            {
+                "kind": "email",
+                "href": "mailto:tristan@hyrax-studios.com"
+            },
+            {
+                "kind": "itch",
+                "href": "https://tirtstan.itch.io/"
+            },
+            {
+                "kind": "website",
+                "href": "https://tirtstan.github.io/"
+            },
+            {
+                "kind": "twitter",
+                "href": "https://twitter.com/tirtstan"
+            }
+        ]
     },
     {
         "id": "stuart",
@@ -57,6 +126,19 @@
         "blurb": "",
         "accent": "#c29bff",
         "image": "src/assets/team/StuartPortrait.png",
-        "links": []
+        "links": [
+            {
+                "kind": "email",
+                "href": ""
+            },
+            {
+                "kind": "itch",
+                "href": "https://veryc0smic.itch.io/"
+            },
+            {
+                "kind": "website",
+                "href": "https://alwayscosmic.carrd.co/"
+            }
+        ]
     }
 ]

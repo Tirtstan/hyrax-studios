@@ -1,58 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rubik+Mono+One&display=swap');
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rubik+Mono+One&display=swap");
+@import "tailwindcss";
 
 :root {
-  --paper: #f7eadf;
-  --paper-strong: #fff8f1;
-  --ink: #231f20;
-  --muted: #5c5657;
-  --brand-teal: #51a6af;
-  --brand-teal-soft: #8de4ec;
-  --brand-coral: #eb746d;
-  --brand-gold: #f2be63;
-  --shadow-ink: rgba(35, 31, 32, 0.2);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --paper: #f7eadf;
+    --paper-strong: #fff8f1;
+    --ink: #231f20;
+    --muted: #5c5657;
+    --brand-teal: #51a6af;
+    --brand-teal-soft: #8de4ec;
+    --brand-coral: #eb746d;
+    --brand-gold: #f7efab;
+    --shadow-ink: rgba(35, 31, 32, 0.2);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  --font-display: 'Rubik Mono One', 'Inter', 'Segoe UI', sans-serif;
+    --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+    --font-display: "Rubik Mono One", "Inter", "Segoe UI", sans-serif;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
+    overflow-x: clip;
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  color: var(--ink);
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.5), transparent 45%),
-    linear-gradient(180deg, #f9eee6 0%, var(--paper) 55%, #f3e2d5 100%);
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.5), transparent 45%),
+        linear-gradient(180deg, #f9eee6 0%, var(--paper) 55%, #f3e2d5 100%);
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 a {
-  color: inherit;
+    color: inherit;
 }
 
 button,
 input,
 textarea {
-  font: inherit;
+    font: inherit;
 }
 
 #root {
-  min-height: 100vh;
+    min-height: 100vh;
 }
