@@ -1,0 +1,58 @@
+[
+    {
+        "id": "get-rammed",
+        "featured": true,
+        "title": "GET RAMMED",
+        "status": "Featured Game",
+        "tagline": "Chaotic couch competition with goats, physics, and loud laughs.",
+        "summary": "A local multiplayer party game built around quick rounds, big hits, and the kind of noisy rematches that get everyone yelling at the screen.",
+        "description": [
+            "GET RAMMED is a fast-paced arcade party game where you and your friends play as chaotic rams trying to knock each other off the map! This game delivers quick, frantic rounds full of laughter, mayhem, and unexpected moments.",
+            "Designed for a simple one-button-and-joystick setup, GET RAMMED is easy to pick up and a challenge to put down."
+        ],
+        "tags": ["Arcade", "Party Game", "Local Multiplayer", "Physics Mayhem", "Stylized 3D"],
+        "links": [
+            {
+                "label": "Steam Wishlist",
+                "kind": "steam",
+                "href": "",
+                "pendingLabel": "Steam Wishlist Soon",
+                "prominent": true
+            },
+
+            {
+                "label": "Itch.io Demo",
+                "kind": "itch",
+                "href": "https://hyrax-studios.itch.io/get-rammed",
+                "prominent": true
+            },
+            {
+                "label": "See Details",
+                "kind": "anchor",
+                "href": "#games"
+            }
+        ],
+        "assetFolder": "Get Rammed",
+        "heroCharacterFile": "hero-character.png",
+        "heroCharacterAlt": "A Get Rammed character sticker floating above the featured game card.",
+        "titleImageFile": "Title.png",
+        "galleryFolder": "Screenshots",
+        "gallery": [
+            {
+                "type": "image",
+                "file": "screenshot-01.png",
+                "alt": "Get Rammed screenshot showing a chaotic arena clash."
+            },
+            {
+                "type": "image",
+                "file": "screenshot-02.png",
+                "alt": "Get Rammed screenshot showing goats colliding in a multiplayer match."
+            },
+            {
+                "type": "image",
+                "file": "screenshot-03.png",
+                "alt": "Get Rammed screenshot showing another moment from the arena."
+            }
+        ]
+    }
+]
