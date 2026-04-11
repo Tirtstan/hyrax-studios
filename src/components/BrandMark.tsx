@@ -3,22 +3,13 @@ const WORDMARK_SRC = '/brand/HyraxText.svg'
 
 type BrandMarkProps = {
   compact?: boolean
-  stacked?: boolean
   dense?: boolean
 }
 
-export function BrandMark({ compact = false, stacked = false, dense = false }: BrandMarkProps) {
-  const useStackedLayout = !compact && stacked
-
+export function BrandMark({ compact = false, dense = false }: BrandMarkProps) {
   return (
     <div className={compact ? 'brand-lockup' : 'brand-mark'}>
-      <div
-        className={
-          useStackedLayout
-            ? 'flex flex-col items-center gap-4 text-center'
-            : 'flex items-center gap-3 sm:gap-5'
-        }
-      >
+      <div className="flex items-center gap-3 sm:gap-5">
         <img
           src={LOGO_SRC}
           alt=""
@@ -27,7 +18,7 @@ export function BrandMark({ compact = false, stacked = false, dense = false }: B
           decoding="async"
           className={
             compact
-              ? 'h-10 w-auto shrink-0 object-contain'
+              ? 'h-8 w-auto shrink-0 object-contain sm:h-10'
               : dense
                 ? 'h-12 w-auto shrink-0 object-contain sm:h-14'
                 : 'h-17 w-auto shrink-0 object-contain sm:h-24'
@@ -41,7 +32,7 @@ export function BrandMark({ compact = false, stacked = false, dense = false }: B
           decoding="async"
           className={
             compact
-              ? 'h-7 max-w-[min(100%,12rem)] w-auto shrink-0 object-contain object-left'
+              ? 'h-5 max-w-[min(100%,9rem)] w-auto shrink-0 object-contain object-left sm:h-7 sm:max-w-[min(100%,12rem)]'
               : dense
                 ? 'h-8 max-w-[min(100%,15rem)] w-auto shrink-0 object-contain object-left sm:h-10 sm:max-w-[min(100%,18rem)]'
                 : 'h-10 max-w-[min(100%,18rem)] w-auto shrink-0 object-contain object-left sm:h-14 sm:max-w-[min(100%,22rem)] lg:h-16'

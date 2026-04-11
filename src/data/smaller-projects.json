@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "id": "chaos-drawn",
+        "title": "Chaos Drawn",
+        "summary": "You're stepping into the boots of Rosi Redtail, a gunslinger facing down countless enemies.",
+        "event": "Jam Dole",
+        "year": "2026",
+        "href": "https://hyrax-studios.itch.io/chaos-drawn"
+    },
+    {
+        "id": "magic-punch-game",
+        "title": "Magic Punch Game",
+        "summary": "To survive the endless slime hoard, you must learn to balance your powers. You don't just cast spells; you earn them through combat.",
+        "event": "8-Hour Game Jam",
+        "year": "2026",
+        "href": "https://hyrax-studios.itch.io/magic-punch-game"
+    },
+    {
+        "id": "bigfoot-found-footage-live",
+        "title": "🔴BIGFOOT FOUND FOOTAGE: LIVE!🔴",
+        "summary": "Not all cryptids are monsters, bigfoot's only dream is to have friends. Help him by getting as many subs as you can for his channel.",
+        "event": "8-Hour Game Jam",
+        "year": "2025",
+        "href": "https://jackfellow.itch.io/bigfoot-found-footage-live"
+    }
+]

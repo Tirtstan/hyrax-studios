@@ -4,13 +4,20 @@
         "featured": true,
         "title": "GET RAMMED",
         "status": "Featured Game",
-        "tagline": "Chaotic couch competition with goats, physics, and loud laughs.",
-        "summary": "A local multiplayer party game built around quick rounds, big hits, and the kind of noisy rematches that get everyone yelling at the screen.",
+        "accentColor": "#FF4949",
+        "summary": "",
         "description": [
-            "GET RAMMED is a fast-paced arcade party game where you and your friends play as chaotic rams trying to knock each other off the map! This game delivers quick, frantic rounds full of laughter, mayhem, and unexpected moments.",
-            "Designed for a simple one-button-and-joystick setup, GET RAMMED is easy to pick up and a challenge to put down."
+            "<strong><em>GET RAMMED</em></strong> is a fast-paced arcade party game where you and your friends play as chaotic rams trying to knock each other off the map! It delivers quick, frantic rounds full of laughter, mayhem, and spontaneity.",
+            "Designed for a simple one-button-and-joystick setup, <strong><em>GET RAMMED</em></strong> is effortless to pick up and a dare to put down."
         ],
-        "tags": ["Arcade", "Party Game", "Local Multiplayer", "Physics Mayhem", "Stylized 3D"],
+        "tags": [
+            "Arcade",
+            "Fighting",
+            "Party Game",
+            "Physics-Based",
+            "Local & Online Multiplayer",
+            "Couch-Online Mix"
+        ],
         "links": [
             {
                 "label": "Steam Wishlist",
@@ -19,7 +26,6 @@
                 "pendingLabel": "Steam Wishlist Soon",
                 "prominent": true
             },
-
             {
                 "label": "Itch.io Demo",
                 "kind": "itch",
