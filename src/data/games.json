@@ -5,6 +5,7 @@
         "title": "GET RAMMED",
         "status": "Featured Game",
         "accentColor": "#FF4949",
+        "titleImageBrightness": 1.35,
         "summary": "",
         "description": [
             "<strong><em>GET RAMMED</em></strong> is a fast-paced arcade party game where you and your friends play as chaotic rams trying to knock each other off the map! It delivers quick, frantic rounds full of laughter, mayhem, and spontaneity.",
@@ -31,11 +32,6 @@
                 "kind": "itch",
                 "href": "https://hyrax-studios.itch.io/get-rammed",
                 "prominent": true
-            },
-            {
-                "label": "See Details",
-                "kind": "anchor",
-                "href": "#games"
             }
         ],
         "assetFolder": "Get Rammed",

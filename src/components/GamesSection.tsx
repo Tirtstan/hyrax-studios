@@ -6,7 +6,7 @@ import 'yet-another-react-lightbox/styles.css'
 import itchioIcon from '../assets/logos/itchio-textless-black.svg'
 import steamIcon from '../assets/logos/steam.svg'
 import { getAutoGalleryImages, resolveGameMedia } from '../data/gameMedia'
-import { featuredGame } from '../data/games'
+import { DEFAULT_TITLE_IMAGE_BRIGHTNESS, featuredGame } from '../data/games'
 import { JamGamesShowcase } from './JamGamesShowcase'
 import { SectionHeading } from './SectionHeading'
 
@@ -230,7 +230,14 @@ export function GamesSection() {
 
         <div
           className="section-card feature-panel relative grid gap-6 p-4 sm:gap-8 sm:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start"
-          style={{ '--feature-accent': featuredGame.accentColor ?? '#eb746d' } as CSSProperties}
+          style={
+            {
+              '--feature-accent': featuredGame.accentColor ?? '#eb746d',
+              '--title-image-brightness': String(
+                featuredGame.titleImageBrightness ?? DEFAULT_TITLE_IMAGE_BRIGHTNESS,
+              ),
+            } as CSSProperties
+          }
         >
           <div className="space-y-6">
             <div className="space-y-4">

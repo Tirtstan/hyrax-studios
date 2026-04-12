@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react'
 
 import { BrandMark } from './BrandMark'
 import { resolveGameMedia } from '../data/gameMedia'
-import { featuredGame } from '../data/games'
+import { DEFAULT_TITLE_IMAGE_BRIGHTNESS, featuredGame } from '../data/games'
 
 export function HeroSection() {
   const heroCharacterImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.heroCharacterFile)
@@ -15,19 +15,19 @@ export function HeroSection() {
           <div className="hero-mesh absolute inset-0 opacity-80" aria-hidden="true" />
           <div className="hero-grain absolute inset-0 opacity-70" aria-hidden="true" />
           <div className="relative grid gap-5 sm:gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-start lg:gap-8">
-            <div className="flex max-w-3xl flex-col gap-3 sm:gap-4">
+            <div className="hero-copy flex max-w-3xl flex-col gap-3 sm:gap-4">
               <BrandMark dense />
               <h1 className="font-display text-2xl uppercase leading-[0.95] text-(--ink) sm:text-4xl lg:text-6xl">
                 Games made for playing together.
               </h1>
               <p className="hero-lede max-w-2xl text-sm leading-7 text-(--muted) sm:text-[1.05rem] sm:leading-8">
-                We are a <strong className="hero-lede-location">Cape Town based indie studio</strong>{' '}
+                We are a <strong className="hero-lede-location">Cape Town based video game studio</strong>{' '}
                 focused on making high-energy games that are easy to pick up, hard to put down, and
                 built with a strong social experience in mind. Every project is shaped by fast
                 iteration, playful experimentation, and polished gameplay loops that reward
                 replayability.
               </p>
-              <div className="flex flex-wrap gap-2 pt-1">
+              <div className="hero-actions flex flex-wrap gap-2 pt-1">
                 <a href="#games" className="primary-cta">
                   See the games
                 </a>
@@ -39,7 +39,15 @@ export function HeroSection() {
 
             <div
               className={`featured-release-wrap self-start sm:mx-auto sm:w-full sm:max-w-md lg:mx-0 lg:max-w-none ${heroCharacterImage ? 'has-character' : ''}`}
-              style={{ '--feature-accent': featuredGame.accentColor ?? '#eb746d' } as CSSProperties}
+              style={
+                {
+                  '--feature-accent': featuredGame.accentColor ?? '#eb746d',
+                  '--feature-primary': '#292929',
+                  '--title-image-brightness': String(
+                    featuredGame.titleImageBrightness ?? DEFAULT_TITLE_IMAGE_BRIGHTNESS,
+                  ),
+                } as CSSProperties
+              }
             >
               {heroCharacterImage ? (
                 <div className="hero-character-sticker" aria-hidden="true">
@@ -49,9 +57,9 @@ export function HeroSection() {
 
               <a
                 href="#games"
-                className="featured-release feature-panel block rounded-3xl border-2 border-(--ink) p-5 text-(--ink) no-underline sm:rounded-4xl sm:p-6"
+                className="featured-release featured-release--hero block rounded-3xl border-2 border-(--ink) p-5 text-(--ink) no-underline sm:rounded-4xl sm:p-6"
               >
-                <div className="space-y-4">
+                <div className="featured-release-body space-y-4">
                   <div className="space-y-2 sm:space-y-3">
                     {heroTitleImage ? (
                       <img
@@ -64,7 +72,7 @@ export function HeroSection() {
                         {featuredGame.title}
                       </p>
                     )}
-                    <p className="max-w-md text-xs leading-5 font-medium text-(--muted) sm:text-sm sm:font-semibold sm:leading-6 sm:text-(--ink)">
+                    <p className="featured-release-summary max-w-md text-xs leading-5 font-medium text-(--muted) sm:text-sm sm:font-semibold sm:leading-6 sm:text-(--ink)">
                       {featuredGame.summary}
                     </p>
                   </div>

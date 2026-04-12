@@ -16,7 +16,7 @@ export function SectionHeading({
   return (
     <div
       className={[
-        'max-w-3xl space-y-4',
+        'section-heading max-w-3xl space-y-4',
         isCentered ? 'mx-auto text-center' : 'text-left',
       ].join(' ')}
     >
