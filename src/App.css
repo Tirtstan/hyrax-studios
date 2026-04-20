@@ -327,9 +327,9 @@
             color-mix(in srgb, var(--feature-primary, #292929) 96%, black)
         );
     box-shadow:
-        0 10px 0 color-mix(in srgb, var(--feature-primary, #292929) 92%, black),
+        0 8px 0 color-mix(in srgb, var(--feature-primary, #292929) 76%, transparent),
         0 0 0 1px color-mix(in srgb, var(--feature-accent, #eb746d) 18%, white),
-        0 18px 34px rgba(41, 41, 41, 0.24);
+        0 14px 28px rgba(41, 41, 41, 0.14);
     color: #fff5f3;
 }
 
@@ -371,11 +371,12 @@
 }
 
 .featured-release--hero .hero-release-title-image {
+    margin-inline: auto;
     filter: brightness(var(--title-image-brightness, 1.35)) contrast(1.05)
         drop-shadow(0 0 10px color-mix(in srgb, var(--feature-accent, #eb746d) 55%, transparent))
         drop-shadow(0 0 32px color-mix(in srgb, var(--feature-accent, #eb746d) 45%, transparent))
         drop-shadow(0 0 48px color-mix(in srgb, var(--feature-accent, #eb746d) 22%, transparent))
-        drop-shadow(0 6px 14px rgba(0, 0, 0, 0.55)) drop-shadow(0 2px 0 rgba(0, 0, 0, 0.35));
+        drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18));
 }
 
 .featured-release-summary {
@@ -399,7 +400,7 @@
     padding: 0.55rem 0.82rem;
     border: 2px solid color-mix(in srgb, var(--feature-accent, #eb746d) 44%, white);
     background: color-mix(in srgb, var(--feature-primary, #292929) 88%, black);
-    box-shadow: 0 4px 0 rgba(12, 12, 12, 0.2);
+    box-shadow: 0 3px 0 rgba(12, 12, 12, 0.14);
     color: rgba(255, 247, 247, 0.96);
     font-size: 0.72rem;
     font-weight: 900;
@@ -421,9 +422,9 @@
 .featured-release--hero:hover,
 .featured-release--hero:focus-within {
     box-shadow:
-        0 12px 0 color-mix(in srgb, var(--feature-primary, #292929) 92%, black),
+        0 10px 0 color-mix(in srgb, var(--feature-primary, #292929) 80%, transparent),
         0 0 0 1px color-mix(in srgb, var(--feature-accent, #eb746d) 26%, white),
-        0 22px 40px rgba(41, 41, 41, 0.28);
+        0 18px 34px rgba(41, 41, 41, 0.18);
 }
 
 .featured-release:hover .featured-release-hint::after,
@@ -668,7 +669,6 @@
 .game-gallery-thumb-area::after {
     content: "";
     position: absolute;
-    inset-y: 0;
     width: 3.5rem;
     z-index: 1;
     pointer-events: none;
@@ -1085,8 +1085,13 @@
 }
 
 @keyframes form-bounce {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(5px); }
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
 }
 
 /* Drawer (grid trick for smooth height reveal) */

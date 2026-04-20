@@ -116,7 +116,7 @@ function GameGallery() {
   if (galleryItems.length === 0) return null
 
   return (
-    <div className="space-y-4 border-t-2 border-(--ink)/8 pt-5 lg:border-0 lg:pt-0 lg:mx-auto lg:flex lg:w-full lg:max-w-xl lg:flex-col lg:justify-center">
+    <div className="space-y-4 border-t-2 border-(--ink)/8 pt-5 lg:self-center lg:border-0 lg:pt-0 lg:mx-auto lg:flex lg:w-full lg:max-w-xl lg:flex-col lg:justify-center">
       {/* Main stage — click to open lightbox */}
       <div
         className="game-gallery-stage rounded-4xl"

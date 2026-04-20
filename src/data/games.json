@@ -39,22 +39,6 @@
         "heroCharacterAlt": "A Get Rammed character sticker floating above the featured game card.",
         "titleImageFile": "Title.png",
         "galleryFolder": "Screenshots",
-        "gallery": [
-            {
-                "type": "image",
-                "file": "screenshot-01.png",
-                "alt": "Get Rammed screenshot showing a chaotic arena clash."
-            },
-            {
-                "type": "image",
-                "file": "screenshot-02.png",
-                "alt": "Get Rammed screenshot showing goats colliding in a multiplayer match."
-            },
-            {
-                "type": "image",
-                "file": "screenshot-03.png",
-                "alt": "Get Rammed screenshot showing another moment from the arena."
-            }
-        ]
+        "gallery": []
     }
 ]

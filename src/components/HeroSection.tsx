@@ -18,7 +18,7 @@ export function HeroSection() {
             <div className="hero-copy flex max-w-3xl flex-col gap-3 sm:gap-4">
               <BrandMark dense />
               <h1 className="font-display text-2xl uppercase leading-[0.95] text-(--ink) sm:text-4xl lg:text-6xl">
-                Games made for playing together.
+                Made for playing together.
               </h1>
               <p className="hero-lede max-w-2xl text-sm leading-7 text-(--muted) sm:text-[1.05rem] sm:leading-8">
                 We are a <strong className="hero-lede-location">Cape Town based video game studio</strong>{' '}
@@ -65,7 +65,7 @@ export function HeroSection() {
                       <img
                         src={heroTitleImage}
                         alt={featuredGame.title}
-                        className="hero-release-title-image"
+                        className="hero-release-title-image mx-auto"
                       />
                     ) : (
                       <p className="text-3xl font-black uppercase leading-none sm:text-4xl lg:text-5xl">

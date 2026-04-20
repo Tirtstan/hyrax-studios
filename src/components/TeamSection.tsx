@@ -33,13 +33,13 @@ export function TeamSection() {
           description="Meet the ones behind Hyrax Studios."
         />
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
           {people.map((person) => {
             const portraitSrc = resolveTeamPortrait(person.image)
             return (
             <article
               key={person.id}
-              className="team-card section-card overflow-hidden p-4 sm:p-5"
+              className="team-card section-card w-full overflow-hidden p-4 sm:p-5"
               style={{ '--card-accent': person.accent } as CSSProperties}
             >
               <div className="team-card__portrait">
