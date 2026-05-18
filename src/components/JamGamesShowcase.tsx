@@ -19,11 +19,11 @@ export function JamGamesShowcase() {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid min-w-0 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {smallerProjects.map((game) => (
           <article
             key={game.id}
-            className="rounded-[1.6rem] border-2 border-(--ink) bg-white/72 p-5"
+            className="min-w-0 rounded-[1.6rem] border-2 border-(--ink) bg-white/72 p-5"
           >
             <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.28em] text-(--muted)">
               {game.event} · {game.year}

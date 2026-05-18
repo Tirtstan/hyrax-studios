@@ -11,6 +11,15 @@
     --brand-coral: #eb746d;
     --brand-gold: #f7efab;
     --shadow-ink: rgba(35, 31, 32, 0.2);
+    --section-rule-gap: clamp(1.35rem, 3.25vw, 2rem);
+    --section-rule-max-width: min(70rem, 100%);
+    /* Hero sticker PNG */
+    --hero-character-sticker-top: calc(-1rem);
+    --hero-character-sticker-top-mobile: calc(1.25rem);
+    --hero-character-sticker-width: min(16.25rem, 42vw);
+    --hero-character-sticker-width-mobile: min(11.5rem, 48vw);
+    --hero-character-sticker-left: 4.5rem;
+    --hero-character-sticker-left-mobile: clamp(2rem, 6vw + 1.75rem, 5rem);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -25,12 +34,15 @@
 html {
     scroll-behavior: smooth;
     overflow-x: clip;
+    overscroll-behavior-y: none;
 }
 
 body {
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
+    min-height: 100dvh;
+    overscroll-behavior-y: none;
     font-family: "Inter", "Segoe UI", system-ui, sans-serif;
     color: var(--ink);
     background:
@@ -56,4 +68,5 @@ textarea {
 
 #root {
     min-height: 100vh;
+    min-height: 100dvh;
 }

@@ -54,7 +54,7 @@ export function ContactSection() {
   }, [formOpen])
 
   return (
-    <footer id="contact" ref={sectionRef} className="px-4 py-8 pb-14 sm:px-6 sm:py-10 sm:pb-20">
+    <footer id="contact" ref={sectionRef} className="px-4 pb-14 pt-0 sm:px-6 sm:pb-20">
       <div className="content-shell">
         <div className="footer-card">
 

@@ -39,8 +39,6 @@ export type Game = {
     heroCharacterFile?: string;
     heroCharacterAlt?: string;
     titleImageFile?: string;
-    /** CSS `brightness()` multiplier for title art (hero + games section). */
-    titleImageBrightness?: number;
     galleryFolder?: string;
     gallery: GameGalleryItem[];
 };
