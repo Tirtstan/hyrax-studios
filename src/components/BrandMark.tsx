@@ -1,5 +1,5 @@
-const LOGO_SRC = '/brand/logo.svg'
-const WORDMARK_SRC = '/brand/HyraxText.svg'
+import logoSrc from '../assets/brand/logo.svg'
+import wordmarkSrc from '../assets/brand/HyraxText.svg'
 
 type BrandMarkProps = {
   compact?: boolean
@@ -11,7 +11,7 @@ export function BrandMark({ compact = false, dense = false }: BrandMarkProps) {
     <div className={compact ? 'brand-lockup' : 'brand-mark'}>
       <div className="flex items-center gap-3 sm:gap-5">
         <img
-          src={LOGO_SRC}
+          src={logoSrc}
           alt=""
           width={200}
           height={120}
@@ -25,7 +25,7 @@ export function BrandMark({ compact = false, dense = false }: BrandMarkProps) {
           }
         />
         <img
-          src={WORDMARK_SRC}
+          src={wordmarkSrc}
           alt="Hyrax Studios"
           width={1038}
           height={323}
