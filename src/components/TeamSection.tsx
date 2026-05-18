@@ -25,7 +25,7 @@ const personLinkLabels: Record<PersonLinkKind, string> = {
 
 export function TeamSection() {
   return (
-    <section id="team" className="px-4 py-8 sm:px-6 sm:py-10">
+    <section id="team" className="px-4 pb-0 pt-0 sm:px-6">
       <div className="content-shell space-y-6">
         <SectionHeading
           eyebrow="Team"
@@ -33,7 +33,7 @@ export function TeamSection() {
           description="Meet the ones behind Hyrax Studios."
         />
 
-        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
+        <div className="mx-auto grid gap-5 md:grid-cols-2">
           {people.map((person) => {
             const portraitSrc = resolveTeamPortrait(person.image)
             return (

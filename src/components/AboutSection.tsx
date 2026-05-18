@@ -1,9 +1,9 @@
-import aboutLogoSrc from '../assets/brand/HyraxLogoFullBlack.svg'
+import aboutLogoSrc from '../assets/brand/hyrax-logo-full-black.png'
 import { SectionHeading } from './SectionHeading'
 
 export function AboutSection() {
   return (
-    <section id="about" className="px-4 py-8 sm:px-6 sm:py-10">
+    <section id="about" className="px-4 pb-0 pt-0 sm:px-6">
       <div className="content-shell space-y-6">
         <SectionHeading
           eyebrow="About"

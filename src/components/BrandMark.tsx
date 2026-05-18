@@ -1,5 +1,5 @@
 import logoSrc from '../assets/brand/logo.svg'
-import wordmarkSrc from '../assets/brand/HyraxText.svg'
+import wordmarkSrc from '../assets/brand/hyrax-text.png'
 
 type BrandMarkProps = {
   compact?: boolean
@@ -27,8 +27,8 @@ export function BrandMark({ compact = false, dense = false }: BrandMarkProps) {
         <img
           src={wordmarkSrc}
           alt="Hyrax Studios"
-          width={1038}
-          height={323}
+          width={520}
+          height={162}
           decoding="async"
           className={
             compact

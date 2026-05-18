@@ -2,14 +2,14 @@ import type { CSSProperties } from 'react'
 
 import { BrandMark } from './BrandMark'
 import { resolveGameMedia } from '../data/gameMedia'
-import { DEFAULT_TITLE_IMAGE_BRIGHTNESS, featuredGame } from '../data/games'
+import { featuredGame } from '../data/games'
 
 export function HeroSection() {
   const heroCharacterImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.heroCharacterFile)
   const heroTitleImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.titleImageFile)
 
   return (
-    <section id="top" className="px-4 pb-5 pt-6 sm:px-6 sm:pb-8 sm:pt-7">
+    <section id="top" className="px-4 pb-0 pt-6 sm:px-6 sm:pt-7">
       <div className="content-shell">
         <div className="section-card relative overflow-hidden p-4 sm:p-7 lg:p-9">
           <div className="hero-mesh absolute inset-0 opacity-80" aria-hidden="true" />
@@ -43,9 +43,6 @@ export function HeroSection() {
                 {
                   '--feature-accent': featuredGame.accentColor ?? '#eb746d',
                   '--feature-primary': '#292929',
-                  '--title-image-brightness': String(
-                    featuredGame.titleImageBrightness ?? DEFAULT_TITLE_IMAGE_BRIGHTNESS,
-                  ),
                 } as CSSProperties
               }
             >

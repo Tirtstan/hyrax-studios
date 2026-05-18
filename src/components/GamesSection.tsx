@@ -6,7 +6,7 @@ import 'yet-another-react-lightbox/styles.css'
 import itchioIcon from '../assets/logos/itchio-textless-black.svg'
 import steamIcon from '../assets/logos/steam.svg'
 import { getAutoGalleryImages, resolveGameMedia } from '../data/gameMedia'
-import { DEFAULT_TITLE_IMAGE_BRIGHTNESS, featuredGame } from '../data/games'
+import { featuredGame } from '../data/games'
 import { JamGamesShowcase } from './JamGamesShowcase'
 import { SectionHeading } from './SectionHeading'
 
@@ -17,7 +17,7 @@ function GameLinks() {
   const iconForKind: Record<string, string> = { itch: itchioIcon, steam: steamIcon }
 
   return (
-    <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
+    <div className="flex max-w-full flex-wrap justify-center gap-3 lg:justify-start">
       {steamLink ? (
         steamLink.href ? (
           <a
@@ -116,7 +116,7 @@ function GameGallery() {
   if (galleryItems.length === 0) return null
 
   return (
-    <div className="space-y-4 border-t-2 border-(--ink)/8 pt-5 lg:self-center lg:border-0 lg:pt-0 lg:mx-auto lg:flex lg:w-full lg:max-w-xl lg:flex-col lg:justify-center">
+    <div className="game-gallery-stack min-w-0 space-y-4 border-t-2 border-(--ink)/8 pt-5 lg:border-0 lg:pt-0 lg:flex lg:h-full lg:w-full lg:min-h-0 lg:flex-col lg:justify-center">
       {/* Main stage — click to open lightbox */}
       <div
         className="game-gallery-stage rounded-4xl"
@@ -224,28 +224,25 @@ export function GamesSection() {
   const gameTitleImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.titleImageFile)
 
   return (
-    <section id="games" className="px-4 py-8 sm:px-6 sm:py-10">
+    <section id="games" className="px-4 pb-0 pt-0 sm:px-6">
       <div className="content-shell space-y-6">
         <SectionHeading eyebrow="Projects" title="Games" description={featuredGame.summary} />
 
         <div
-          className="section-card feature-panel relative grid gap-6 p-4 sm:gap-8 sm:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start"
+          className="section-card feature-panel relative grid min-w-0 max-w-full grid-cols-1 gap-6 p-4 sm:gap-8 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)] lg:items-stretch"
           style={
             {
               '--feature-accent': featuredGame.accentColor ?? '#eb746d',
-              '--title-image-brightness': String(
-                featuredGame.titleImageBrightness ?? DEFAULT_TITLE_IMAGE_BRIGHTNESS,
-              ),
             } as CSSProperties
           }
         >
-          <div className="space-y-6">
+          <div className="min-w-0 space-y-6">
             <div className="space-y-4">
               {gameTitleImage ? (
                 <img
                   src={gameTitleImage}
                   alt={featuredGame.title}
-                  className="game-section-title-image mx-auto lg:mx-0"
+                  className="game-section-title-image mx-auto max-w-full lg:mx-0"
                 />
               ) : (
                 <h3 className="font-display text-center text-3xl uppercase leading-none text-(--ink) sm:text-4xl lg:text-left">
