@@ -96,6 +96,8 @@ function GameGallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const selectedImage = galleryItems.find((item) => item.file === selectedFile) ?? galleryItems[0]
   const thumbRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+  const thumbRowRef = useRef<HTMLDivElement>(null)
+  const skipThumbScrollRef = useRef(true)
 
   const currentIndex = galleryItems.findIndex((item) => item.file === selectedFile)
 
@@ -105,12 +107,17 @@ function GameGallery() {
   }
 
   useEffect(() => {
-    if (!selectedFile) return
-    thumbRefs.current[selectedFile]?.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'center',
-      block: 'nearest',
-    })
+    if (!selectedFile || skipThumbScrollRef.current) {
+      skipThumbScrollRef.current = false
+      return
+    }
+
+    const thumb = thumbRefs.current[selectedFile]
+    const row = thumbRowRef.current
+    if (!thumb || !row) return
+
+    const targetLeft = thumb.offsetLeft - (row.clientWidth - thumb.offsetWidth) / 2
+    row.scrollTo({ left: targetLeft, behavior: 'smooth' })
   }, [selectedFile])
 
   if (galleryItems.length === 0) return null
@@ -150,7 +157,7 @@ function GameGallery() {
       {galleryItems.length > 1 && (
         <div className="game-gallery-rail">
           <div className="game-gallery-thumb-area">
-            <div className="game-gallery-thumb-row">
+            <div ref={thumbRowRef} className="game-gallery-thumb-row">
               {galleryItems.map((item) => (
                 <button
                   key={item.file}

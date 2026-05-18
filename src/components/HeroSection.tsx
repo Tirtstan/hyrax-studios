@@ -11,13 +11,13 @@ export function HeroSection() {
   return (
     <section id="top" className="px-4 pb-0 pt-6 sm:px-6 sm:pt-7">
       <div className="content-shell">
-        <div className="section-card relative overflow-hidden p-4 sm:p-7 lg:p-9">
+        <div className="section-card hero-section-card relative overflow-hidden p-4 pb-3 sm:p-7 sm:pb-6 lg:p-9 lg:pb-8">
           <div className="hero-mesh absolute inset-0 opacity-80" aria-hidden="true" />
           <div className="hero-grain absolute inset-0 opacity-70" aria-hidden="true" />
-          <div className="relative grid gap-5 sm:gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-start lg:gap-8">
-            <div className="hero-copy flex max-w-3xl flex-col gap-3 sm:gap-4">
+          <div className="hero-grid relative grid gap-5 sm:gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-start lg:gap-8">
+            <div className="hero-copy relative z-30 flex max-w-3xl flex-col gap-3 sm:gap-4">
               <BrandMark dense />
-              <h1 className="font-display text-2xl uppercase leading-[0.95] text-(--ink) sm:text-4xl lg:text-6xl">
+              <h1 className="font-display max-w-[min(100%,19rem)] text-balance text-[clamp(1.7rem,6.5vw,2.35rem)] uppercase leading-[0.98] tracking-tight text-(--ink) sm:max-w-3xl sm:text-4xl sm:tracking-normal lg:text-6xl">
                 Made for playing together.
               </h1>
               <p className="hero-lede max-w-2xl text-sm leading-7 text-(--muted) sm:text-[1.05rem] sm:leading-8">
@@ -38,7 +38,7 @@ export function HeroSection() {
             </div>
 
             <div
-              className={`featured-release-wrap self-start sm:mx-auto sm:w-full sm:max-w-md lg:mx-0 lg:max-w-none ${heroCharacterImage ? 'has-character' : ''}`}
+              className={`hero-showcase flex w-full flex-col items-center sm:mx-auto sm:max-w-md lg:mx-0 lg:max-w-none ${heroCharacterImage ? 'hero-showcase--with-character' : ''}`}
               style={
                 {
                   '--feature-accent': featuredGame.accentColor ?? '#eb746d',
@@ -46,15 +46,9 @@ export function HeroSection() {
                 } as CSSProperties
               }
             >
-              {heroCharacterImage ? (
-                <div className="hero-character-sticker" aria-hidden="true">
-                  <img src={heroCharacterImage} alt={featuredGame.heroCharacterAlt ?? ''} />
-                </div>
-              ) : null}
-
               <a
                 href="#games"
-                className="featured-release featured-release--hero block rounded-3xl border-2 border-(--ink) p-5 text-(--ink) no-underline sm:rounded-4xl sm:p-6"
+                className="featured-release featured-release--hero block w-full max-w-none rounded-3xl border-2 border-(--ink) p-5 text-(--ink) no-underline sm:rounded-4xl sm:p-6"
               >
                 <div className="featured-release-body space-y-4">
                   <div className="space-y-2 sm:space-y-3">
@@ -76,6 +70,11 @@ export function HeroSection() {
                   <span className="featured-release-hint">Open full spotlight</span>
                 </div>
               </a>
+              {heroCharacterImage ? (
+                <div className="hero-character-sticker" aria-hidden="true">
+                  <img src={heroCharacterImage} alt={featuredGame.heroCharacterAlt ?? ''} />
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
