@@ -1,3 +1,4 @@
+import aboutLogoSrc from '../assets/brand/HyraxLogoFullBlack.svg'
 import { SectionHeading } from './SectionHeading'
 
 export function AboutSection() {
@@ -14,7 +15,7 @@ export function AboutSection() {
           <div className="about-lockup">
             <div className="about-lockup__brand">
               <img
-                src="/brand/HyraxLogoFullBlack.svg"
+                src={aboutLogoSrc}
                 alt="Hyrax Studios"
                 className="about-lockup__logo"
               />
