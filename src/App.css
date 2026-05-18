@@ -110,6 +110,11 @@
     pointer-events: none;
 }
 
+.hero-section-card .hero-mesh,
+.hero-section-card .hero-grain {
+    border-radius: inherit;
+}
+
 .hero-mesh {
     background-image:
         radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.75), transparent 22%),
@@ -149,6 +154,12 @@
         100% 100%;
     mix-blend-mode: soft-light;
     animation: hero-grain-drift 20s linear infinite;
+}
+
+/* Keeps CTAs above the hero character when the PNG extends upward (stacked layout) */
+#top .hero-copy {
+    position: relative;
+    z-index: 30;
 }
 
 .hero-copy > *,
@@ -473,21 +484,21 @@
         inset 0 0 0 1px rgba(255, 220, 156, 0.28);
 }
 
-.featured-release-wrap {
+/* Hero spotlight: one unit (card + character). Offset: --hero-showcase-offset in index.css */
+#top .hero-showcase {
     position: relative;
-}
-
-.featured-release-wrap.has-character {
-    padding-top: 6rem;
+    z-index: 0;
+    margin-top: var(--hero-showcase-offset, 8rem);
 }
 
 .hero-character-sticker {
     position: absolute;
-    top: var(--hero-character-sticker-top);
-    left: var(--hero-character-sticker-left);
+    left: 50%;
+    bottom: 100%;
     z-index: 0;
     width: var(--hero-character-sticker-width);
-    transform: translateY(0) scaleX(-1) rotate(0deg);
+    margin-bottom: calc(-1 * var(--hero-character-overlap));
+    transform: translateX(calc(-50% + var(--hero-character-offset-x))) scaleX(-1) rotate(0deg);
     pointer-events: none;
     transform-origin: center bottom;
     transition: transform 220ms ease;
@@ -500,8 +511,8 @@
     filter: drop-shadow(0 5px 0 var(--feature-accent, #ff4949));
 }
 
-.featured-release-wrap:hover .hero-character-sticker,
-.featured-release-wrap:focus-within .hero-character-sticker {
+.hero-showcase--with-character:hover .hero-character-sticker,
+.hero-showcase--with-character:focus-within .hero-character-sticker {
     animation:
         hero-character-bob 350ms ease-out forwards,
         hero-character-shake 180ms ease-in-out 110ms;
@@ -518,6 +529,10 @@
         border-color 220ms ease;
     z-index: 1;
     cursor: pointer;
+}
+
+.hero-showcase--with-character > .featured-release {
+    z-index: 2;
 }
 
 .featured-release--hero {
@@ -638,23 +653,27 @@
 
 @keyframes hero-character-bob {
     0% {
-        transform: translateY(0) scaleX(-1) rotate(0deg);
+        transform: translateX(calc(-50% + var(--hero-character-offset-x))) scaleX(-1) rotate(0deg);
     }
     100% {
-        transform: translateY(-8px) scaleX(-1) rotate(0deg);
+        transform: translateX(calc(-50% + var(--hero-character-offset-x))) translateY(-8px)
+            scaleX(-1) rotate(0deg);
     }
 }
 
 @keyframes hero-character-shake {
     0%,
     100% {
-        transform: translateY(-8px) scaleX(-1) rotate(0deg);
+        transform: translateX(calc(-50% + var(--hero-character-offset-x))) translateY(-8px)
+            scaleX(-1) rotate(0deg);
     }
     35% {
-        transform: translateY(-9px) scaleX(-1) rotate(-4deg);
+        transform: translateX(calc(-50% + var(--hero-character-offset-x))) translateY(-9px)
+            scaleX(-1) rotate(-4deg);
     }
     70% {
-        transform: translateY(-8px) scaleX(-1) rotate(4deg);
+        transform: translateX(calc(-50% + var(--hero-character-offset-x))) translateY(-8px)
+            scaleX(-1) rotate(4deg);
     }
 }
 
@@ -1472,13 +1491,7 @@
         transform: translateY(-4px);
     }
 
-    .featured-release-wrap.has-character {
-        padding-top: 5.5rem;
-    }
-
     .hero-character-sticker {
-        top: var(--hero-character-sticker-top-mobile);
-        left: var(--hero-character-sticker-left-mobile);
         width: var(--hero-character-sticker-width-mobile);
     }
 

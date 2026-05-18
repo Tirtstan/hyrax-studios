@@ -13,17 +13,32 @@
     --shadow-ink: rgba(35, 31, 32, 0.2);
     --section-rule-gap: clamp(1.35rem, 3.25vw, 2rem);
     --section-rule-max-width: min(70rem, 100%);
-    /* Hero sticker PNG */
-    --hero-character-sticker-top: calc(-1rem);
-    --hero-character-sticker-top-mobile: calc(1.25rem);
-    --hero-character-sticker-width: min(16.25rem, 42vw);
-    --hero-character-sticker-width-mobile: min(11.5rem, 48vw);
-    --hero-character-sticker-left: 4.5rem;
-    --hero-character-sticker-left-mobile: clamp(2rem, 6vw + 1.75rem, 5rem);
+    /* Hero sticker PNG — flow layout + width (see App.css) */
+    --hero-character-sticker-width: min(24rem, 52vw);
+    --hero-character-sticker-width-mobile: min(17.5rem, 78vw);
+    /* Showcase vertical offset — one name for all breakpoints (see media queries below) */
+    --hero-showcase-offset: clamp(8.5rem, 18vw, 12rem);
+    /* How far the goat overlaps the top of the showcase card */
+    --hero-character-overlap: clamp(1.75rem, 5vw, 3rem);
+    /* Horizontal fine-tune for the character art only */
+    --hero-character-offset-x: 0.35rem;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 1023px) {
+    :root {
+        --hero-showcase-offset: clamp(9.5rem, 20vw, 13rem);
+        --hero-character-offset-x: 0.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --hero-showcase-offset: clamp(8.5rem, 10vw, 11.5rem);
+    }
 }
 
 @theme inline {
