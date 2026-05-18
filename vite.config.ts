@@ -7,7 +7,8 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [react(), tailwindcss()],
-    base: "/",
+    // Relative URLs so assets load on GitHub Pages project sites (/repo/) and at domain root.
+    base: "./",
     build: {
         rollupOptions: {
             input: {
