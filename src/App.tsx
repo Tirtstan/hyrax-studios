@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="site-shell">
       <SiteHeader />
-      <main>
+      <main className="site-main">
         <HeroSection />
         <GamesSection />
         <AboutSection />
