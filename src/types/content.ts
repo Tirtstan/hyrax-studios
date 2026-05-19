@@ -65,6 +65,8 @@ export type PersonLink = {
     href: string;
 };
 
+export type PersonStatus = "active" | "alumni";
+
 export type Person = {
     id: string;
     name: string;
@@ -74,4 +76,8 @@ export type Person = {
     accent: string;
     image?: string;
     links: PersonLink[];
+    /** Defaults to active. Alumni are former members shown in a separate band. */
+    status?: PersonStatus;
+    /** When true with alumni status, surfaces that they still help the studio occasionally. */
+    stillContributing?: boolean;
 };
