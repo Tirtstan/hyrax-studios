@@ -7,6 +7,9 @@ import { SectionHeading } from './SectionHeading'
 
 const people = peopleData as Person[]
 
+const activePeople = people.filter((person) => (person.status ?? 'active') === 'active')
+const alumniPeople = people.filter((person) => person.status === 'alumni')
+
 function getInitials(name: string) {
   return name
     .split(' ')
@@ -23,6 +26,84 @@ const personLinkLabels: Record<PersonLinkKind, string> = {
   twitter: 'Twitter',
 }
 
+type TeamPersonCardProps = {
+  person: Person
+  variant?: 'active' | 'alumni'
+}
+
+function TeamPersonCard({ person, variant = 'active' }: TeamPersonCardProps) {
+  const isAlumni = variant === 'alumni'
+  const portraitSrc = resolveTeamPortrait(person.image)
+
+  return (
+    <article
+      className={[
+        'team-card section-card w-full overflow-hidden p-4 sm:p-5',
+        isAlumni ? 'team-card--alumni' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      style={{ '--card-accent': person.accent } as CSSProperties}
+    >
+      {isAlumni ? (
+        <p className="team-card__status-row">
+          <span className="team-status-badge">Alumni</span>
+        </p>
+      ) : null}
+
+      <div className="team-card__portrait">
+        {portraitSrc ? (
+          <img
+            src={portraitSrc}
+            alt={`${person.name} profile art`}
+            className="team-card__image"
+          />
+        ) : (
+          <div className="team-card__avatar" aria-hidden="true">
+            <span>{getInitials(person.name)}</span>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-4 space-y-3">
+        <p className="accent-chip text-[0.64rem] font-extrabold uppercase tracking-[0.26em] text-(--ink)">
+          {person.focus}
+        </p>
+        <div>
+          <h3 className="text-2xl font-black uppercase leading-tight text-(--ink)">
+            {person.name}
+          </h3>
+          <p className="mt-1 text-sm font-bold leading-6 text-(--muted)">{person.role}</p>
+        </div>
+      </div>
+
+      {person.blurb ? (
+        <p className="mt-4 text-sm leading-7 text-(--muted)">{person.blurb}</p>
+      ) : null}
+
+      {person.links.length > 0 ? (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {person.links.map((link) => {
+            const isMail = link.kind === 'email' || link.href.startsWith('mailto:')
+
+            return (
+              <a
+                key={link.href}
+                href={isMail && !link.href.startsWith('mailto:') ? `mailto:${link.href}` : link.href}
+                target={isMail ? undefined : '_blank'}
+                rel={isMail ? undefined : 'noreferrer'}
+                className="profile-link"
+              >
+                {personLinkLabels[link.kind]}
+              </a>
+            )
+          })}
+        </div>
+      ) : null}
+    </article>
+  )
+}
+
 export function TeamSection() {
   return (
     <section id="team" className="px-4 pb-0 pt-0 sm:px-6">
@@ -34,69 +115,29 @@ export function TeamSection() {
         />
 
         <div className="mx-auto grid gap-5 md:grid-cols-2">
-          {people.map((person) => {
-            const portraitSrc = resolveTeamPortrait(person.image)
-            return (
-            <article
-              key={person.id}
-              className="team-card section-card w-full overflow-hidden p-4 sm:p-5"
-              style={{ '--card-accent': person.accent } as CSSProperties}
-            >
-              <div className="team-card__portrait">
-                {portraitSrc ? (
-                  <img
-                    src={portraitSrc}
-                    alt={`${person.name} profile art`}
-                    className="team-card__image"
-                  />
-                ) : (
-                  <div className="team-card__avatar" aria-hidden="true">
-                    <span>{getInitials(person.name)}</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="mt-4 space-y-3">
-                <p className="accent-chip text-[0.64rem] font-extrabold uppercase tracking-[0.26em] text-(--ink)">
-                  {person.focus}
-                </p>
-                <div>
-                  <h3 className="text-2xl font-black uppercase leading-tight text-(--ink)">
-                    {person.name}
-                  </h3>
-                  <p className="mt-1 text-sm font-bold leading-6 text-(--muted)">
-                    {person.role}
-                  </p>
-                </div>
-              </div>
-
-              {person.blurb && (
-                <p className="mt-4 text-sm leading-7 text-(--muted)">{person.blurb}</p>
-              )}
-
-              {person.links.length > 0 ? (
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {person.links.map((link) => {
-                    const isMail = link.kind === 'email' || link.href.startsWith('mailto:')
-
-                    return (
-                      <a
-                        key={link.href}
-                        href={isMail && !link.href.startsWith('mailto:') ? `mailto:${link.href}` : link.href}
-                        target={isMail ? undefined : '_blank'}
-                        rel={isMail ? undefined : 'noreferrer'}
-                        className="profile-link"
-                      >
-                        {personLinkLabels[link.kind]}
-                      </a>
-                    )
-                  })}
-                </div>
-              ) : null}
-            </article>
-            )
-          })}
+          {activePeople.map((person) => (
+            <TeamPersonCard key={person.id} person={person} />
+          ))}
         </div>
+
+        {alumniPeople.length > 0 ? (
+          <div className="space-y-5">
+            <div className="max-w-2xl space-y-2">
+              <h3 className="text-2xl font-black uppercase leading-tight text-(--ink)">
+                Originals
+              </h3>
+              <p className="text-sm leading-7 text-(--muted) sm:text-base">
+                Others who are no longer active in the studio, but still helping out when convenient.
+              </p>
+            </div>
+
+            <div className="mx-auto grid gap-5 md:grid-cols-2">
+              {alumniPeople.map((person) => (
+                <TeamPersonCard key={person.id} person={person} variant="alumni" />
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   )
