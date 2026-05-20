@@ -1175,57 +1175,6 @@
     pointer-events: none;
 }
 
-.team-card--alumni {
-    border-style: dashed;
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(241, 232, 224, 0.92)),
-        linear-gradient(
-            135deg,
-            color-mix(in srgb, var(--card-accent) 10%, transparent),
-            transparent
-        );
-    box-shadow: 0 6px 0 color-mix(in srgb, var(--shadow-ink) 72%, transparent);
-}
-
-.team-card--alumni:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 0 color-mix(in srgb, var(--shadow-ink) 72%, transparent);
-}
-
-.team-card--alumni .team-card__portrait {
-    opacity: 0.94;
-    filter: saturate(0.92);
-}
-
-.team-card--alumni .team-card__image {
-    transform: scale(1.02);
-}
-
-.team-card--alumni:hover .team-card__image {
-    transform: scale(1.04) translateY(-1px);
-}
-
-.team-card__status-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-bottom: 0.85rem;
-}
-
-.team-status-badge {
-    display: inline-flex;
-    align-items: center;
-    border: 1.5px dashed color-mix(in srgb, var(--ink) 42%, white);
-    border-radius: 999px;
-    padding: 0.34rem 0.62rem;
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--muted);
-    font-size: 0.58rem;
-    font-weight: 900;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-}
-
 .profile-link {
     display: inline-flex;
     align-items: center;
@@ -1605,7 +1554,6 @@
     .primary-cta,
     .secondary-cta,
     .team-card,
-    .team-card--alumni,
     .team-card__image,
     .profile-link,
     .footer-social-link,

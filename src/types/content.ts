@@ -76,8 +76,6 @@ export type Person = {
     accent: string;
     image?: string;
     links: PersonLink[];
-    /** Defaults to active. Alumni are former members shown in a separate band. */
+    /** Defaults to active. Alumni appear under the Originals band. */
     status?: PersonStatus;
-    /** When true with alumni status, surfaces that they still help the studio occasionally. */
-    stillContributing?: boolean;
 };
