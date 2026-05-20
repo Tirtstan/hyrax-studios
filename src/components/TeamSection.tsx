@@ -28,29 +28,16 @@ const personLinkLabels: Record<PersonLinkKind, string> = {
 
 type TeamPersonCardProps = {
   person: Person
-  variant?: 'active' | 'alumni'
 }
 
-function TeamPersonCard({ person, variant = 'active' }: TeamPersonCardProps) {
-  const isAlumni = variant === 'alumni'
+function TeamPersonCard({ person }: TeamPersonCardProps) {
   const portraitSrc = resolveTeamPortrait(person.image)
 
   return (
     <article
-      className={[
-        'team-card section-card w-full overflow-hidden p-4 sm:p-5',
-        isAlumni ? 'team-card--alumni' : '',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className="team-card section-card w-full overflow-hidden p-4 sm:p-5"
       style={{ '--card-accent': person.accent } as CSSProperties}
     >
-      {isAlumni ? (
-        <p className="team-card__status-row">
-          <span className="team-status-badge">Alumni</span>
-        </p>
-      ) : null}
-
       <div className="team-card__portrait">
         {portraitSrc ? (
           <img
@@ -78,7 +65,10 @@ function TeamPersonCard({ person, variant = 'active' }: TeamPersonCardProps) {
       </div>
 
       {person.blurb ? (
-        <p className="mt-4 text-sm leading-7 text-(--muted)">{person.blurb}</p>
+        <p
+          className="mt-4 text-sm leading-7 text-(--muted)"
+          dangerouslySetInnerHTML={{ __html: person.blurb }}
+        />
       ) : null}
 
       {person.links.length > 0 ? (
@@ -133,7 +123,7 @@ export function TeamSection() {
 
             <div className="mx-auto grid gap-5 md:grid-cols-2">
               {alumniPeople.map((person) => (
-                <TeamPersonCard key={person.id} person={person} variant="alumni" />
+                <TeamPersonCard key={person.id} person={person} />
               ))}
             </div>
           </div>
