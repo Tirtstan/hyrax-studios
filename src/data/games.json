@@ -22,7 +22,7 @@
             {
                 "label": "Steam Wishlist",
                 "kind": "steam",
-                "href": "",
+                "href": "https://store.steampowered.com/app/4612760/",
                 "pendingLabel": "Steam Wishlist Soon",
                 "prominent": true
             },
