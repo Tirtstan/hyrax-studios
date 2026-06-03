@@ -6,7 +6,7 @@
         "focus": "Leadership, production, and studio direction",
         "blurb": "",
         "accent": "#9b5de5",
-        "image": "src/assets/team/LukePortrait.png",
+        "image": "src/assets/team/LukePortrait.webp",
         "links": [
             {
                 "kind": "email",
@@ -29,7 +29,7 @@
         "focus": "Concept direction and gameplay vision",
         "blurb": "",
         "accent": "#eb746d",
-        "image": "src/assets/team/JackPortrait.png",
+        "image": "src/assets/team/JackPortrait.webp",
         "links": [
             {
                 "kind": "email",
@@ -52,7 +52,7 @@
         "focus": "3D pipelines, look development, and implementation",
         "blurb": "",
         "accent": "#7acb8f",
-        "image": "src/assets/team/SethPortrait.png",
+        "image": "src/assets/team/SethPortrait.webp",
         "links": [
             {
                 "kind": "email",
@@ -75,7 +75,7 @@
         "focus": "Architecture, gameplay systems, and technical leadership",
         "blurb": "",
         "accent": "#78b6ff",
-        "image": "src/assets/team/TristanPortrait.png",
+        "image": "src/assets/team/TristanPortrait.webp",
         "links": [
             {
                 "kind": "email",
@@ -102,7 +102,7 @@
         "focus": "Visual and Character Development",
         "blurb": "Developed the art direction and created the characters for <strong><em>GET RAMMED</em></strong>.",
         "accent": "#f2be63",
-        "image": "src/assets/team/MichaelaPortrait.png",
+        "image": "src/assets/team/MichaelaPortrait.webp",
         "links": [
             {
                 "kind": "email",

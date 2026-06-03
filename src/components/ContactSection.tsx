@@ -2,11 +2,15 @@ import { useEffect, useRef, useState } from 'react'
 
 import instagramIcon from '../assets/logos/instagram-white.svg'
 import itchioIcon from '../assets/logos/itchio-textless-white.svg'
+import tiktokIcon from '../assets/logos/tiktok-brands-solid.png'
+import youtubeIcon from '../assets/logos/youtube-brands-solid.png'
 import { socialLinks } from '../data/siteContent'
 
 const iconByLabel: Record<string, string> = {
   Instagram: instagramIcon,
   'Itch.io': itchioIcon,
+  TikTok: tiktokIcon,
+  YouTube: youtubeIcon,
 }
 
 const GOOGLE_FORM_URL =
@@ -54,7 +58,11 @@ export function ContactSection() {
   }, [formOpen])
 
   return (
-    <footer id="contact" ref={sectionRef} className="px-4 pb-14 pt-0 sm:px-6 sm:pb-20">
+    <footer
+      id="contact"
+      ref={sectionRef}
+      className="px-4 pt-0 pb-[max(3.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pb-[max(5rem,env(safe-area-inset-bottom))]"
+    >
       <div className="content-shell">
         <div className="footer-card">
 
@@ -88,7 +96,12 @@ export function ContactSection() {
                 className="footer-social-link"
               >
                 <span className="footer-social-link__icon">
-                  <img src={iconByLabel[link.label]} alt="" aria-hidden="true" className="h-4 w-4" />
+                  <img
+                    src={iconByLabel[link.label]}
+                    alt=""
+                    aria-hidden="true"
+                    className={`h-4 w-4${link.label === 'TikTok' || link.label === 'YouTube' ? ' footer-social-link__icon-img--brand' : ''}`}
+                  />
                 </span>
                 <span>{link.label}</span>
               </a>

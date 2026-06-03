@@ -11,8 +11,10 @@
     --brand-coral: #eb746d;
     --brand-gold: #f7efab;
     --shadow-ink: rgba(35, 31, 32, 0.2);
+    --content-max-width: 70rem;
+    --layout-chrome-bleed: 0rem;
     --section-rule-gap: clamp(1.35rem, 3.25vw, 2rem);
-    --section-rule-max-width: min(70rem, 100%);
+    --section-rule-max-width: min(var(--content-max-width), 100%);
     /* Hero sticker PNG — flow layout + width (see App.css) */
     --hero-character-sticker-width: min(24rem, 52vw);
     --hero-character-sticker-width-mobile: min(17.5rem, 78vw);
@@ -22,6 +24,9 @@
     --hero-character-overlap: clamp(1.75rem, 5vw, 3rem);
     /* Horizontal fine-tune for the character art only */
     --hero-character-offset-x: 0.35rem;
+    --site-header-gap: max(0.5rem, env(safe-area-inset-top, 0px));
+    --site-header-bar-height: 3.35rem;
+    --site-header-clearance: calc(var(--site-header-gap) + var(--site-header-bar-height) + 0.65rem);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -30,7 +35,7 @@
 
 @media (max-width: 1023px) {
     :root {
-        --hero-showcase-offset: clamp(9.5rem, 20vw, 13rem);
+        --hero-showcase-offset: clamp(6.5rem, 14vw, 9rem);
         --hero-character-offset-x: 0.25rem;
     }
 }
@@ -38,6 +43,17 @@
 @media (min-width: 1024px) {
     :root {
         --hero-showcase-offset: clamp(8.5rem, 10vw, 11.5rem);
+    }
+}
+
+/* Wider chrome (nav + section rules) only when the viewport has room beyond content */
+@media (min-width: 76rem) {
+    :root {
+        --layout-chrome-bleed: clamp(1rem, 2vw, 2.5rem);
+        --section-rule-max-width: min(
+            calc(var(--content-max-width) + var(--layout-chrome-bleed) * 2),
+            100%
+        );
     }
 }
 
@@ -49,7 +65,7 @@
 html {
     scroll-behavior: smooth;
     overflow-x: clip;
-    overscroll-behavior-y: none;
+    scroll-padding-top: var(--site-header-clearance);
 }
 
 body {
@@ -57,7 +73,6 @@ body {
     min-width: 320px;
     min-height: 100vh;
     min-height: 100dvh;
-    overscroll-behavior-y: none;
     font-family: "Inter", "Segoe UI", system-ui, sans-serif;
     color: var(--ink);
     background:

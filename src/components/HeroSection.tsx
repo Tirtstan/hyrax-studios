@@ -9,9 +9,9 @@ export function HeroSection() {
   const heroTitleImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.titleImageFile)
 
   return (
-    <section id="top" className="px-4 pb-0 pt-6 sm:px-6 sm:pt-7">
+    <section id="top" className="hero-section px-4 pb-0 pt-2 sm:px-6 sm:pt-4 lg:pt-6">
       <div className="content-shell">
-        <div className="section-card hero-section-card relative overflow-hidden p-4 pb-3 sm:p-7 sm:pb-6 lg:p-9 lg:pb-8">
+        <div className="section-card hero-section-card relative p-4 pb-3 sm:p-7 sm:pb-6 lg:p-9 lg:pb-8">
           <div className="hero-mesh absolute inset-0 opacity-80" aria-hidden="true" />
           <div className="hero-grain absolute inset-0 opacity-70" aria-hidden="true" />
           <div className="hero-grid relative grid gap-5 sm:gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-start lg:gap-8">
