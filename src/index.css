@@ -24,9 +24,15 @@
     --hero-character-overlap: clamp(1.75rem, 5vw, 3rem);
     /* Horizontal fine-tune for the character art only */
     --hero-character-offset-x: 0.35rem;
-    --site-header-gap: max(0.5rem, env(safe-area-inset-top, 0px));
+    /* Safe top: padding on the header so content clears the notch on first paint (sticky `top` alone does not). */
+    --site-header-safe-top: max(0.5rem, env(safe-area-inset-top, 0px));
+    --site-header-sticky-offset: 0.5rem;
     --site-header-bar-height: 3.35rem;
-    --site-header-clearance: calc(var(--site-header-gap) + var(--site-header-bar-height) + 0.65rem);
+    --site-header-clearance: calc(
+        var(--site-header-safe-top) + var(--site-header-bar-height) + var(--site-header-sticky-offset) +
+            0.65rem
+    );
+    --site-bg-floor: #f3e2d5;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -66,6 +72,8 @@ html {
     scroll-behavior: smooth;
     overflow-x: clip;
     scroll-padding-top: var(--site-header-clearance);
+    /* Safari bottom toolbar / overscroll — layout viewport can expose `html` past the page */
+    background-color: var(--site-bg-floor);
 }
 
 body {
@@ -75,9 +83,10 @@ body {
     min-height: 100dvh;
     font-family: "Inter", "Segoe UI", system-ui, sans-serif;
     color: var(--ink);
-    background:
+    background-color: var(--site-bg-floor);
+    background-image:
         radial-gradient(circle at top, rgba(255, 255, 255, 0.5), transparent 45%),
-        linear-gradient(180deg, #f9eee6 0%, var(--paper) 55%, #f3e2d5 100%);
+        linear-gradient(180deg, #f9eee6 0%, var(--paper) 55%, var(--site-bg-floor) 100%);
 }
 
 *,

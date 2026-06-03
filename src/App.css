@@ -1,8 +1,9 @@
 .site-header {
     position: sticky;
-    top: var(--site-header-gap);
+    top: var(--site-header-sticky-offset);
     z-index: 50;
     margin-bottom: 0.35rem;
+    padding-top: var(--site-header-safe-top);
 }
 
 .site-shell {
@@ -11,13 +12,16 @@
 }
 
 .hero-section {
-    scroll-margin-top: calc(var(--site-header-clearance) - var(--site-header-gap));
+    scroll-margin-top: calc(var(--site-header-clearance) - var(--site-header-sticky-offset));
 }
 
 .site-shell::before {
     content: "";
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
     z-index: -2;
     background-image:
         radial-gradient(circle at 20% 20%, rgba(81, 166, 175, 0.18), transparent 28%),
@@ -30,7 +34,10 @@
 .site-shell::after {
     content: "";
     position: fixed;
-    inset: -2rem;
+    top: -2rem;
+    right: -2rem;
+    left: -2rem;
+    bottom: calc(-2rem - env(safe-area-inset-bottom, 0px));
     z-index: -1;
     opacity: 0.32;
     background: url("./assets/backgrounds/DoodleBackground.svg") repeat;
