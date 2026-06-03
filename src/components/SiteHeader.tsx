@@ -50,7 +50,7 @@ export function SiteHeader() {
     ].join(' ')
 
   return (
-    <header className="sticky top-4 z-50 px-4 sm:px-6">
+    <header className="site-header z-50 px-4 sm:px-6">
       <div ref={shellRef} className="content-shell relative">
         <div
           className={`site-header-scrim md:hidden ${menuOpen ? 'site-header-scrim--open' : ''}`}
@@ -58,7 +58,7 @@ export function SiteHeader() {
           onClick={() => setMenuOpen(false)}
         />
 
-        <div className="site-header-bar relative z-2 flex items-center gap-2 overflow-visible rounded-full border-2 border-(--ink) bg-[rgba(247,234,223,0.92)] px-3 py-2.5 shadow-[0_7px_0_var(--shadow-ink)] backdrop-blur sm:gap-3 sm:px-4 sm:py-3 md:gap-4 md:px-6">
+        <div className="site-header-bar relative z-2 flex items-center gap-2 overflow-visible rounded-full border-2 border-(--ink) bg-[rgba(247,234,223,0.72)] px-3 py-2.5 shadow-[0_7px_0_var(--shadow-ink)] backdrop-blur-md sm:gap-3 sm:px-4 sm:py-3 md:gap-4 md:px-6">
           <a
             href="#top"
             className="inline-flex min-h-0 min-w-0 shrink-0 items-center overflow-visible text-(--ink) no-underline"

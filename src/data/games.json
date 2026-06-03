@@ -34,9 +34,9 @@
             }
         ],
         "assetFolder": "Get Rammed",
-        "heroCharacterFile": "hero-character.png",
+        "heroCharacterFile": "hero-character.webp",
         "heroCharacterAlt": "A Get Rammed character sticker floating above the featured game card.",
-        "titleImageFile": "Title.png",
+        "titleImageFile": "Title.webp",
         "galleryFolder": "Screenshots",
         "gallery": []
     }
