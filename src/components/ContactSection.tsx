@@ -3,14 +3,16 @@ import { useEffect, useRef, useState } from 'react'
 import instagramIcon from '../assets/logos/instagram-white.svg'
 import itchioIcon from '../assets/logos/itchio-textless-white.svg'
 import tiktokIcon from '../assets/logos/tiktok-brands-solid.png'
+import twitterIcon from '../assets/logos/twitter-brands-solid.png'
 import youtubeIcon from '../assets/logos/youtube-brands-solid.png'
 import { socialLinks } from '../data/siteContent'
 
 const iconByLabel: Record<string, string> = {
-  Instagram: instagramIcon,
-  'Itch.io': itchioIcon,
-  TikTok: tiktokIcon,
   YouTube: youtubeIcon,
+  TikTok: tiktokIcon,
+  Instagram: instagramIcon,
+  Twitter: twitterIcon,
+  'Itch.io': itchioIcon,
 }
 
 const GOOGLE_FORM_URL =
@@ -100,7 +102,7 @@ export function ContactSection() {
                     src={iconByLabel[link.label]}
                     alt=""
                     aria-hidden="true"
-                    className={`h-4 w-4${link.label === 'TikTok' || link.label === 'YouTube' ? ' footer-social-link__icon-img--brand' : ''}`}
+                    className={`h-4 w-4${link.label === 'Twitter' || link.label === 'TikTok' || link.label === 'YouTube' ? ' footer-social-link__icon-img--brand' : ''}`}
                   />
                 </span>
                 <span>{link.label}</span>
