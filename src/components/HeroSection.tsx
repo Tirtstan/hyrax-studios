@@ -67,7 +67,20 @@ export function HeroSection() {
                       {featuredGame.summary}
                     </p>
                   </div>
-                  <span className="featured-release-hint">Open full spotlight</span>
+                  <span className="featured-release-hint">
+                    <span>View game spotlight</span>
+                    <span className="featured-release-hint__icon" aria-hidden="true">
+                      <svg viewBox="0 0 20 20" fill="none">
+                        <path
+                          d="m6 8 4 4 4-4"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </span>
                 </div>
               </a>
               {heroCharacterImage ? (

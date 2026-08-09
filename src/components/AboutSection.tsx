@@ -11,13 +11,15 @@ export function AboutSection() {
           description="Hyrax Studios is a video game studio based in Cape Town, South Africa, building games with a strong social experience."
         />
 
-        <article className="section-card p-6 sm:p-8">
+        <article className="section-card p-6 sm:p-8" data-reveal>
           <div className="about-lockup">
             <div className="about-lockup__brand">
               <img
                 src={aboutLogoSrc}
                 alt="Hyrax Studios"
                 className="about-lockup__logo"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 

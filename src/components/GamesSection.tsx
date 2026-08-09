@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import Lightbox from 'yet-another-react-lightbox'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import 'yet-another-react-lightbox/styles.css'
 
 import itchioIcon from '../assets/logos/itchio-textless-black.svg'
@@ -9,6 +8,8 @@ import { getAutoGalleryImages, resolveGameMedia } from '../data/gameMedia'
 import { featuredGame } from '../data/games'
 import { JamGamesShowcase } from './JamGamesShowcase'
 import { SectionHeading } from './SectionHeading'
+
+const Lightbox = lazy(() => import('yet-another-react-lightbox'))
 
 function GameLinks() {
   const primaryLinks = featuredGame.links.filter((link) => link.prominent)
@@ -20,15 +21,18 @@ function GameLinks() {
     <div className="flex max-w-full flex-wrap justify-center gap-3 lg:justify-start">
       {steamLink ? (
         steamLink.href ? (
-          <a
-            href={steamLink.href}
-            target="_blank"
-            rel="noreferrer"
-            className="primary-cta primary-cta--steam gap-2"
-          >
-            <img src={steamIcon} alt="" className="h-4 w-4" aria-hidden="true" />
-            {steamLink.label}
-          </a>
+          <div className="steam-cta-wrap">
+            <span className="steam-playtest-badge">Playtest live!</span>
+            <a
+              href={steamLink.href}
+              target="_blank"
+              rel="noreferrer"
+              className="primary-cta primary-cta--steam gap-2"
+            >
+              <img src={steamIcon} alt="" className="h-4 w-4" aria-hidden="true" />
+              {steamLink.label}
+            </a>
+          </div>
         ) : (
           <span
             className="primary-cta primary-cta--steam gap-2 cursor-default"
@@ -139,6 +143,8 @@ function GameGallery() {
               src={selectedImage.src}
               alt={selectedImage.alt}
               className="game-gallery-stage__image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         )}
@@ -168,8 +174,15 @@ function GameGallery() {
                   }}
                   className={`game-gallery-thumb ${item.file === selectedImage?.file ? 'is-active' : ''}`}
                   aria-pressed={item.file === selectedImage?.file}
+                  aria-label={`Show ${item.alt}`}
                 >
-                  <img src={item.src} alt={item.alt} className="game-gallery-thumb__image" />
+                  <img
+                    src={item.src}
+                    alt=""
+                    className="game-gallery-thumb__image"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </button>
               ))}
             </div>
@@ -211,18 +224,22 @@ function GameGallery() {
         </div>
       )}
 
-      <Lightbox
-        open={lightboxOpen}
-        close={() => setLightboxOpen(false)}
-        slides={galleryItems.map((item) => ({ src: item.src as string, alt: item.alt }))}
-        index={currentIndex}
-        on={{
-          view: ({ index }) => {
-            const item = galleryItems[index]
-            if (item) setSelectedFile(item.file)
-          },
-        }}
-      />
+      {lightboxOpen ? (
+        <Suspense fallback={null}>
+          <Lightbox
+            open
+            close={() => setLightboxOpen(false)}
+            slides={galleryItems.map((item) => ({ src: item.src as string, alt: item.alt }))}
+            index={currentIndex}
+            on={{
+              view: ({ index }) => {
+                const item = galleryItems[index]
+                if (item) setSelectedFile(item.file)
+              },
+            }}
+          />
+        </Suspense>
+      ) : null}
     </div>
   )
 }
@@ -236,6 +253,7 @@ export function GamesSection() {
         <SectionHeading eyebrow="Projects" title="Games" description={featuredGame.summary} />
 
         <div
+          data-reveal
           className="section-card feature-panel relative grid min-w-0 max-w-full grid-cols-1 gap-6 p-4 sm:gap-8 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)] lg:items-stretch"
           style={
             {

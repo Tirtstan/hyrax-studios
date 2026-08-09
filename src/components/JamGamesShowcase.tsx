@@ -23,6 +23,7 @@ export function JamGamesShowcase() {
         {smallerProjects.map((game) => (
           <article
             key={game.id}
+            data-reveal
             className="min-w-0 rounded-[1.6rem] border-2 border-(--ink) bg-white/72 p-5"
           >
             <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.28em] text-(--muted)">

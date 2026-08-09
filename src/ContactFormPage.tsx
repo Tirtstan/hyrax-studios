@@ -1,11 +1,8 @@
 import './App.css'
 
 import { BrandMark } from './components/BrandMark'
+import { googleContactFormEmbedUrl, googleContactFormUrl } from './data/contact'
 import { socialLinks } from './data/siteContent'
-
-const GOOGLE_FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSeYVjISuv1RdAwiLpKYWK8IGgPuWSsJQ2Ppz_qQpANXTZ9cbg/viewform?usp=sharing&ouid=102722259160060368500'
-const GOOGLE_FORM_EMBED_URL = `${GOOGLE_FORM_URL}&embedded=true`
 
 export function ContactFormPage() {
   return (
@@ -36,7 +33,7 @@ export function ContactFormPage() {
                 <a href="/" className="secondary-cta">
                   Back to Home
                 </a>
-                <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer" className="primary-cta">
+                <a href={googleContactFormUrl} target="_blank" rel="noreferrer" className="primary-cta">
                   Open in Google Forms
                 </a>
               </div>
@@ -46,7 +43,7 @@ export function ContactFormPage() {
           <section className="section-card p-3 sm:p-5 lg:p-6">
             <div className="contact-form-shell">
               <iframe
-                src={GOOGLE_FORM_EMBED_URL}
+                src={googleContactFormEmbedUrl}
                 title="Hyrax Studios contact form"
                 className="contact-form-embed"
               >
