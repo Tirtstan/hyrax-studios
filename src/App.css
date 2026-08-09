@@ -9,6 +9,8 @@
 .site-shell {
     position: relative;
     isolation: isolate;
+    min-height: 100vh;
+    min-height: 100lvh;
 }
 
 .hero-section {
@@ -18,66 +20,72 @@
 .site-shell::before {
     content: "";
     position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
+    top: calc(-1 * env(safe-area-inset-top, 0px));
+    right: calc(-1 * env(safe-area-inset-right, 0px));
+    left: calc(-1 * env(safe-area-inset-left, 0px));
     bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
     z-index: -2;
     background-image:
         radial-gradient(circle at 20% 20%, rgba(81, 166, 175, 0.18), transparent 28%),
         radial-gradient(circle at 80% 12%, rgba(235, 116, 109, 0.16), transparent 24%),
         radial-gradient(circle at 70% 78%, rgba(242, 190, 99, 0.16), transparent 26%);
-    animation: ambient-gradient-drift 26s ease-in-out infinite alternate;
     pointer-events: none;
 }
 
 .site-shell::after {
     content: "";
     position: fixed;
-    top: -2rem;
-    right: -2rem;
-    left: -2rem;
+    top: calc(-2rem - env(safe-area-inset-top, 0px));
+    right: calc(-2rem - env(safe-area-inset-right, 0px));
+    left: calc(-2rem - env(safe-area-inset-left, 0px));
     bottom: calc(-2rem - env(safe-area-inset-bottom, 0px));
     z-index: -1;
-    opacity: 0.32;
+    opacity: 0.16;
     background: url("./assets/backgrounds/DoodleBackground.svg") repeat;
-    background-size: 420px 420px;
-    filter: blur(1.6px);
-    mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
-    transform: scale(1.02);
-    animation: ambient-pattern-drift 34s linear infinite;
+    background-size: clamp(46rem, 62vw, 60rem) clamp(46rem, 62vw, 60rem);
+    background-position: 0 0;
     pointer-events: none;
 }
 
-.site-main > * {
+.reveal-ready [data-reveal] {
     opacity: 0;
-    animation: section-enter 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform: translateY(1.35rem) scale(0.992);
+    transition:
+        opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
 }
 
-.site-main > :nth-child(1) {
-    animation-delay: 90ms;
+.reveal-ready [data-reveal].is-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
-.site-main > :nth-child(2) {
-    animation-delay: 170ms;
-}
-
-.site-main > :nth-child(3) {
-    animation-delay: 250ms;
-}
-
-.site-main > :nth-child(4) {
-    animation-delay: 330ms;
-}
-
-.site-main > :nth-child(5) {
-    animation-delay: 410ms;
+.team-card:nth-child(even),
+.grid > [data-reveal]:nth-child(even) {
+    --reveal-delay: 90ms;
 }
 
 .content-shell {
     width: 100%;
     max-width: var(--content-max-width);
     margin-inline: auto;
+}
+
+.site-header,
+.site-main > section,
+.site-main > footer {
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+
+@media (min-width: 640px) {
+    .site-header,
+    .site-main > section,
+    .site-main > footer {
+        padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+        padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+    }
 }
 
 @media (min-width: 76rem) {
@@ -445,10 +453,6 @@
     transform: translateY(-1px);
 }
 
-.section-heading {
-    animation: heading-enter 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
 .about-lockup {
     display: grid;
     gap: 1.75rem;
@@ -536,6 +540,7 @@
     transform: translateX(calc(-50% + var(--hero-character-offset-x))) scaleX(-1) rotate(0deg);
     pointer-events: none;
     transform-origin: center bottom;
+    animation: hero-character-idle 5.4s ease-in-out infinite;
     transition: transform 220ms ease;
 }
 
@@ -646,26 +651,34 @@
 }
 
 .featured-release-hint {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.55rem;
-    width: fit-content;
-    border-radius: 999px;
-    padding: 0.55rem 0.82rem;
-    border: 2px solid color-mix(in srgb, var(--feature-accent, #eb746d) 44%, white);
-    background: color-mix(in srgb, var(--feature-primary, #292929) 88%, black);
-    box-shadow: 0 3px 0 rgba(12, 12, 12, 0.14);
-    color: rgba(255, 247, 247, 0.96);
-    font-size: 0.72rem;
+    justify-content: center;
+    gap: 0.45rem;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 0.68rem;
     font-weight: 900;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
 }
 
-.featured-release-hint::after {
-    content: "->";
-    display: inline-block;
-    transition: transform 180ms ease;
+.featured-release-hint__icon {
+    display: grid;
+    flex: 0 0 auto;
+    width: 0.9rem;
+    height: 0.9rem;
+    place-items: center;
+    color: color-mix(in srgb, var(--feature-accent, #eb746d) 72%, white);
+}
+
+.featured-release-hint__icon svg {
+    width: 0.9rem;
+    height: 0.9rem;
 }
 
 .featured-release:hover,
@@ -681,9 +694,18 @@
         0 18px 34px rgba(41, 41, 41, 0.18);
 }
 
-.featured-release:hover .featured-release-hint::after,
-.featured-release:focus-within .featured-release-hint::after {
-    transform: translateX(3px);
+.featured-release:hover .featured-release-hint__icon,
+.featured-release:focus-within .featured-release-hint__icon {
+    animation: spotlight-arrow-bob 520ms ease-in-out infinite alternate;
+}
+
+@keyframes spotlight-arrow-bob {
+    from {
+        transform: translateY(-1px);
+    }
+    to {
+        transform: translateY(3px);
+    }
 }
 
 @keyframes hero-character-bob {
@@ -764,6 +786,8 @@
 }
 
 .primary-cta--itch {
+    border: 0;
+    padding: calc(0.82rem + 2px) calc(1.18rem + 2px);
     background: linear-gradient(135deg, #fa5c5c, #d94a6a);
     color: #fff7f7;
 }
@@ -776,6 +800,8 @@
 }
 
 .primary-cta--steam {
+    border: 0;
+    padding: calc(0.82rem + 2px) calc(1.18rem + 2px);
     background: linear-gradient(135deg, #1b2838, #2a475e);
     color: #f5fbff;
 }
@@ -785,6 +811,55 @@
         radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.12) 1px, transparent 0) 0 0 / 10px
             10px,
         linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 55%);
+}
+.primary-cta--steam::before,
+.primary-cta--itch::before {
+    inset: 3px;
+    border-radius: inherit;
+}
+
+.primary-cta--steam,
+.primary-cta--itch {
+    box-shadow: 0 5px 12px rgba(35, 31, 32, 0.12);
+}
+
+.primary-cta--steam:hover,
+.primary-cta--itch:hover {
+    box-shadow: 0 6px 14px rgba(35, 31, 32, 0.17);
+}
+.steam-cta-wrap {
+    position: relative;
+    display: inline-flex;
+    transition: transform 180ms ease;
+}
+
+.steam-cta-wrap:hover,
+.steam-cta-wrap:focus-within {
+    transform: translateY(-2px);
+}
+
+.steam-cta-wrap .primary-cta--steam:hover {
+    transform: none;
+}
+
+.steam-playtest-badge {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0.65rem;
+    padding: 0.24rem 0.55rem;
+    border: 1px solid rgba(255, 248, 214, 0.72);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #f0b64f, #e4933d);
+    color: #fff1d6;
+    font-size: 0.56rem;
+    font-weight: 950;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 2px 0 rgba(35, 31, 32, 0.16);
+    transform: translateY(-50%) rotate(2deg);
 }
 
 .game-gallery-stage {
@@ -1416,53 +1491,10 @@
     padding-top: 0.5rem;
 }
 
-@keyframes ambient-gradient-drift {
-    0% {
-        transform: translate3d(0, 0, 0) scale(1);
-    }
-    100% {
-        transform: translate3d(0, -1.25%, 0) scale(1.035);
-    }
-}
-
-@keyframes ambient-pattern-drift {
-    0% {
-        transform: scale(1.02) translate3d(0, 0, 0);
-    }
-    50% {
-        transform: scale(1.035) translate3d(-0.5%, -0.35%, 0);
-    }
-    100% {
-        transform: scale(1.02) translate3d(0.55%, 0.45%, 0);
-    }
-}
-
 @keyframes header-enter {
     0% {
         opacity: 0;
         transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes section-enter {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes heading-enter {
-    0% {
-        opacity: 0;
-        transform: translateY(12px);
     }
     100% {
         opacity: 1;
@@ -1492,19 +1524,49 @@
 
 @keyframes hero-grain-drift {
     0% {
-        transform: translate3d(0, 0, 0);
-    }
-    50% {
-        transform: translate3d(-0.6%, 0.5%, 0);
+        background-position:
+            0 0,
+            12px 12px,
+            0 0;
     }
     100% {
-        transform: translate3d(0.7%, -0.45%, 0);
+        background-position:
+            24px 24px,
+            36px 36px,
+            0 0;
+    }
+}
+
+@keyframes hero-character-idle {
+    0%,
+    100% {
+        transform: translateX(calc(-50% + var(--hero-character-offset-x))) scaleX(-1) rotate(0deg);
+    }
+    50% {
+        transform: translateX(calc(-50% + var(--hero-character-offset-x))) translateY(-6px)
+            scaleX(-1) rotate(-0.8deg);
+    }
+}
+
+@media (max-width: 767px) {
+    :root {
+        /* Keep the visible hooves on the card edge, matching the horizontal layout. */
+        --hero-character-overlap: clamp(2.15rem, 8.5vw, 2.5rem);
+    }
+
+    .site-header .brand-lockup {
+        padding-inline-start: 0.45rem;
+    }
+
+    .about-lockup__brand {
+        justify-items: center;
     }
 }
 
 @media (max-width: 640px) {
     :root {
-        --hero-showcase-offset: clamp(5.5rem, 12vw, 7.5rem);
+        /* Move the complete goat + spotlight unit below the stacked hero actions. */
+        --hero-showcase-offset: clamp(7rem, 16vw, 8rem);
     }
 
     .hero-section-card {
@@ -1581,8 +1643,10 @@
     .site-shell::after,
     .hero-mesh,
     .hero-grain,
+    .hero-character-sticker,
     .feature-panel,
     .featured-release::before,
+    .featured-release-hint__icon,
     .contact-form-toggle__arrow {
         animation: none !important;
         opacity: 1;
@@ -1596,6 +1660,7 @@
     .game-gallery-thumb,
     .game-gallery-thumb__image,
     .game-gallery-arrow,
+    .featured-release-hint__icon,
     .primary-cta,
     .secondary-cta,
     .team-card,

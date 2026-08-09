@@ -1,26 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none">
-<g stroke="#171D1C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity=".2">
-<path d="M26 44c10-12 28-11 37 2 8 11 7 24-5 35-12 10-29 9-38-3"/>
-<path d="M134 28c11 2 19 10 20 21 1 10-4 20-14 26-10 7-24 8-35 2"/>
-<path d="M183 76c8-5 18-4 24 3 7 8 6 19 0 27-7 9-20 12-31 7"/>
-<path d="M34 148c8-11 24-14 36-8 12 6 18 20 14 33"/>
-<path d="M106 128c6-5 14-7 22-4 8 3 14 10 14 19 0 10-6 17-15 22"/>
-<path d="M156 166c10-8 24-8 35-2 9 5 14 15 14 26"/>
-<path d="M68 84c5 9 4 20-2 28-6 9-17 13-27 10"/>
-<path d="M112 202c8-7 20-9 30-4 9 4 15 13 15 22"/>
-<path d="M192 198c6-4 14-4 19 0 4 4 5 10 3 16"/>
-<path d="M92 48l12 10"/>
-<path d="M116 64l10 12"/>
-<path d="M165 124l12 8"/>
-<path d="M60 194l10-9"/>
-<path d="M36 98l14 3"/>
-<path d="M201 42c-8 2-14 8-16 15"/>
-<path d="M210 124c-7-1-13 2-17 7"/>
-<path d="M24 204c8-2 15-8 18-15"/>
-<circle cx="82" cy="24" r="4"/>
-<circle cx="216" cy="94" r="3.5"/>
-<circle cx="30" cy="122" r="3"/>
-<circle cx="142" cy="92" r="3"/>
-<circle cx="174" cy="214" r="4"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900" fill="none">
+  <g stroke="#171D1C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".3">
+    <path d="M82 112c18-23 51-24 71-3 17 18 16 44-3 63-21 21-54 22-75 2" transform="rotate(-12 115 143)"/>
+    <path d="M356 72c22 2 39 17 42 38 3 20-7 39-26 51-20 12-45 12-65 1" transform="rotate(18 353 117)"/>
+    <path d="M684 116c16-11 38-9 50 6 13 16 11 38-2 54-14 18-40 23-61 13" transform="rotate(-28 706 151)"/>
+
+    <path d="M190 330c15-20 43-25 64-12 20 12 30 37 22 60" transform="rotate(24 232 349)"/>
+    <path d="M503 285c13-12 32-16 49-9 18 7 29 23 29 42 0 20-12 36-31 45" transform="rotate(-15 542 320)"/>
+    <path d="M735 378c20-16 49-17 71-4 20 12 30 34 28 57" transform="rotate(31 784 403)"/>
+
+    <path d="M78 590c18-21 51-25 73-9 21 15 28 44 16 67" transform="rotate(8 126 616)"/>
+    <path d="M389 625c17-15 42-19 62-9 20 9 32 29 31 51" transform="rotate(-27 435 645)"/>
+    <path d="M679 676c20-14 47-13 65 3 17 15 21 40 10 60" transform="rotate(16 719 707)"/>
+
+    <path d="M246 802c15-13 37-16 55-7 16 8 27 25 27 44" transform="rotate(-9 287 819)"/>
+    <path d="M544 806c13-10 31-11 45-3 13 8 19 23 15 38" transform="rotate(34 575 822)"/>
+
+    <path d="M235 82l18 15" transform="rotate(14 244 90)"/>
+    <path d="M487 120l16 21" transform="rotate(-22 495 131)"/>
+    <path d="M802 71l21-12" transform="rotate(18 813 65)"/>
+    <path d="M105 265l24 6" transform="rotate(-17 117 268)"/>
+    <path d="M350 260l19-16" transform="rotate(31 360 252)"/>
+    <path d="M646 300l22 13" transform="rotate(-25 657 307)"/>
+    <path d="M260 510l17 22" transform="rotate(12 269 521)"/>
+    <path d="M560 528l25-8" transform="rotate(-16 573 524)"/>
+    <path d="M824 575l17 19" transform="rotate(27 833 585)"/>
+    <path d="M120 770l22-17" transform="rotate(-11 131 762)"/>
+    <path d="M744 814l26 5" transform="rotate(20 757 817)"/>
+
+    <circle cx="196" cy="215" r="5"/>
+    <circle cx="449" cy="210" r="4"/>
+    <circle cx="779" cy="251" r="6"/>
+    <circle cx="103" cy="443" r="4"/>
+    <circle cx="351" cy="455" r="6"/>
+    <circle cx="642" cy="459" r="4"/>
+    <circle cx="819" cy="503" r="5"/>
+    <circle cx="224" cy="704" r="4"/>
+    <circle cx="541" cy="714" r="6"/>
+    <circle cx="94" cy="850" r="5"/>
+    <circle cx="834" cy="850" r="4"/>
+  </g>
 </svg>

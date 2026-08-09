@@ -33,10 +33,20 @@
             0.65rem
     );
     --site-bg-floor: #f3e2d5;
+    --page-background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.5), transparent 45%),
+        linear-gradient(180deg, #f9eee6 0%, var(--paper) 55%, var(--site-bg-floor) 100%);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fluidly approaches a 120% browser-zoom feel on spacious desktop displays. */
+@media (min-width: 80rem) {
+    :root {
+        font-size: clamp(1rem, 0.75rem + 0.28vw, 1.2rem);
+    }
 }
 
 @media (max-width: 1023px) {
@@ -69,24 +79,24 @@
 }
 
 html {
+    min-height: 100%;
     scroll-behavior: smooth;
     overflow-x: clip;
     scroll-padding-top: var(--site-header-clearance);
     /* Safari bottom toolbar / overscroll — layout viewport can expose `html` past the page */
     background-color: var(--site-bg-floor);
+    background-image: var(--page-background);
 }
 
 body {
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100lvh;
     font-family: "Inter", "Segoe UI", system-ui, sans-serif;
     color: var(--ink);
     background-color: var(--site-bg-floor);
-    background-image:
-        radial-gradient(circle at top, rgba(255, 255, 255, 0.5), transparent 45%),
-        linear-gradient(180deg, #f9eee6 0%, var(--paper) 55%, var(--site-bg-floor) 100%);
+    background-image: var(--page-background);
 }
 
 *,
@@ -107,5 +117,5 @@ textarea {
 
 #root {
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100lvh;
 }

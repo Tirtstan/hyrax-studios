@@ -5,6 +5,7 @@ import itchioIcon from '../assets/logos/itchio-textless-white.svg'
 import tiktokIcon from '../assets/logos/tiktok-brands-solid.png'
 import twitterIcon from '../assets/logos/twitter-brands-solid.png'
 import youtubeIcon from '../assets/logos/youtube-brands-solid.png'
+import { googleContactFormEmbedUrl, googleContactFormUrl } from '../data/contact'
 import { socialLinks } from '../data/siteContent'
 
 const iconByLabel: Record<string, string> = {
@@ -14,10 +15,6 @@ const iconByLabel: Record<string, string> = {
   Twitter: twitterIcon,
   'Itch.io': itchioIcon,
 }
-
-const GOOGLE_FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSeYVjISuv1RdAwiLpKYWK8IGgPuWSsJQ2Ppz_qQpANXTZ9cbg/viewform?usp=sharing&ouid=102722259160060368500'
-const GOOGLE_FORM_EMBED_URL = `${GOOGLE_FORM_URL}&embedded=true`
 
 export function ContactSection() {
   const [formSrc, setFormSrc] = useState<string | null>(null)
@@ -32,7 +29,7 @@ export function ContactSection() {
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setFormSrc(GOOGLE_FORM_EMBED_URL)
+          setFormSrc(googleContactFormEmbedUrl)
           obs.disconnect()
         }
       },
@@ -66,7 +63,7 @@ export function ContactSection() {
       className="px-4 pt-0 pb-[max(3.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pb-[max(5rem,env(safe-area-inset-bottom))]"
     >
       <div className="content-shell">
-        <div className="footer-card">
+        <div className="footer-card" data-reveal>
 
           {/* ── Contact intro ── */}
           <div className="space-y-4">
@@ -86,7 +83,7 @@ export function ContactSection() {
             <a href="mailto:admin@hyrax-studios.com" className="primary-cta">
               Email Directly
             </a>
-            <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer" className="secondary-cta">
+            <a href={googleContactFormUrl} target="_blank" rel="noreferrer" className="secondary-cta">
               Open in Google Forms
             </a>
             {socialLinks.map((link) => (

@@ -5,8 +5,11 @@ import { GamesSection } from './components/GamesSection'
 import { HeroSection } from './components/HeroSection'
 import { SiteHeader } from './components/SiteHeader'
 import { TeamSection } from './components/TeamSection'
+import { useScrollReveal } from './hooks/useScrollReveal'
 
 function App() {
+  useScrollReveal()
+
   return (
     <div className="site-shell">
       <SiteHeader />

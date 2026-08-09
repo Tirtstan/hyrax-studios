@@ -35,6 +35,7 @@ function TeamPersonCard({ person }: TeamPersonCardProps) {
 
   return (
     <article
+      data-reveal
       className="team-card section-card w-full overflow-hidden p-4 sm:p-5"
       style={{ '--card-accent': person.accent } as CSSProperties}
     >
@@ -44,6 +45,8 @@ function TeamPersonCard({ person }: TeamPersonCardProps) {
             src={portraitSrc}
             alt={`${person.name} profile art`}
             className="team-card__image"
+            loading="lazy"
+            decoding="async"
           />
         ) : (
           <div className="team-card__avatar" aria-hidden="true">
