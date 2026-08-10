@@ -7,6 +7,7 @@ import steamIcon from '../assets/logos/steam.svg'
 import { getAutoGalleryImages, resolveGameMedia } from '../data/gameMedia'
 import { featuredGame } from '../data/games'
 import { JamGamesShowcase } from './JamGamesShowcase'
+import { LoadAwareImage } from './LoadAwareImage'
 import { SectionHeading } from './SectionHeading'
 
 const Lightbox = lazy(() => import('yet-another-react-lightbox'))
@@ -73,11 +74,19 @@ function GameLinks() {
 }
 
 function GameGallery() {
+  const thumbnailFor = (file: string, fallback?: string) => {
+    const name = file.replace(/\\/g, '/').split('/').pop()
+    return (name && resolveGameMedia(featuredGame.assetFolder, `Gallery Thumbnails/${name}`)) || fallback
+  }
+
   const configuredGallery = useMemo(
     () =>
       featuredGame.gallery
         .filter((item) => item.type === 'image')
-        .map((item) => ({ ...item, src: resolveGameMedia(featuredGame.assetFolder, item.file) }))
+        .map((item) => {
+          const src = resolveGameMedia(featuredGame.assetFolder, item.file)
+          return { ...item, src, thumbnailSrc: thumbnailFor(item.file, src) }
+        })
         .filter((item) => item.src),
     [],
   )
@@ -90,6 +99,7 @@ function GameGallery() {
           file: item.file,
           alt: `${featuredGame.title} gallery image ${index + 1}`,
           src: item.src,
+          thumbnailSrc: thumbnailFor(item.file, item.src),
         }),
       ),
     [],
@@ -139,7 +149,8 @@ function GameGallery() {
       >
         {selectedImage && (
           <div className="game-gallery-stage__frame">
-            <img
+            <LoadAwareImage
+              key={selectedImage.file}
               src={selectedImage.src}
               alt={selectedImage.alt}
               className="game-gallery-stage__image"
@@ -176,8 +187,8 @@ function GameGallery() {
                   aria-pressed={item.file === selectedImage?.file}
                   aria-label={`Show ${item.alt}`}
                 >
-                  <img
-                    src={item.src}
+                  <LoadAwareImage
+                    src={item.thumbnailSrc}
                     alt=""
                     className="game-gallery-thumb__image"
                     loading="lazy"
@@ -251,7 +262,8 @@ export function GamesSection() {
 
   useEffect(() => {
     const panel = featurePanelRef.current
-    if (!panel) return
+    const mobileQuery = window.matchMedia('(max-width: 767px)')
+    if (!panel || mobileQuery.matches) return
 
     const observer = new IntersectionObserver(
       ([entry]) => setSpotlightActive(entry.isIntersecting && entry.intersectionRatio >= 0.28),

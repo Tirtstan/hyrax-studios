@@ -1,6 +1,7 @@
 import smallerProjectsData from '../data/smaller-projects.json'
 import { resolveProjectMedia } from '../data/projectMedia'
 import type { SmallProject } from '../types/content'
+import { LoadAwareImage } from './LoadAwareImage'
 
 const smallerProjects = smallerProjectsData as SmallProject[]
 
@@ -33,7 +34,7 @@ export function JamGamesShowcase() {
             <>
               <div className="jam-project-card__media">
                 {imageSrc ? (
-                  <img
+                  <LoadAwareImage
                     src={imageSrc}
                     alt={game.imageAlt ?? `${game.title} gameplay`}
                     className="jam-project-card__image"

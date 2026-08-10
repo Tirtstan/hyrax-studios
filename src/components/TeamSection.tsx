@@ -5,6 +5,7 @@ import twitterIcon from '../assets/logos/twitter-brands-solid.png'
 import peopleData from '../data/people.json'
 import { resolveTeamPortrait } from '../data/teamMedia'
 import type { Person, PersonLinkKind } from '../types/content'
+import { LoadAwareImage } from './LoadAwareImage'
 import { SectionHeading } from './SectionHeading'
 
 const people = peopleData as Person[]
@@ -72,7 +73,7 @@ function TeamPersonCard({ person }: TeamPersonCardProps) {
     >
       <div className="team-card__portrait">
         {portraitSrc ? (
-          <img
+          <LoadAwareImage
             src={portraitSrc}
             alt={`${person.name} profile art`}
             className="team-card__image"
