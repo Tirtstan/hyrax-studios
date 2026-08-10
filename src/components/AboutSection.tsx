@@ -1,4 +1,5 @@
 import aboutLogoSrc from '../assets/brand/hyrax-logo-full-black.png'
+import { LoadAwareImage } from './LoadAwareImage'
 import { SectionHeading } from './SectionHeading'
 
 export function AboutSection() {
@@ -14,7 +15,7 @@ export function AboutSection() {
         <article className="section-card p-6 sm:p-8" data-reveal>
           <div className="about-lockup">
             <div className="about-lockup__brand">
-              <img
+              <LoadAwareImage
                 src={aboutLogoSrc}
                 alt="Hyrax Studios"
                 className="about-lockup__logo"
