@@ -20,7 +20,6 @@ export function ContactSection() {
   const [formSrc, setFormSrc] = useState<string | null>(null)
   const [formOpen, setFormOpen] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
-  const triggerRef = useRef<HTMLDivElement>(null)
 
   // Preload the iframe as soon as the section enters the viewport (nav click or natural scroll).
   useEffect(() => {
@@ -38,23 +37,6 @@ export function ContactSection() {
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
-
-  // Auto-expand form once the trigger sentinel is fully scrolled into view.
-  useEffect(() => {
-    const el = triggerRef.current
-    if (!el || formOpen) return
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setFormOpen(true)
-          obs.disconnect()
-        }
-      },
-      { threshold: 1.0 },
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [formOpen])
 
   return (
     <footer
@@ -93,6 +75,8 @@ export function ContactSection() {
                 target="_blank"
                 rel="noreferrer"
                 className="footer-social-link"
+                aria-label={link.label}
+                title={link.label}
               >
                 <span className="footer-social-link__icon">
                   <img
@@ -102,7 +86,7 @@ export function ContactSection() {
                     className={`h-4 w-4${link.label === 'Twitter' || link.label === 'TikTok' || link.label === 'YouTube' ? ' footer-social-link__icon-img--brand' : ''}`}
                   />
                 </span>
-                <span>{link.label}</span>
+                <span className="sr-only">{link.label}</span>
               </a>
             ))}
           </div>
@@ -115,16 +99,16 @@ export function ContactSection() {
           </div>
 
           {/* ── Scroll sentinel + toggle ── */}
-          <div ref={triggerRef} className="contact-form-trigger">
+          <div className="contact-form-trigger">
             <div className="contact-form-trigger__line" aria-hidden="true" />
             <button
               type="button"
-              onClick={() => setFormOpen(true)}
+              onClick={() => setFormOpen((open) => !open)}
               className={`contact-form-toggle${formOpen ? ' is-open' : ''}`}
               aria-expanded={formOpen}
               aria-controls="contact-form-drawer"
             >
-              <span>Contact Form</span>
+              <span>{formOpen ? 'Close contact form' : 'Open contact form'}</span>
               <svg
                 className="contact-form-toggle__arrow"
                 width="14"
@@ -149,6 +133,8 @@ export function ContactSection() {
           <div
             id="contact-form-drawer"
             className={`contact-form-drawer${formOpen ? ' is-open' : ''}`}
+            aria-hidden={!formOpen}
+            {...(!formOpen ? { inert: true as const } : {})}
           >
             <div className="contact-form-drawer__inner">
               <div className="contact-form-shell">
@@ -157,6 +143,7 @@ export function ContactSection() {
                     src={formSrc}
                     title="Hyrax Studios contact form"
                     className="contact-form-embed"
+                    loading="lazy"
                   >
                     Loading…
                   </iframe>
