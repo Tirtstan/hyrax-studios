@@ -128,7 +128,7 @@ function GameGallery() {
 
   return (
     <div className="game-gallery-stack min-w-0 space-y-4 border-t-2 border-(--ink)/8 pt-5 lg:border-0 lg:pt-0 lg:flex lg:h-full lg:w-full lg:min-h-0 lg:flex-col lg:justify-center">
-      {/* Main stage — click to open lightbox */}
+      {/* Main stage: click to open lightbox */}
       <div
         className="game-gallery-stage rounded-4xl"
         onClick={() => setLightboxOpen(true)}
@@ -246,13 +246,32 @@ function GameGallery() {
 
 export function GamesSection() {
   const gameTitleImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.titleImageFile)
+  const featurePanelRef = useRef<HTMLDivElement>(null)
+  const [spotlightActive, setSpotlightActive] = useState(false)
+
+  useEffect(() => {
+    const panel = featurePanelRef.current
+    if (!panel) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setSpotlightActive(entry.isIntersecting && entry.intersectionRatio >= 0.28),
+      { threshold: [0, 0.28, 0.55], rootMargin: '-8% 0px -12%' },
+    )
+
+    observer.observe(panel)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <section id="games" className="px-4 pb-0 pt-0 sm:px-6">
+    <section
+      id="games"
+      className={`px-4 pb-0 pt-0 sm:px-6${spotlightActive ? ' games-section--spotlight-active' : ''}`}
+    >
       <div className="content-shell space-y-6">
         <SectionHeading eyebrow="Projects" title="Games" description={featuredGame.summary} />
 
         <div
+          ref={featurePanelRef}
           data-reveal
           className="section-card feature-panel relative grid min-w-0 max-w-full grid-cols-1 gap-6 p-4 sm:gap-8 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)] lg:items-stretch"
           style={

@@ -50,6 +50,8 @@ export type SmallProject = {
     event: string;
     year: string;
     href?: string;
+    image?: string;
+    imageAlt?: string;
 };
 
 export type SocialLink = {

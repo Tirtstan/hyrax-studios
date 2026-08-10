@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 
+import steamIcon from '../assets/logos/steam.svg'
 import { BrandMark } from './BrandMark'
 import { resolveGameMedia } from '../data/gameMedia'
 import { featuredGame } from '../data/games'
@@ -7,11 +8,20 @@ import { featuredGame } from '../data/games'
 export function HeroSection() {
   const heroCharacterImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.heroCharacterFile)
   const heroTitleImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.titleImageFile)
+  const steamLink = featuredGame.links.find((link) => link.kind === 'steam' && link.href)
 
   return (
     <section id="top" className="hero-section px-4 pb-0 pt-2 sm:px-6 sm:pt-4 lg:pt-6">
       <div className="content-shell">
-        <div className="section-card hero-section-card relative p-4 pb-3 sm:p-7 sm:pb-6 lg:p-9 lg:pb-8">
+        <div
+          className="section-card hero-section-card relative p-4 pb-3 sm:p-7 sm:pb-6 lg:p-9 lg:pb-8"
+          style={
+            {
+              '--feature-accent': featuredGame.accentColor ?? '#ff4949',
+              '--feature-primary': '#292929',
+            } as CSSProperties
+          }
+        >
           <div className="hero-mesh absolute inset-0 opacity-80" aria-hidden="true" />
           <div className="hero-grain absolute inset-0 opacity-70" aria-hidden="true" />
           <div className="hero-grid relative grid gap-5 sm:gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-start lg:gap-8">
@@ -28,11 +38,17 @@ export function HeroSection() {
                 replayability.
               </p>
               <div className="hero-actions flex flex-wrap gap-2 pt-1">
-                <a href="#games" className="primary-cta">
-                  See the games
-                </a>
-                <a href="#team" className="secondary-cta">
-                  Meet the team
+                {steamLink?.href ? (
+                  <a href={steamLink.href} target="_blank" rel="noreferrer" className="hero-game-cta hero-game-cta--steam">
+                    <img src={steamIcon} alt="" aria-hidden="true" />
+                    <span>Wishlist on Steam</span>
+                  </a>
+                ) : null}
+                <a href="#about" className="hero-site-link">
+                  <span>Meet the studio</span>
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M4 10h11M11 6l4 4-4 4" />
+                  </svg>
                 </a>
               </div>
             </div>

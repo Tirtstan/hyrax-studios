@@ -15,10 +15,10 @@
     --layout-chrome-bleed: 0rem;
     --section-rule-gap: clamp(1.35rem, 3.25vw, 2rem);
     --section-rule-max-width: min(var(--content-max-width), 100%);
-    /* Hero sticker PNG — flow layout + width (see App.css) */
+    /* Hero sticker PNG: flow layout and width (see App.css) */
     --hero-character-sticker-width: min(24rem, 52vw);
     --hero-character-sticker-width-mobile: min(17.5rem, 78vw);
-    /* Showcase vertical offset — one name for all breakpoints (see media queries below) */
+    /* Showcase vertical offset: one name for all breakpoints (see media queries below) */
     --hero-showcase-offset: clamp(8.5rem, 18vw, 12rem);
     /* How far the goat overlaps the top of the showcase card */
     --hero-character-overlap: clamp(1.75rem, 5vw, 3rem);
@@ -79,20 +79,23 @@
 }
 
 html {
+    width: 100%;
     min-height: 100%;
     scroll-behavior: smooth;
     overflow-x: clip;
     scroll-padding-top: var(--site-header-clearance);
-    /* Safari bottom toolbar / overscroll — layout viewport can expose `html` past the page */
+    /* Safari bottom toolbar and overscroll: layout viewport can expose `html` past the page */
     background-color: var(--site-bg-floor);
     background-image: var(--page-background);
 }
 
 body {
     margin: 0;
+    width: 100%;
     min-width: 320px;
     min-height: 100vh;
-    min-height: 100lvh;
+    min-height: 100svh;
+    min-height: 100dvh;
     font-family: "Inter", "Segoe UI", system-ui, sans-serif;
     color: var(--ink);
     background-color: var(--site-bg-floor);
@@ -116,6 +119,8 @@ textarea {
 }
 
 #root {
+    width: 100%;
     min-height: 100vh;
-    min-height: 100lvh;
+    min-height: 100svh;
+    min-height: 100dvh;
 }

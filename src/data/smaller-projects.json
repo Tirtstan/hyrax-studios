@@ -5,6 +5,8 @@
         "summary": "You're stepping into the boots of Rosi Redtail, a gunslinger facing down countless enemies.",
         "event": "Jam Dole",
         "year": "2026",
+        "image": "chaos-drawn.png",
+        "imageAlt": "Chaos Drawn gameplay with Rosi surrounded by enemies in a dark arena",
         "href": "https://hyrax-studios.itch.io/chaos-drawn"
     },
     {
@@ -13,6 +15,8 @@
         "summary": "To survive the endless slime hoard, you must learn to balance your powers. You don't just cast spells; you earn them through combat.",
         "event": "8-Hour Game Jam",
         "year": "2026",
+        "image": "magic-punch-game.png",
+        "imageAlt": "Magic Punch Game first-person spell combat against a slime",
         "href": "https://hyrax-studios.itch.io/magic-punch-game"
     },
     {
@@ -21,6 +25,8 @@
         "summary": "Not all cryptids are monsters, bigfoot's only dream is to have friends. Help him by getting as many subs as you can for his channel.",
         "event": "8-Hour Game Jam",
         "year": "2025",
+        "image": "bigfoot-found-footage-live.png",
+        "imageAlt": "A monochrome found-footage recording of Bigfoot",
         "href": "https://jackfellow.itch.io/bigfoot-found-footage-live"
     }
 ]
