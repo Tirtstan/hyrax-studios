@@ -25,6 +25,12 @@ export type GameGalleryItem = {
     caption?: string;
 };
 
+export type GameTrailer = {
+    youtubeId: string;
+    title: string;
+    posterFile?: string;
+};
+
 export type Game = {
     id: string;
     featured?: boolean;
@@ -41,6 +47,7 @@ export type Game = {
     titleImageFile?: string;
     galleryFolder?: string;
     gallery: GameGalleryItem[];
+    trailer?: GameTrailer;
 };
 
 export type SmallProject = {

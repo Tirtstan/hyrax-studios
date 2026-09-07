@@ -85,7 +85,14 @@ function GameGallery() {
         .filter((item) => item.type === 'image')
         .map((item) => {
           const src = resolveGameMedia(featuredGame.assetFolder, item.file)
-          return { ...item, src, thumbnailSrc: thumbnailFor(item.file, src) }
+          return {
+            type: 'image' as const,
+            file: item.file,
+            alt: item.alt,
+            caption: item.caption,
+            src,
+            thumbnailSrc: thumbnailFor(item.file, src),
+          }
         })
         .filter((item) => item.src),
     [],
@@ -105,19 +112,37 @@ function GameGallery() {
     [],
   )
 
-  const galleryItems = configuredGallery.length > 0 ? configuredGallery : autoGallery
+  const imageItems = configuredGallery.length > 0 ? configuredGallery : autoGallery
+  const trailerItem = featuredGame.trailer
+    ? {
+        type: 'video' as const,
+        file: `youtube:${featuredGame.trailer.youtubeId}`,
+        alt: featuredGame.trailer.title,
+        youtubeId: featuredGame.trailer.youtubeId,
+        thumbnailSrc: resolveGameMedia(featuredGame.assetFolder, featuredGame.trailer.posterFile),
+      }
+    : undefined
+  const galleryItems = trailerItem ? [trailerItem, ...imageItems] : imageItems
+  const lightboxItems = galleryItems.filter((item) => item.type === 'image')
   const [selectedFile, setSelectedFile] = useState(galleryItems[0]?.file)
   const [lightboxOpen, setLightboxOpen] = useState(false)
-  const selectedImage = galleryItems.find((item) => item.file === selectedFile) ?? galleryItems[0]
+  const [videoPlaying, setVideoPlaying] = useState(false)
+  const selectedItem = galleryItems.find((item) => item.file === selectedFile) ?? galleryItems[0]
   const thumbRefs = useRef<Record<string, HTMLButtonElement | null>>({})
   const thumbRowRef = useRef<HTMLDivElement>(null)
   const skipThumbScrollRef = useRef(true)
 
   const currentIndex = galleryItems.findIndex((item) => item.file === selectedFile)
+  const lightboxIndex = lightboxItems.findIndex((item) => item.file === selectedFile)
+
+  const selectFile = (file: string) => {
+    setSelectedFile(file)
+    setVideoPlaying(false)
+  }
 
   const navigate = (direction: 1 | -1) => {
     const next = galleryItems.at((currentIndex + direction + galleryItems.length) % galleryItems.length)
-    if (next) setSelectedFile(next.file)
+    if (next) selectFile(next.file)
   }
 
   useEffect(() => {
@@ -140,35 +165,76 @@ function GameGallery() {
     <div className="game-gallery-stack min-w-0 space-y-4 border-t-2 border-(--ink)/8 pt-5 lg:border-0 lg:pt-0 lg:flex lg:h-full lg:w-full lg:min-h-0 lg:flex-col lg:justify-center">
       {/* Main stage: click to open lightbox */}
       <div
-        className="game-gallery-stage rounded-4xl"
-        onClick={() => setLightboxOpen(true)}
-        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setLightboxOpen(true)}
-        role="button"
-        tabIndex={0}
-        aria-label="Open fullscreen gallery"
+        className={`game-gallery-stage rounded-4xl ${selectedItem?.type === 'image' ? 'is-image' : 'is-video'}`}
+        onClick={selectedItem?.type === 'image' ? () => setLightboxOpen(true) : undefined}
+        onKeyDown={
+          selectedItem?.type === 'image'
+            ? (event) =>
+                (event.key === 'Enter' || event.key === ' ') && setLightboxOpen(true)
+            : undefined
+        }
+        role={selectedItem?.type === 'image' ? 'button' : undefined}
+        tabIndex={selectedItem?.type === 'image' ? 0 : undefined}
+        aria-label={selectedItem?.type === 'image' ? 'Open fullscreen gallery' : undefined}
       >
-        {selectedImage && (
+        {selectedItem && (
           <div className="game-gallery-stage__frame">
-            <LoadAwareImage
-              key={selectedImage.file}
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="game-gallery-stage__image"
-              loading="lazy"
-              decoding="async"
-            />
+            {selectedItem.type === 'video' ? (
+              videoPlaying ? (
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${selectedItem.youtubeId}?autoplay=1&rel=0`}
+                  title={selectedItem.alt}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              ) : (
+                <button
+                  type="button"
+                  className="game-gallery-video"
+                  onClick={() => setVideoPlaying(true)}
+                  aria-label={`Play ${selectedItem.alt}`}
+                >
+                  {selectedItem.thumbnailSrc ? (
+                    <LoadAwareImage
+                      src={selectedItem.thumbnailSrc}
+                      alt=""
+                      className="game-gallery-stage__image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : null}
+                  <span className="game-gallery-video__play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M8.25 5.3v13.4L19 12 8.25 5.3Z" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <span className="game-gallery-video__label">Play trailer</span>
+                </button>
+              )
+            ) : (
+              <LoadAwareImage
+                key={selectedItem.file}
+                src={selectedItem.src}
+                alt={selectedItem.alt}
+                className="game-gallery-stage__image"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
           </div>
         )}
-        <div className="game-gallery-expand" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path
-              d="M1 1h4M1 1v4M1 1l4.5 4.5M11 11H7M11 11V7M11 11 6.5 6.5"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
+        {selectedItem?.type === 'image' ? (
+          <div className="game-gallery-expand" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M1 1h4M1 1v4M1 1l4.5 4.5M11 11H7M11 11V7M11 11 6.5 6.5"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+        ) : null}
       </div>
 
       {galleryItems.length > 1 && (
@@ -179,12 +245,12 @@ function GameGallery() {
                 <button
                   key={item.file}
                   type="button"
-                  onClick={() => setSelectedFile(item.file)}
+                  onClick={() => selectFile(item.file)}
                   ref={(el) => {
                     thumbRefs.current[item.file] = el
                   }}
-                  className={`game-gallery-thumb ${item.file === selectedImage?.file ? 'is-active' : ''}`}
-                  aria-pressed={item.file === selectedImage?.file}
+                  className={`game-gallery-thumb ${item.file === selectedItem?.file ? 'is-active' : ''}`}
+                  aria-pressed={item.file === selectedItem?.file}
                   aria-label={`Show ${item.alt}`}
                 >
                   <LoadAwareImage
@@ -194,6 +260,13 @@ function GameGallery() {
                     loading="lazy"
                     decoding="async"
                   />
+                  {item.type === 'video' ? (
+                    <span className="game-gallery-thumb__play" aria-hidden="true">
+                      <svg viewBox="0 0 24 24">
+                        <path d="M8.25 5.3v13.4L19 12 8.25 5.3Z" fill="currentColor" />
+                      </svg>
+                    </span>
+                  ) : null}
                 </button>
               ))}
             </div>
@@ -226,8 +299,8 @@ function GameGallery() {
               <button
                 key={`${item.file}-dot`}
                 type="button"
-                onClick={() => setSelectedFile(item.file)}
-                className={`game-gallery-dot ${item.file === selectedImage?.file ? 'is-active' : ''}`}
+                onClick={() => selectFile(item.file)}
+                className={`game-gallery-dot ${item.file === selectedItem?.file ? 'is-active' : ''}`}
                 aria-label={`Show image ${i + 1}`}
               />
             ))}
@@ -240,12 +313,12 @@ function GameGallery() {
           <Lightbox
             open
             close={() => setLightboxOpen(false)}
-            slides={galleryItems.map((item) => ({ src: item.src as string, alt: item.alt }))}
-            index={currentIndex}
+            slides={lightboxItems.map((item) => ({ src: item.src as string, alt: item.alt }))}
+            index={lightboxIndex}
             on={{
               view: ({ index }) => {
-                const item = galleryItems[index]
-                if (item) setSelectedFile(item.file)
+                const item = lightboxItems[index]
+                if (item) selectFile(item.file)
               },
             }}
           />
