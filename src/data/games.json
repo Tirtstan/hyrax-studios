@@ -7,8 +7,7 @@
         "accentColor": "#FF4949",
         "summary": "",
         "description": [
-            "<strong><em>GET RAMMED</em></strong> is a multiplayer party game with wacky physics-based battles. Play as chaotic goats trying to RAM each other off the stage with <strong>up to 8 friends!</strong>",
-            "Challenge each other with a playful mix of <strong>different maps</strong>, <strong>power-ups</strong> and <strong>unexpected events!</strong>"
+            "<strong><em>GET RAMMED</em></strong> is a multiplayer party game with <strong>up to 8 players</strong> where you play as chaotic goats trying to RAM each other off the stage! Challenge each other with a playful mix of <strong>unique maps</strong>, <strong>power-ups</strong> and <strong>unexpected events!</strong>"
         ],
         "tags": [
             "Arcade",
@@ -38,6 +37,11 @@
         "heroCharacterAlt": "A Get Rammed character sticker floating above the featured game card.",
         "titleImageFile": "Title.webp",
         "galleryFolder": "Screenshots",
-        "gallery": []
+        "gallery": [],
+        "trailer": {
+            "youtubeId": "2ad83keP6Qk",
+            "title": "GET RAMMED reveal trailer",
+            "posterFile": "trailer-poster.webp"
+        }
     }
 ]

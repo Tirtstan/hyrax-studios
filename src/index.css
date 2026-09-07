@@ -51,7 +51,7 @@
 
 @media (max-width: 1023px) {
     :root {
-        --hero-showcase-offset: clamp(6.5rem, 14vw, 9rem);
+        --hero-showcase-offset: clamp(10rem, 24vw, 13rem);
         --hero-character-offset-x: 0.25rem;
     }
 }
