@@ -10,7 +10,7 @@ export const navigation: NavItem[] = [
 export const socialLinks: SocialLink[] = [
     {
         label: "YouTube",
-        href: "https://www.youtube.com/@HyraxStudios-z4e",
+        href: "https://www.youtube.com/@HyraxStudiosZA",
         caption: "Trailers, gameplay, and longer studio updates.",
     },
     {

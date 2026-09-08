@@ -113,13 +113,24 @@ function GameGallery() {
   )
 
   const imageItems = configuredGallery.length > 0 ? configuredGallery : autoGallery
+  const trailerPoster = featuredGame.trailer
+    ? resolveGameMedia(featuredGame.assetFolder, featuredGame.trailer.posterFile)
+    : undefined
+  const trailerPosterMobile = featuredGame.trailer
+    ? resolveGameMedia(featuredGame.assetFolder, featuredGame.trailer.posterMobileFile)
+    : undefined
   const trailerItem = featuredGame.trailer
     ? {
         type: 'video' as const,
         file: `youtube:${featuredGame.trailer.youtubeId}`,
         alt: featuredGame.trailer.title,
         youtubeId: featuredGame.trailer.youtubeId,
-        thumbnailSrc: resolveGameMedia(featuredGame.assetFolder, featuredGame.trailer.posterFile),
+        thumbnailSrc: trailerPoster,
+        thumbnailSrcSet:
+          trailerPosterMobile && trailerPoster
+            ? `${trailerPosterMobile} 768w, ${trailerPoster} 1920w`
+            : undefined,
+        thumbnailSizes: trailerPosterMobile ? '(max-width: 767px) 92vw, 640px' : undefined,
       }
     : undefined
   const galleryItems = trailerItem ? [trailerItem, ...imageItems] : imageItems
@@ -197,6 +208,8 @@ function GameGallery() {
                   {selectedItem.thumbnailSrc ? (
                     <LoadAwareImage
                       src={selectedItem.thumbnailSrc}
+                      srcSet={selectedItem.thumbnailSrcSet}
+                      sizes={selectedItem.thumbnailSizes}
                       alt=""
                       className="game-gallery-stage__image"
                       loading="lazy"
@@ -255,6 +268,8 @@ function GameGallery() {
                 >
                   <LoadAwareImage
                     src={item.thumbnailSrc}
+                    srcSet={item.type === 'video' ? item.thumbnailSrcSet : undefined}
+                    sizes={item.type === 'video' ? item.thumbnailSizes : undefined}
                     alt=""
                     className="game-gallery-thumb__image"
                     loading="lazy"
