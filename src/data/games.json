@@ -41,7 +41,8 @@
         "trailer": {
             "youtubeId": "2ad83keP6Qk",
             "title": "GET RAMMED reveal trailer",
-            "posterFile": "trailer-poster.png"
+            "posterFile": "trailer-poster.webp",
+            "posterMobileFile": "trailer-poster-mobile.webp"
         }
     }
 ]

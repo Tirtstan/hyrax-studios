@@ -29,6 +29,7 @@ export type GameTrailer = {
     youtubeId: string;
     title: string;
     posterFile?: string;
+    posterMobileFile?: string;
 };
 
 export type Game = {
