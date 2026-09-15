@@ -126,7 +126,7 @@
 .section-card {
     position: relative;
     border: 2px solid var(--ink);
-    border-radius: 2rem;
+    border-radius: 1.25rem;
     background: rgba(247, 234, 223, 0.82);
     box-shadow: 0 9px 0 var(--shadow-ink);
     backdrop-filter: blur(10px);
@@ -1463,7 +1463,7 @@
     min-width: 0;
     overflow: hidden;
     border: 2px solid color-mix(in srgb, var(--ink) 76%, white);
-    border-radius: 1.35rem;
+    border-radius: 0.875rem;
     background: rgba(255, 252, 248, 0.84);
     box-shadow: 0 5px 0 color-mix(in srgb, var(--ink) 12%, transparent);
     color: var(--ink);
@@ -2054,7 +2054,7 @@
     }
 
     .section-card {
-        border-radius: 1.6rem;
+        border-radius: 1rem;
         box-shadow: 0 7px 0 var(--shadow-ink);
     }
 

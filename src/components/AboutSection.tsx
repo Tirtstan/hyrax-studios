@@ -7,7 +7,6 @@ export function AboutSection() {
     <section id="about" className="px-4 pb-0 pt-0 sm:px-6">
       <div className="content-shell space-y-6">
         <SectionHeading
-          eyebrow="About"
           title="A Cape Town indie studio"
           description="Hyrax Studios is a video game studio based in Cape Town, South Africa, building games with a strong social experience."
         />

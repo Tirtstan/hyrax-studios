@@ -49,9 +49,6 @@ export function ContactSection() {
 
           {/* ── Contact intro ── */}
           <div className="space-y-4">
-            <p className="text-xs font-extrabold uppercase tracking-[0.3em] text-(--brand-coral)">
-              Reach
-            </p>
             <h3 className="text-2xl font-black uppercase leading-tight text-(--ink) sm:text-3xl">
               Contact
             </h3>

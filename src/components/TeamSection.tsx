@@ -137,7 +137,6 @@ export function TeamSection() {
     <section id="team" className="px-4 pb-0 pt-0 sm:px-6">
       <div className="content-shell space-y-6">
         <SectionHeading
-          eyebrow="Team"
           title="The People"
           description="Meet the ones behind Hyrax Studios."
         />

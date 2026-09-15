@@ -368,7 +368,7 @@ export function GamesSection() {
       className={`px-4 pb-0 pt-0 sm:px-6${spotlightActive ? ' games-section--spotlight-active' : ''}`}
     >
       <div className="content-shell space-y-6">
-        <SectionHeading eyebrow="Projects" title="Games" description={featuredGame.summary} />
+        <SectionHeading title="Games" description={featuredGame.summary} />
 
         <div
           ref={featurePanelRef}
