@@ -64,7 +64,7 @@ export function HeroSection() {
             >
               <a
                 href="#games"
-                className="featured-release featured-release--hero block w-full max-w-none rounded-3xl border-2 border-(--ink) p-5 text-(--ink) no-underline sm:rounded-4xl sm:p-6"
+                className="featured-release featured-release--hero block w-full max-w-none rounded-xl border-2 border-(--ink) p-5 text-(--ink) no-underline sm:rounded-2xl sm:p-6"
               >
                 <div className="featured-release-body space-y-4">
                   <div className="space-y-2 sm:space-y-3">

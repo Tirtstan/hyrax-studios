@@ -12,10 +12,7 @@ export function JamGamesShowcase() {
     <section className="jam-projects space-y-4" aria-labelledby="jam-projects-title">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-extrabold uppercase tracking-[0.28em] text-(--brand-teal)">
-            Jam Projects
-          </p>
-          <h3 id="jam-projects-title" className="mt-2 text-2xl font-black uppercase leading-tight text-(--ink)">
+          <h3 id="jam-projects-title" className="text-2xl font-black uppercase leading-tight text-(--ink)">
             The prototype shelf
           </h3>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-(--muted)">
