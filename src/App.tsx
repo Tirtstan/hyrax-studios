@@ -5,15 +5,13 @@ import { GamesSection } from './components/GamesSection'
 import { HeroSection } from './components/HeroSection'
 import { SiteHeader } from './components/SiteHeader'
 import { TeamSection } from './components/TeamSection'
-import { useScrollReveal } from './hooks/useScrollReveal'
 
 function App() {
-  useScrollReveal()
-
   return (
     <div className="site-shell">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <SiteHeader />
-      <main className="site-main">
+      <main id="main-content" className="site-main" tabIndex={-1}>
         <HeroSection />
         <GamesSection />
         <AboutSection />

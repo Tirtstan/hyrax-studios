@@ -67,7 +67,6 @@ function TeamPersonCard({ person }: TeamPersonCardProps) {
 
   return (
     <article
-      data-reveal
       className="team-card section-card w-full overflow-hidden p-3 sm:p-4"
       style={{ '--card-accent': person.accent } as CSSProperties}
     >
@@ -87,16 +86,14 @@ function TeamPersonCard({ person }: TeamPersonCardProps) {
         )}
       </div>
 
-      <div className="mt-4 space-y-2">
-        <p className="team-card__focus">
-          {person.focus}
-        </p>
+      <div className="team-card__identity mt-4 space-y-3">
         <div>
           <h3 className="text-xl font-black uppercase leading-tight text-(--ink) sm:text-2xl">
             {person.name}
           </h3>
-          <p className="mt-1 text-sm font-bold leading-5 text-(--muted)">{person.role}</p>
+          <p className="team-card__role mt-1 text-sm font-semibold leading-5 text-(--muted)">{person.role}</p>
         </div>
+        <p className="team-card__focus">{person.focus}</p>
       </div>
 
       {person.blurb ? (
@@ -137,8 +134,7 @@ export function TeamSection() {
     <section id="team" className="px-4 pb-0 pt-0 sm:px-6">
       <div className="content-shell space-y-6">
         <SectionHeading
-          title="The People"
-          description="Meet the ones behind Hyrax Studios."
+          title="The people"
         />
 
         <div className="team-roster mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -154,7 +150,7 @@ export function TeamSection() {
                 Originals
               </h3>
               <p className="text-sm leading-7 text-(--muted) sm:text-base">
-                People who helped shape the studio and still lend a hand from time to time.
+                People who helped shape our first games.
               </p>
             </div>
 
