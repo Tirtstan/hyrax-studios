@@ -19,9 +19,6 @@ export function JamGamesShowcase() {
             Fast ideas, strange constraints, and the games that taught us something useful.
           </p>
         </div>
-        <p className="jam-projects__count" aria-label={`${smallerProjects.length} playable projects`}>
-          {String(smallerProjects.length).padStart(2, '0')} playable builds
-        </p>
       </div>
 
       <div className="jam-project-shelf">

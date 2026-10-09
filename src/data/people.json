@@ -25,8 +25,8 @@
     {
         "id": "jack",
         "name": "Jack",
-        "role": "Creative Director and Lead Game Designer",
-        "focus": "Concept direction and gameplay vision",
+        "role": "Outreach and Game Designer",
+        "focus": "Studio outreach and gameplay design",
         "blurb": "",
         "accent": "#eb746d",
         "image": "src/assets/team/JackPortrait.webp",
@@ -48,8 +48,8 @@
     {
         "id": "seth",
         "name": "Seth",
-        "role": "Lead 3D Artist and Technical Artist",
-        "focus": "3D pipelines, look development, and implementation",
+        "role": "3D Artist and Level Design",
+        "focus": "3D art and level design",
         "blurb": "",
         "accent": "#7acb8f",
         "image": "src/assets/team/SethPortrait.webp",
@@ -71,8 +71,8 @@
     {
         "id": "tristan",
         "name": "Tristan",
-        "role": "Technical Director and Lead Programmer",
-        "focus": "Architecture, gameplay systems, and technical leadership",
+        "role": "Technical Director and Programmer",
+        "focus": "Gameplay programming and technical direction",
         "blurb": "",
         "accent": "#78b6ff",
         "image": "src/assets/team/TristanPortrait.webp",
@@ -98,8 +98,8 @@
     {
         "id": "michaela",
         "name": "Michaela",
-        "role": "Art Director and Character Artist",
-        "focus": "Visual and Character Development",
+        "role": "Visual and Character Artist",
+        "focus": "Visual development and character design",
         "blurb": "Developed the art direction and created the characters for <strong><em>GET RAMMED</em></strong>.",
         "accent": "#f2be63",
         "image": "src/assets/team/MichaelaPortrait.webp",

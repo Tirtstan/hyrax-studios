@@ -31,7 +31,7 @@ export function AboutSection() {
                   </strong>{' '}
                   was founded by a small group of classmates in our already small classrooms. We
                   were initially credited under <em>Rookie Games</em> and debuted our first public
-                  prototype <em>Get Rammed</em> at{' '}
+                  prototype <em>GET RAMMED</em> at{' '}
                   <a
                     href="https://playtopiafestival.co.za/2025-2/"
                     target="_blank"

@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react'
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import 'yet-another-react-lightbox/styles.css'
 
-import itchioIcon from '../assets/logos/itchio-textless-black.svg'
+import itchioIcon from '../assets/logos/itchio-textless-white.svg'
 import steamIcon from '../assets/logos/steam.svg'
 import { getAutoGalleryImages, resolveGameMedia } from '../data/gameMedia'
 import { featuredGame } from '../data/games'
@@ -14,21 +14,21 @@ const Lightbox = lazy(() => import('yet-another-react-lightbox'))
 
 function GameLinks() {
   const primaryLinks = featuredGame.links.filter((link) => link.prominent)
-  const steamLink = primaryLinks.find((link) => link.kind === 'steam')
+  const steamLinks = primaryLinks.filter((link) => link.kind === 'steam')
   const platformLinks = primaryLinks.filter((link) => link.kind !== 'steam')
   const iconForKind: Record<string, string> = { itch: itchioIcon, steam: steamIcon }
 
   return (
-    <div className="flex max-w-full flex-wrap justify-center gap-3 lg:justify-start">
-      {steamLink ? (
+    <div className="flex max-w-full flex-wrap items-center justify-center gap-3 lg:justify-start">
+      {steamLinks.map((steamLink) => (
         steamLink.href ? (
-          <div className="steam-cta-wrap">
-            <span className="steam-playtest-badge">Playtest live!</span>
+          <div key={steamLink.label} className="steam-cta-wrap">
+            {steamLink.badge ? <span className="steam-release-badge">{steamLink.badge}</span> : null}
             <a
               href={steamLink.href}
               target="_blank"
               rel="noreferrer"
-              className="primary-cta primary-cta--steam gap-2"
+              className={`primary-cta primary-cta--steam gap-2${steamLink.badge ? ' primary-cta--demo' : ''}`}
             >
               <img src={steamIcon} alt="" className="h-4 w-4" aria-hidden="true" />
               {steamLink.label}
@@ -36,6 +36,7 @@ function GameLinks() {
           </div>
         ) : (
           <span
+            key={steamLink.label}
             className="primary-cta primary-cta--steam gap-2 cursor-default"
             aria-label={steamLink.pendingLabel ?? `${steamLink.label} coming soon`}
           >
@@ -43,7 +44,7 @@ function GameLinks() {
             {steamLink.pendingLabel ?? steamLink.label}
           </span>
         )
-      ) : null}
+      ))}
 
       {platformLinks.map((link) =>
         link.href ? (
@@ -52,12 +53,18 @@ function GameLinks() {
             href={link.href}
             target={link.href.startsWith('#') ? undefined : '_blank'}
             rel={link.href.startsWith('#') ? undefined : 'noreferrer'}
-            className={`primary-cta gap-2 ${link.kind === 'itch' ? 'primary-cta--itch' : ''}`}
+            className={link.kind === 'itch' ? 'footer-social-link footer-social-link--itch' : 'primary-cta gap-2'}
+            aria-label={link.kind === 'itch' ? link.label : undefined}
+            title={link.kind === 'itch' ? link.label : undefined}
           >
-            {iconForKind[link.kind] && (
+            {link.kind === 'itch' ? (
+              <span className="footer-social-link__icon">
+                <img src={itchioIcon} alt="" className="h-4 w-4" aria-hidden="true" />
+              </span>
+            ) : iconForKind[link.kind] ? (
               <img src={iconForKind[link.kind]} alt="" className="h-4 w-4" aria-hidden="true" />
-            )}
-            {link.label}
+            ) : null}
+            {link.kind !== 'itch' ? link.label : null}
           </a>
         ) : (
           <span
