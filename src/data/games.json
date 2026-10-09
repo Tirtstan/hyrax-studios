@@ -26,6 +26,13 @@
                 "prominent": true
             },
             {
+                "label": "Steam Demo",
+                "kind": "steam",
+                "href": "https://store.steampowered.com/app/4804740/GET_RAMMED_Demo/",
+                "badge": "OUT NOW!",
+                "prominent": true
+            },
+            {
                 "label": "Itch.io Demo",
                 "kind": "itch",
                 "href": "https://hyrax-studios.itch.io/get-rammed",

@@ -16,6 +16,7 @@ export type GameLink = {
     href?: string;
     prominent?: boolean;
     pendingLabel?: string;
+    badge?: string;
 };
 
 export type GameGalleryItem = {

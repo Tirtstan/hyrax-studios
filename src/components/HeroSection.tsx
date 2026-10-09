@@ -8,7 +8,8 @@ import { featuredGame } from '../data/games'
 export function HeroSection() {
   const heroCharacterImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.heroCharacterFile)
   const heroTitleImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.titleImageFile)
-  const steamLink = featuredGame.links.find((link) => link.kind === 'steam' && link.href)
+  const steamLinks = featuredGame.links.filter((link) => link.kind === 'steam' && link.href)
+  const demoLink = steamLinks.find((link) => link.badge)
 
   return (
     <section id="top" className="hero-section px-4 pb-0 pt-2 sm:px-6 sm:pt-4 lg:pt-6">
@@ -38,12 +39,15 @@ export function HeroSection() {
                 replayability.
               </p>
               <div className="hero-actions flex flex-wrap gap-2 pt-1">
-                {steamLink?.href ? (
-                  <a href={steamLink.href} target="_blank" rel="noreferrer" className="hero-game-cta hero-game-cta--steam">
-                    <img src={steamIcon} alt="" aria-hidden="true" />
-                    <span>Wishlist on Steam</span>
-                  </a>
-                ) : null}
+                {steamLinks.map((link) => (
+                  <div key={link.label} className="steam-cta-wrap">
+                    {link.badge ? <span className="steam-release-badge">{link.badge}</span> : null}
+                    <a href={link.href} target="_blank" rel="noreferrer" className={`hero-game-cta hero-game-cta--steam${link.badge ? ' hero-game-cta--demo' : ''}`}>
+                      <img src={steamIcon} alt="" aria-hidden="true" />
+                      <span>{link.label}</span>
+                    </a>
+                  </div>
+                ))}
                 <a href="#about" className="hero-site-link">
                   <span>Meet the studio</span>
                   <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -68,6 +72,9 @@ export function HeroSection() {
               >
                 <div className="featured-release-body space-y-4">
                   <div className="space-y-2 sm:space-y-3">
+                    {demoLink ? (
+                      <p className="steam-demo-announcement">{demoLink.label} {demoLink.badge}</p>
+                    ) : null}
                     {heroTitleImage ? (
                       <img
                         src={heroTitleImage}
