@@ -45,26 +45,25 @@ export function ContactSection() {
       className="px-4 pt-0 pb-[max(3.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pb-[max(5rem,env(safe-area-inset-bottom))]"
     >
       <div className="content-shell">
-        <div className="footer-card" data-reveal>
+        <div className="footer-card">
 
           {/* ── Contact intro ── */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-black uppercase leading-tight text-(--ink) sm:text-3xl">
+            <h2 className="font-display text-3xl uppercase leading-none text-(--ink) sm:text-4xl lg:text-5xl">
               Contact
-            </h3>
+            </h2>
             <p className="max-w-2xl text-sm leading-7 text-(--muted)">
-              For studio enquiries, press, or general contact, reach out to the main Hyrax inbox.
+              For press, event invitations, or questions about our games, email the studio or use the form below.
             </p>
           </div>
 
           {/* ── Buttons & social ── */}
           <div className="flex flex-wrap items-center gap-3">
             <a href="mailto:admin@hyrax-studios.com" className="primary-cta">
-              Email Directly
+              Email the studio
             </a>
-            <a href={googleContactFormUrl} target="_blank" rel="noreferrer" className="secondary-cta">
-              Open in Google Forms
-            </a>
+          </div>
+          <nav aria-label="Studio social links" className="flex flex-wrap items-center gap-3">
             {socialLinks.map((link) => (
               <a
                 key={link.label}
@@ -86,7 +85,7 @@ export function ContactSection() {
                 <span className="sr-only">{link.label}</span>
               </a>
             ))}
-          </div>
+          </nav>
 
           {/* ── Footer meta ── */}
           <div className="footer-meta">
@@ -134,6 +133,9 @@ export function ContactSection() {
             {...(!formOpen ? { inert: true as const } : {})}
           >
             <div className="contact-form-drawer__inner">
+              <a href={googleContactFormUrl} target="_blank" rel="noreferrer" className="contact-form-fallback">
+                Open form in a new tab
+              </a>
               <div className="contact-form-shell">
                 {formSrc ? (
                   <iframe

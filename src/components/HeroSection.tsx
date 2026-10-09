@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 
 import steamIcon from '../assets/logos/steam.svg'
-import { BrandMark } from './BrandMark'
+import studioLogo from '../assets/brand/hyrax-logo-full-black.png'
 import { resolveGameMedia } from '../data/gameMedia'
 import { featuredGame } from '../data/games'
 
@@ -25,40 +25,47 @@ export function HeroSection() {
         >
           <div className="hero-mesh absolute inset-0 opacity-80" aria-hidden="true" />
           <div className="hero-grain absolute inset-0 opacity-70" aria-hidden="true" />
-          <div className="hero-grid relative grid gap-5 sm:gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-start lg:gap-8">
-            <div className="hero-copy relative z-30 flex max-w-3xl flex-col gap-3 sm:gap-4">
-              <BrandMark dense />
-              <h1 className="font-display max-w-[min(100%,19rem)] text-balance text-[clamp(1.7rem,6.5vw,2.35rem)] uppercase leading-[0.98] tracking-tight text-(--ink) sm:max-w-3xl sm:text-4xl sm:tracking-normal lg:text-6xl">
-                Made for playing together.
-              </h1>
-              <p className="hero-lede max-w-2xl text-sm leading-7 text-(--muted) sm:text-[1.05rem] sm:leading-8">
-                We are a <strong className="hero-lede-location">Cape Town based video game studio</strong>{' '}
-                focused on making high-energy games that are easy to pick up, hard to put down, and
-                built with a strong social experience in mind. Every project is shaped by fast
-                iteration, playful experimentation, and polished gameplay loops that reward
-                replayability.
-              </p>
-              <div className="hero-actions flex flex-wrap gap-2 pt-1">
-                {steamLinks.map((link) => (
-                  <div key={link.label} className="steam-cta-wrap">
-                    {link.badge ? <span className="steam-release-badge">{link.badge}</span> : null}
-                    <a href={link.href} target="_blank" rel="noreferrer" className={`hero-game-cta hero-game-cta--steam${link.badge ? ' hero-game-cta--demo' : ''}`}>
-                      <img src={steamIcon} alt="" aria-hidden="true" />
-                      <span>{link.label}</span>
-                    </a>
-                  </div>
-                ))}
-                <a href="#about" className="hero-site-link">
-                  <span>Meet the studio</span>
-                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <path d="M4 10h11M11 6l4 4-4 4" />
-                  </svg>
-                </a>
+          <div className="hero-grid relative grid gap-5 sm:gap-6 xl:items-center xl:gap-4">
+            <div className="hero-copy relative z-30 flex min-w-0 flex-col">
+              <div className="hero-intro">
+                <img src={studioLogo} alt="Hyrax Studios" width={1050} height={1092} className="hero-intro__logo" />
+                <h1 className="hero-intro__heading font-display uppercase text-(--ink)">
+                  <span>Made</span>{' '}
+                  <span>for</span>{' '}
+                  <span>playing</span>{' '}
+                  <span>together.</span>
+                </h1>
+              </div>
+              <div className="hero-details relative z-30 flex flex-col gap-4">
+                <p className="hero-lede max-w-2xl text-sm leading-7 text-(--muted) sm:text-[1.05rem] sm:leading-8">
+                  We are a <strong className="hero-lede-location">Cape Town based video game studio</strong>{' '}
+                  focused on making high-energy games that are easy to pick up, hard to put down, and
+                  built with a strong social experience in mind. Every project is shaped by fast
+                  iteration, playful experimentation, and polished gameplay loops that reward
+                  replayability.
+                </p>
+                <div className="hero-actions flex flex-wrap gap-2 pt-1">
+                  {steamLinks.map((link) => (
+                    <div key={link.label} className="steam-cta-wrap">
+                      {link.badge ? <span className="steam-release-badge">{link.badge}</span> : null}
+                      <a href={link.href} target="_blank" rel="noreferrer" className={`hero-game-cta hero-game-cta--steam${link.badge ? ' hero-game-cta--demo' : ''}`}>
+                        <img src={steamIcon} alt="" aria-hidden="true" />
+                        <span>{link.label}</span>
+                      </a>
+                    </div>
+                  ))}
+                  <a href="#about" className="hero-site-link">
+                    <span>Meet the studio</span>
+                    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M4 10h11M11 6l4 4-4 4" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
 
             <div
-              className={`hero-showcase flex w-full flex-col items-center sm:mx-auto sm:max-w-md lg:mx-0 lg:max-w-none ${heroCharacterImage ? 'hero-showcase--with-character' : ''}`}
+              className={`hero-showcase flex w-full flex-col items-center sm:mx-auto sm:max-w-md xl:mx-0 xl:max-w-none ${heroCharacterImage ? 'hero-showcase--with-character' : ''}`}
               style={
                 {
                   '--feature-accent': featuredGame.accentColor ?? '#eb746d',

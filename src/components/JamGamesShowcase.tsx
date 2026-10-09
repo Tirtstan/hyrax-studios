@@ -16,7 +16,7 @@ export function JamGamesShowcase() {
             The prototype shelf
           </h3>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-(--muted)">
-            Fast ideas, strange constraints, and the games that taught us something useful.
+            Small games made for game jams. Play the builds on Itch.io.
           </p>
         </div>
       </div>
@@ -44,7 +44,7 @@ export function JamGamesShowcase() {
               </div>
               <div className="jam-project-card__body">
                 <p className="jam-project-card__meta">
-                  {game.event} <span aria-hidden="true">·</span> {game.year}
+                  {game.event}, {game.year}
                 </p>
                 <h4>{game.title}</h4>
                 <p>{game.summary}</p>
@@ -58,14 +58,13 @@ export function JamGamesShowcase() {
               href={game.href}
               target="_blank"
               rel="noreferrer"
-              data-reveal
               className="jam-project-card"
               aria-label={`Play ${game.title} on Itch.io`}
             >
               {content}
             </a>
           ) : (
-            <article key={game.id} data-reveal className="jam-project-card">
+            <article key={game.id} className="jam-project-card">
               {content}
             </article>
           )

@@ -1,6 +1,6 @@
 type SectionHeadingProps = {
   title: string
-  description: string
+  description?: string
   align?: 'left' | 'center'
 }
 
@@ -13,7 +13,6 @@ export function SectionHeading({
 
   return (
     <div
-      data-reveal
       className={[
         'section-heading max-w-3xl space-y-4',
         isCentered ? 'mx-auto text-center' : 'text-left',
@@ -23,9 +22,11 @@ export function SectionHeading({
         <h2 className="font-display text-3xl uppercase leading-none text-(--ink) sm:text-4xl lg:text-5xl">
           {title}
         </h2>
-        <p className="text-sm leading-7 text-(--muted) sm:text-base">
-          {description}
-        </p>
+        {description ? (
+          <p className="text-sm leading-7 text-(--muted) sm:text-base">
+            {description}
+          </p>
+        ) : null}
       </div>
     </div>
   )

@@ -9,11 +9,15 @@ export function SiteHeader() {
   const activeHref = useActiveSection(sectionHrefs)
   const [menuOpen, setMenuOpen] = useState(false)
   const shellRef = useRef<HTMLDivElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     if (!menuOpen) return
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMenuOpen(false)
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        menuButtonRef.current?.focus()
+      }
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
@@ -39,13 +43,13 @@ export function SiteHeader() {
 
   const linkClass = (href: string) =>
     [
-      'site-header-link inline-flex shrink-0 rounded-full border-2 border-transparent px-2.5 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.12em] text-(--ink) transition hover:border-(--ink) hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--brand-teal) sm:px-3 sm:py-2 sm:text-xs sm:tracking-[0.2em]',
+      'site-header-link inline-flex shrink-0 rounded-full border-2 border-transparent px-3 py-2 text-sm font-bold text-(--ink) transition hover:border-(--ink) hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--brand-teal) sm:px-4',
       activeHref === href ? 'bg-white/70 underline decoration-2 underline-offset-[0.35rem]' : 'no-underline',
     ].join(' ')
 
   const drawerLinkClass = (href: string) =>
     [
-      'site-header-drawer-link block rounded-xl px-4 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-(--ink) no-underline transition hover:bg-white/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand-teal)',
+      'site-header-drawer-link block rounded-xl px-4 py-3 text-base font-bold text-(--ink) no-underline transition hover:bg-white/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand-teal)',
       activeHref === href ? 'bg-white/75 underline decoration-2 underline-offset-[0.35rem]' : '',
     ].join(' ')
 
@@ -87,6 +91,7 @@ export function SiteHeader() {
           </div>
 
           <button
+            ref={menuButtonRef}
             type="button"
             id="site-header-menu-button"
             className={`site-header-menu-toggle ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-(--ink) bg-white/55 text-(--ink) shadow-[0_3px_0_var(--shadow-ink)] transition-colors duration-200 hover:bg-white/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--brand-teal) active:translate-y-px md:ml-0 md:hidden ${menuOpen ? 'site-header-menu-toggle--open' : ''}`}
@@ -112,10 +117,7 @@ export function SiteHeader() {
           {...(!menuOpen ? { inert: true as const } : {})}
           className={`site-header-drawer md:hidden ${menuOpen ? 'site-header-drawer--open' : ''}`}
         >
-          <p className="site-header-drawer-hint px-4 pb-2 pt-3 text-[0.62rem] font-extrabold uppercase tracking-[0.22em] text-(--muted)">
-            Jump to section
-          </p>
-          <ul className="flex flex-col gap-1 px-2 pb-3">
+          <ul className="flex flex-col gap-1 px-2 py-3">
             {navigation.map((item) => (
               <li key={item.href}>
                 <a

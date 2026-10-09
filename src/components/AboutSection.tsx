@@ -11,7 +11,7 @@ export function AboutSection() {
           description="Hyrax Studios is a video game studio based in Cape Town, South Africa, building games with a strong social experience."
         />
 
-        <article className="section-card p-6 sm:p-8" data-reveal>
+        <article className="about-story py-2 sm:py-4">
           <div className="about-lockup">
             <div className="about-lockup__brand">
               <LoadAwareImage
@@ -25,7 +25,7 @@ export function AboutSection() {
 
             <div className="about-lockup__content">
               <div className="max-w-4xl space-y-4">
-            <p className="text-base leading-8 text-(--muted)">
+                <p className="text-base leading-8 text-(--muted)">
                   <strong>
                     <em>Hyrax Studios</em>
                   </strong>{' '}
@@ -44,14 +44,12 @@ export function AboutSection() {
                   release.
                 </p>
                 <p className="text-base leading-8 text-(--muted)">
-                  At the heart of our games is the social creation and bond that comes from playing
-                  together.
+                  We make games for people to play together.
                 </p>
               </div>
               <p className="about-lockup__meta">
-                Founded February 2026
-                <span aria-hidden="true"> · </span>
-                Cape Town, South Africa
+                <span>Founded February 2026</span>
+                <span>Cape Town, South Africa</span>
               </p>
             </div>
           </div>

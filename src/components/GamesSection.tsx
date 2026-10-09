@@ -174,7 +174,7 @@ function GameGallery() {
     if (!thumb || !row) return
 
     const targetLeft = thumb.offsetLeft - (row.clientWidth - thumb.offsetWidth) / 2
-    row.scrollTo({ left: targetLeft, behavior: 'smooth' })
+    row.scrollTo({ left: targetLeft, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
   }, [selectedFile])
 
   if (galleryItems.length === 0) return null
@@ -352,34 +352,15 @@ function GameGallery() {
 
 export function GamesSection() {
   const gameTitleImage = resolveGameMedia(featuredGame.assetFolder, featuredGame.titleImageFile)
-  const featurePanelRef = useRef<HTMLDivElement>(null)
-  const [spotlightActive, setSpotlightActive] = useState(false)
-
-  useEffect(() => {
-    const panel = featurePanelRef.current
-    const mobileQuery = window.matchMedia('(max-width: 767px)')
-    if (!panel || mobileQuery.matches) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setSpotlightActive(entry.isIntersecting && entry.intersectionRatio >= 0.28),
-      { threshold: [0, 0.28, 0.55], rootMargin: '-8% 0px -12%' },
-    )
-
-    observer.observe(panel)
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section
       id="games"
-      className={`px-4 pb-0 pt-0 sm:px-6${spotlightActive ? ' games-section--spotlight-active' : ''}`}
+      className="px-4 pb-0 pt-0 sm:px-6"
     >
       <div className="content-shell space-y-6">
         <SectionHeading title="Games" description={featuredGame.summary} />
 
         <div
-          ref={featurePanelRef}
-          data-reveal
           className="section-card feature-panel relative grid min-w-0 max-w-full grid-cols-1 gap-6 p-4 sm:gap-8 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)] lg:items-stretch"
           style={
             {
