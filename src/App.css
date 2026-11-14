@@ -1227,6 +1227,8 @@
 
 .game-chapter__stage {
     position: relative;
+    /* An explicit layer below the head, so the burst's order never depends on compositing. */
+    z-index: 0;
     width: var(--screen-width);
 }
 
@@ -1273,6 +1275,9 @@
        stacking layer from the landing "thud" animation, so without this it paints over the logo. */
     position: relative;
     z-index: 1;
+    /* iOS Safari composites the masked, animated burst onto its own GPU layer and, while scrolling,
+       can paint it over the logo and tagline. Promoting the head to its own layer keeps it on top. */
+    transform: translateZ(0);
     display: grid;
     justify-items: center;
     gap: 0.6rem;
