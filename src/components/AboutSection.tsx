@@ -1,17 +1,12 @@
-import aboutLogoSrc from '../assets/brand/hyrax-logo-full-black.png'
+import aboutLogoSrc from '../assets/brand/hyrax-logo-full-black.webp'
 import { LoadAwareImage } from './LoadAwareImage'
 import { SectionHeading } from './SectionHeading'
 
 export function AboutSection() {
   return (
     <section id="about" className="px-4 pb-0 pt-0 sm:px-6">
-      <div className="content-shell space-y-6">
-        <SectionHeading
-          title="A Cape Town indie studio"
-          description="Hyrax Studios is a video game studio based in Cape Town, South Africa, building games with a strong social experience."
-        />
-
-        <article className="about-story py-2 sm:py-4">
+      <div className="content-shell">
+        <article className="about-story">
           <div className="about-lockup">
             <div className="about-lockup__brand">
               <LoadAwareImage
@@ -24,7 +19,11 @@ export function AboutSection() {
             </div>
 
             <div className="about-lockup__content">
-              <div className="max-w-4xl space-y-4">
+              <SectionHeading
+                title="Made for playing together"
+                description="We're a Cape Town video game studio making high-energy games that are easy to pick up, hard to put down, and best played with friends."
+              />
+              <div className="max-w-3xl space-y-4">
                 <p className="text-base leading-8 text-(--muted)">
                   <strong>
                     <em>Hyrax Studios</em>
@@ -40,8 +39,8 @@ export function AboutSection() {
                   >
                     Playtopia 2025
                   </a>
-                  , originally developed for an 8-hour game jam and now heading for our first full
-                  release.
+                  , originally developed for an 8-hour game jam and now our first full release, out
+                  on Steam.
                 </p>
                 <p className="text-base leading-8 text-(--muted)">
                   We make games for people to play together.

@@ -1,4 +1,4 @@
-import logoSrc from '../assets/brand/logo.svg'
+import logoSrc from '../assets/brand/logo-light.svg'
 import wordmarkSrc from '../assets/brand/hyrax-text.png'
 
 type BrandMarkProps = {

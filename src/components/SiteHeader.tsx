@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { navigation } from '../data/siteContent'
+import { haptic } from '../hooks/haptics'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { BrandMark } from './BrandMark'
 
@@ -43,13 +44,13 @@ export function SiteHeader() {
 
   const linkClass = (href: string) =>
     [
-      'site-header-link inline-flex shrink-0 rounded-full border-2 border-transparent px-3 py-2 text-sm font-bold text-(--ink) transition hover:border-(--ink) hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--brand-teal) sm:px-4',
+      'site-header-link inline-flex shrink-0 rounded-(--radius-sm) border-2 border-transparent px-3 py-2 text-sm font-bold text-(--ink) transition hover:border-(--ink) hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--brand-red) sm:px-4',
       activeHref === href ? 'bg-white/70 underline decoration-2 underline-offset-[0.35rem]' : 'no-underline',
     ].join(' ')
 
   const drawerLinkClass = (href: string) =>
     [
-      'site-header-drawer-link block rounded-xl px-4 py-3 text-base font-bold text-(--ink) no-underline transition hover:bg-white/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand-teal)',
+      'site-header-drawer-link block rounded-(--radius-sm) px-4 py-3 text-base font-bold text-(--ink) no-underline transition hover:bg-white/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand-red)',
       activeHref === href ? 'bg-white/75 underline decoration-2 underline-offset-[0.35rem]' : '',
     ].join(' ')
 
@@ -62,7 +63,7 @@ export function SiteHeader() {
           onClick={() => setMenuOpen(false)}
         />
 
-        <div className="site-header-bar relative z-2 flex items-center gap-2 overflow-visible rounded-full border-2 border-(--ink) bg-[rgba(247,234,223,0.72)] px-3 py-2.5 shadow-[0_7px_0_var(--shadow-ink)] backdrop-blur-md sm:gap-3 sm:px-4 sm:py-3 md:gap-4 md:px-6">
+        <div className="site-header-bar relative z-2 flex items-center gap-2 overflow-visible rounded-(--radius-lg) border-2 border-(--ink) bg-[color-mix(in_srgb,var(--paper)_94%,transparent)] px-3 py-2.5 shadow-[0_7px_0_var(--shadow-ink)] backdrop-blur-md sm:gap-3 sm:px-4 sm:py-3 md:gap-4 md:px-6">
           <a
             href="#top"
             className="inline-flex min-h-0 min-w-0 shrink-0 items-center overflow-visible text-(--ink) no-underline"
@@ -94,10 +95,13 @@ export function SiteHeader() {
             ref={menuButtonRef}
             type="button"
             id="site-header-menu-button"
-            className={`site-header-menu-toggle ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-(--ink) bg-white/55 text-(--ink) shadow-[0_3px_0_var(--shadow-ink)] transition-colors duration-200 hover:bg-white/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--brand-teal) active:translate-y-px md:ml-0 md:hidden ${menuOpen ? 'site-header-menu-toggle--open' : ''}`}
+            className={`site-header-menu-toggle ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-(--radius-sm) border-2 border-(--ink) bg-white/55 text-(--ink) shadow-[0_3px_0_var(--shadow-ink)] transition-colors duration-200 hover:bg-white/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--brand-red) active:translate-y-px md:ml-0 md:hidden ${menuOpen ? 'site-header-menu-toggle--open' : ''}`}
             aria-expanded={menuOpen}
             aria-controls="site-header-drawer"
-            onClick={() => setMenuOpen((o) => !o)}
+            onClick={() => {
+              haptic('toggle')
+              setMenuOpen((o) => !o)
+            }}
           >
             <span className="sr-only">{menuOpen ? 'Close menu' : 'Open menu'}</span>
             <span className="site-header-menu-bars" aria-hidden="true">

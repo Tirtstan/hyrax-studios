@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 
 import instagramIcon from '../assets/logos/instagram-white.svg'
 import itchioIcon from '../assets/logos/itchio-textless-white.svg'
-import tiktokIcon from '../assets/logos/tiktok-brands-solid.png'
-import twitterIcon from '../assets/logos/twitter-brands-solid.png'
-import youtubeIcon from '../assets/logos/youtube-brands-solid.png'
+import tiktokIcon from '../assets/logos/tiktok-brands-solid-96.png'
+import twitterIcon from '../assets/logos/twitter-brands-solid-96.png'
+import youtubeIcon from '../assets/logos/youtube-brands-solid-96.png'
 import { googleContactFormEmbedUrl, googleContactFormUrl } from '../data/contact'
 import { socialLinks } from '../data/siteContent'
+import { haptic } from '../hooks/haptics'
 
 const iconByLabel: Record<string, string> = {
   YouTube: youtubeIcon,
@@ -59,7 +60,7 @@ export function ContactSection() {
 
           {/* ── Buttons & social ── */}
           <div className="flex flex-wrap items-center gap-3">
-            <a href="mailto:admin@hyrax-studios.com" className="primary-cta">
+            <a href="mailto:luke@hyrax-studios.com" className="primary-cta">
               Email the studio
             </a>
           </div>
@@ -99,7 +100,10 @@ export function ContactSection() {
             <div className="contact-form-trigger__line" aria-hidden="true" />
             <button
               type="button"
-              onClick={() => setFormOpen((open) => !open)}
+              onClick={() => {
+                haptic('toggle')
+                setFormOpen((open) => !open)
+              }}
               className={`contact-form-toggle${formOpen ? ' is-open' : ''}`}
               aria-expanded={formOpen}
               aria-controls="contact-form-drawer"

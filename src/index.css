@@ -1,29 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Rubik+Mono+One&display=swap");
 @import "tailwindcss";
 
+/* Comicy: the display face used in GET RAMMED's own UI. */
+@font-face {
+    font-family: "Comicy";
+    src: url("./assets/fonts/Comicy.woff2") format("woff2");
+    font-display: swap;
+}
+
 :root {
-    --paper: #f7eadf;
-    --paper-strong: #fff8f1;
-    --ink: #231f20;
-    --muted: #5c5657;
-    --brand-teal: #51a6af;
-    --brand-teal-soft: #8de4ec;
-    --brand-coral: #eb746d;
-    --brand-gold: #f7efab;
-    --shadow-ink: rgba(35, 31, 32, 0.2);
+    /* Studio palette, sampled from the Hyrax logo: fur, outline, and the red box. */
+    --paper: #efe9f4;
+    --paper-strong: #fbf8fd;
+    --ink: #171d1c;
+    --muted: #51575a;
+    --brand-red: #e03434;
+    --shadow-ink: rgba(23, 29, 28, 0.2);
     --content-max-width: 70rem;
+    /* Corner radii: kept tight so the chunky outlines read as crisp, game-UI shapes rather than soft bubbles.
+       xs = chips and thumbnails, sm = small controls, md = buttons, cards and media, lg = large panels. */
+    --radius-xs: 0.3rem;
+    --radius-sm: 0.45rem;
+    --radius-md: 0.65rem;
+    --radius-lg: 0.85rem;
+    /* Comic halftone (Ben-Day dots): see the halftone block in App.css. Elements tint it with --halftone-ink. */
+    --halftone-ink: rgba(23, 29, 28, 0.16);
+    /* Grid spacing and dot radius in rem so the dots stay in proportion with the type at any size. */
+    --halftone-size: 0.7rem;
+    --halftone-dot: 0.11rem;
     --layout-chrome-bleed: 0rem;
     --section-rule-gap: clamp(1.35rem, 3.25vw, 2rem);
     --section-rule-max-width: min(var(--content-max-width), 100%);
-    /* Hero sticker PNG: flow layout and width (see App.css) */
-    --hero-character-sticker-width: min(24rem, 52vw);
-    --hero-character-sticker-width-mobile: min(17.5rem, 78vw);
-    /* Showcase vertical offset: one name for all breakpoints (see media queries below) */
-    --hero-showcase-offset: clamp(8.5rem, 18vw, 12rem);
-    /* How far the goat overlaps the top of the showcase card */
-    --hero-character-overlap: clamp(1.75rem, 5vw, 3rem);
-    /* Horizontal fine-tune for the character art only */
-    --hero-character-offset-x: 0.35rem;
     /* Safe top: padding on the header so content clears the notch on first paint (sticky `top` alone does not). */
     --site-header-safe-top: max(0.5rem, env(safe-area-inset-top, 0px));
     --site-header-sticky-offset: 0.5rem;
@@ -32,10 +39,8 @@
         var(--site-header-safe-top) + var(--site-header-bar-height) + var(--site-header-sticky-offset) +
             0.65rem
     );
-    --site-bg-floor: #f3e2d5;
-    --page-background:
-        radial-gradient(circle at top, rgba(255, 255, 255, 0.5), transparent 45%),
-        linear-gradient(180deg, #f9eee6 0%, var(--paper) 55%, var(--site-bg-floor) 100%);
+    --site-bg-floor: #efe9f4;
+    --page-background: none;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -46,19 +51,6 @@
 @media (min-width: 80rem) {
     :root {
         font-size: clamp(1rem, 0.75rem + 0.28vw, 1.2rem);
-    }
-}
-
-@media (max-width: 1023px) {
-    :root {
-        --hero-showcase-offset: clamp(10rem, 24vw, 13rem);
-        --hero-character-offset-x: 0.25rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    :root {
-        --hero-showcase-offset: clamp(8.5rem, 10vw, 11.5rem);
     }
 }
 

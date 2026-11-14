@@ -16,7 +16,7 @@ export function ContactFormPage() {
                   <BrandMark compact />
                 </a>
                 <div className="max-w-3xl space-y-3">
-                  <p className="text-xs font-extrabold uppercase tracking-[0.35em] text-(--brand-teal)">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.35em] text-(--muted)">
                     Contact
                   </p>
                   <h1 className="font-display text-3xl uppercase leading-none text-(--ink) sm:text-4xl lg:text-5xl">
@@ -60,8 +60,8 @@ export function ContactFormPage() {
                 </h2>
                 <p className="text-sm leading-7 text-(--muted)">
                   You can also email us directly at{' '}
-                  <a href="mailto:admin@hyrax-studios.com" className="about-link">
-                    admin@hyrax-studios.com
+                  <a href="mailto:luke@hyrax-studios.com" className="about-link">
+                    luke@hyrax-studios.com
                   </a>
                   .
                 </p>
