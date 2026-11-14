@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 
 import itchioIcon from '../assets/logos/itchio-textless-black.svg'
-import twitterIcon from '../assets/logos/twitter-brands-solid.png'
+import twitterIcon from '../assets/logos/twitter-brands-solid-96.png'
 import peopleData from '../data/people.json'
 import { resolveTeamPortrait } from '../data/teamMedia'
 import type { Person, PersonLinkKind } from '../types/content'

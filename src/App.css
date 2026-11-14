@@ -12,7 +12,7 @@
     top: 1rem;
     left: 1rem;
     border: 2px solid var(--ink);
-    border-radius: 0.5rem;
+    border-radius: var(--radius-sm);
     padding: 0.75rem 1rem;
     background: var(--paper-strong);
     color: var(--ink);
@@ -24,7 +24,7 @@
 .skip-link:focus {
     transform: none;
     opacity: 1;
-    outline: 3px solid var(--brand-teal);
+    outline: 3px solid var(--brand-red);
     outline-offset: 3px;
 }
 
@@ -35,25 +35,6 @@
     min-height: 100vh;
     min-height: 100svh;
     min-height: 100dvh;
-}
-
-.hero-section {
-    scroll-margin-top: calc(var(--site-header-clearance) - var(--site-header-sticky-offset));
-}
-
-.site-shell::before {
-    content: "";
-    position: fixed;
-    top: calc(-1 * env(safe-area-inset-top, 0px));
-    right: calc(-1 * env(safe-area-inset-right, 0px));
-    left: calc(-1 * env(safe-area-inset-left, 0px));
-    bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
-    z-index: -2;
-    background-image:
-        radial-gradient(circle at 20% 20%, rgba(81, 166, 175, 0.18), transparent 28%),
-        radial-gradient(circle at 80% 12%, rgba(235, 116, 109, 0.16), transparent 24%),
-        radial-gradient(circle at 70% 78%, rgba(242, 190, 99, 0.16), transparent 26%);
-    pointer-events: none;
 }
 
 .site-shell::after {
@@ -116,21 +97,14 @@
     margin-bottom: var(--section-rule-gap);
     height: 2px;
     border-radius: 999px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        color-mix(in srgb, var(--brand-teal) 38%, transparent) 18%,
-        color-mix(in srgb, var(--ink) 18%, transparent) 50%,
-        color-mix(in srgb, var(--brand-coral) 34%, transparent) 82%,
-        transparent 100%
-    );
+    background: color-mix(in srgb, var(--ink) 14%, transparent);
 }
 
 .section-card {
     position: relative;
     border: 2px solid var(--ink);
-    border-radius: 1.25rem;
-    background: rgba(247, 234, 223, 0.82);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--paper) 82%, transparent);
     box-shadow: 0 9px 0 var(--shadow-ink);
     backdrop-filter: blur(10px);
 }
@@ -142,204 +116,6 @@
     border-radius: inherit;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
     pointer-events: none;
-}
-
-.hero-section-card {
-    overflow: hidden;
-}
-
-.hero-section-card .hero-mesh,
-.hero-section-card .hero-grain {
-    border-radius: inherit;
-    overflow: hidden;
-}
-
-.hero-mesh {
-    background-image:
-        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.75), transparent 22%),
-        radial-gradient(circle at 85% 10%, rgba(81, 166, 175, 0.28), transparent 26%),
-        radial-gradient(circle at 75% 78%, rgba(235, 116, 109, 0.22), transparent 24%),
-        linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.2),
-            rgba(81, 166, 175, 0.08) 48%,
-            transparent 72%
-        );
-}
-
-.hero-lede-location {
-    font-weight: 700;
-    color: var(--ink);
-}
-
-.hero-grain {
-    background-image:
-        radial-gradient(rgba(255, 255, 255, 0.48) 0.8px, transparent 0.9px),
-        radial-gradient(rgba(81, 166, 175, 0.16) 0.8px, transparent 0.95px),
-        linear-gradient(
-            135deg,
-            rgba(81, 166, 175, 0.08),
-            transparent 40%,
-            rgba(255, 255, 255, 0.12) 80%
-        );
-    background-position:
-        0 0,
-        12px 12px,
-        0 0;
-    background-size:
-        24px 24px,
-        24px 24px,
-        100% 100%;
-    mix-blend-mode: soft-light;
-}
-
-/* Keeps CTAs above the hero character when the PNG extends upward (stacked layout) */
-#top .hero-copy {
-    position: relative;
-    z-index: 30;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1.25rem;
-}
-
-.hero-details {
-    width: 100%;
-    align-items: flex-start;
-    text-align: left;
-}
-
-.hero-actions {
-    justify-content: flex-start;
-}
-
-.hero-intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    align-items: center;
-    gap: 4%;
-    width: 100%;
-    container-type: inline-size;
-}
-
-.hero-intro__logo {
-    width: 100%;
-    height: auto;
-}
-
-.hero-intro__heading {
-    margin: 0;
-    font-size: max(1.1rem, 7.6cqw);
-    line-height: 1.12;
-}
-
-.hero-intro__heading span {
-    display: block;
-    white-space: nowrap;
-}
-
-.hero-intro__heading span:nth-child(-n + 2) {
-    display: inline;
-}
-
-@media (max-width: 639px) {
-    .hero-intro {
-        grid-template-columns: minmax(0, 35.7231%) minmax(0, 1fr);
-        gap: 2%;
-    }
-
-    .hero-intro__heading {
-        display: flex;
-        flex-direction: column;
-        gap: 0.04em;
-        font-size: max(1.1rem, 8.6cqw);
-        line-height: 1.05;
-        letter-spacing: -0.05em;
-    }
-
-    .hero-intro__heading span:nth-child(-n + 2) {
-        display: block;
-    }
-}
-
-@media (min-width: 1280px) {
-    .hero-intro {
-        --hero-title-size: 3.5321rem;
-        /* Four lines and three gaps total 4.32em; the logo's aspect ratio is 1.04. */
-        --hero-logo-width: calc(var(--hero-title-size) * 4.32 / 1.04);
-        grid-template-columns: minmax(0, var(--hero-logo-width)) minmax(0, 1fr);
-        align-items: center;
-        gap: 3%;
-        max-width: 47rem;
-    }
-
-    .hero-intro__logo {
-        height: auto;
-        max-width: var(--hero-logo-width);
-    }
-
-    .hero-intro__heading {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.04em;
-        min-width: 0;
-        font-size: var(--hero-title-size);
-        letter-spacing: -0.025em;
-        line-height: 1.05;
-    }
-
-    #top .hero-showcase {
-        margin-top: clamp(6rem, 9vw, 8rem);
-    }
-
-    .hero-character-sticker {
-        width: min(100%, var(--hero-character-sticker-width));
-    }
-
-    .hero-details .hero-lede {
-        max-width: 44rem;
-    }
-}
-
-@media (min-width: 1280px) {
-    .hero-section > .content-shell {
-        max-width: 85rem;
-    }
-
-    .hero-grid {
-        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-    }
-}
-
-.hero-details > *,
-.hero-copy > *,
-.hero-actions > * {
-    opacity: 0;
-    animation: hero-copy-enter 680ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.hero-copy > :nth-child(1) {
-    animation-delay: 180ms;
-}
-
-.hero-copy > :nth-child(2) {
-    animation-delay: 260ms;
-}
-
-.hero-copy > :nth-child(3) {
-    animation-delay: 340ms;
-}
-
-.hero-copy > :nth-child(4) {
-    animation-delay: 420ms;
-}
-
-.hero-actions > :nth-child(1) {
-    animation-delay: 500ms;
-}
-
-.hero-actions > :nth-child(2) {
-    animation-delay: 560ms;
 }
 
 .brand-lockup,
@@ -453,7 +229,7 @@
     background: rgba(255, 255, 255, 0.92);
     box-shadow:
         0 3px 0 var(--shadow-ink),
-        0 0 0 1px color-mix(in srgb, var(--brand-teal) 42%, transparent);
+        0 0 0 1px color-mix(in srgb, var(--brand-red) 42%, transparent);
 }
 
 .site-header-drawer {
@@ -467,9 +243,9 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    border-radius: 1.35rem;
+    border-radius: var(--radius-lg);
     border: 2px solid var(--ink);
-    background: rgba(252, 246, 239, 0.97);
+    background: var(--paper-strong);
     box-shadow:
         0 8px 0 var(--shadow-ink),
         inset 0 1px 0 rgba(255, 255, 255, 0.65),
@@ -541,6 +317,7 @@
     transform: translateY(-1px);
 }
 
+/* Logo on the left at the height of the copy beside it: heading at the top, founding details on the bottom edge. */
 .about-lockup {
     display: grid;
     gap: 1.75rem;
@@ -549,11 +326,12 @@
 
 .about-lockup__brand {
     display: grid;
-    justify-items: start;
+    justify-items: center;
+    align-items: center;
 }
 
 .about-lockup__logo {
-    width: min(100%, 18rem);
+    width: min(70%, 16rem);
     height: auto;
     object-fit: contain;
 }
@@ -572,9 +350,68 @@
 }
 
 .about-lockup__content {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
-    min-height: 100%;
+    min-width: 0;
+}
+
+/* Phones: a compact logo sits beside the heading (a small echo of the desktop layout); the copy runs full width below.
+   The wrappers dissolve with display: contents so the heading and copy can join the lockup grid directly. */
+@media (max-width: 767px) {
+    .about-lockup {
+        grid-template-columns: 6rem minmax(0, 1fr);
+        gap: 1.25rem 1rem;
+        align-items: center;
+    }
+
+    .about-lockup__content,
+    .about-lockup__content > .section-heading,
+    .about-lockup__content > .section-heading > div {
+        display: contents;
+    }
+
+    .about-lockup__brand {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .about-lockup__logo {
+        width: 100%;
+    }
+
+    .about-lockup__content h2 {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .about-lockup__content > * > * > p,
+    .about-lockup__content > div,
+    .about-lockup__meta {
+        grid-column: 1 / -1;
+    }
+
+    .about-lockup__meta {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .about-lockup {
+        grid-template-columns: clamp(15rem, 30vw, 25rem) minmax(0, 1fr);
+        gap: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .about-lockup__brand {
+        align-items: stretch;
+    }
+
+    .about-lockup__logo {
+        width: 100%;
+        height: 100%;
+        max-height: 30rem;
+        object-position: center top;
+    }
 }
 
 .about-link {
@@ -583,250 +420,16 @@
     font-weight: 700;
     text-decoration: underline;
     text-decoration-thickness: 2px;
-    text-decoration-color: color-mix(in srgb, var(--brand-coral) 64%, white);
+    text-decoration-color: var(--brand-red);
     text-underline-offset: 0.22rem;
     transition:
-        color 220ms ease,
         transform 180ms ease,
-        text-decoration-color 220ms ease;
+        text-decoration-thickness 180ms ease;
 }
 
 .about-link:hover {
     transform: translateY(-1px);
-    color: color-mix(in srgb, var(--brand-teal) 80%, white);
-    text-decoration-color: color-mix(in srgb, var(--brand-teal) 56%, white);
-}
-
-.feature-panel {
-    isolation: isolate;
-    overflow: hidden;
-    border-color: color-mix(in srgb, var(--feature-accent) 45%, var(--ink));
-    box-shadow: 0 6px 0 var(--shadow-ink);
-}
-
-.feature-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    border-radius: inherit;
-    opacity: 0.55;
-    background:
-        radial-gradient(circle at 8% 90%, color-mix(in srgb, var(--feature-accent) 24%, transparent), transparent 28%),
-        radial-gradient(circle at 94% 8%, rgba(255, 216, 100, 0.2), transparent 24%),
-        repeating-linear-gradient(118deg, transparent 0 34px, rgba(255, 255, 255, 0.08) 34px 36px);
-    pointer-events: none;
-}
-
-.feature-panel > * {
-    position: relative;
-    z-index: 1;
-}
-
-.feature-panel::after {
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.72),
-        inset 0 0 0 1px rgba(255, 220, 156, 0.28);
-}
-
-/* Hero spotlight: one unit (card + character). Offset: --hero-showcase-offset in index.css */
-#top .hero-showcase {
-    position: relative;
-    z-index: 0;
-    margin-top: var(--hero-showcase-offset, 8rem);
-}
-
-.hero-character-sticker {
-    position: absolute;
-    left: 50%;
-    bottom: 100%;
-    z-index: 0;
-    width: var(--hero-character-sticker-width);
-    margin-bottom: calc(-1 * var(--hero-character-overlap));
-    transform: translateX(calc(-50% + var(--hero-character-offset-x))) scaleX(-1) rotate(0deg);
-    pointer-events: none;
-    transform-origin: center bottom;
-    transition: transform 220ms ease;
-}
-
-.hero-character-sticker img {
-    display: block;
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 5px 0 var(--feature-accent, #ff4949));
-}
-
-.hero-showcase--with-character:hover .hero-character-sticker,
-.hero-showcase--with-character:focus-within .hero-character-sticker {
-    animation:
-        hero-character-bob 350ms ease-out forwards,
-        hero-character-shake 180ms ease-in-out 110ms;
-}
-
-.featured-release {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    transform: rotate(-1.6deg);
-    transition:
-        transform 220ms ease,
-        box-shadow 220ms ease,
-        border-color 220ms ease;
-    z-index: 1;
-    cursor: pointer;
-}
-
-.hero-showcase--with-character > .featured-release {
-    z-index: 2;
-}
-
-.featured-release--hero {
-    border-color: color-mix(in srgb, var(--feature-accent, #eb746d) 72%, white);
-    background:
-        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.14) 1.1px, transparent 0) 0 0 /
-            18px 18px,
-        linear-gradient(
-            145deg,
-            color-mix(in srgb, var(--feature-primary, #292929) 88%, white),
-            color-mix(in srgb, var(--feature-primary, #292929) 96%, black)
-        );
-    box-shadow:
-        0 8px 0 color-mix(in srgb, var(--feature-primary, #292929) 76%, transparent),
-        0 0 0 1px color-mix(in srgb, var(--feature-accent, #eb746d) 18%, white),
-        0 14px 28px rgba(41, 41, 41, 0.14);
-    color: #fff5f3;
-}
-
-.featured-release::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    background:
-        radial-gradient(
-            circle at top right,
-            color-mix(in srgb, var(--feature-accent, #eb746d) 20%, white),
-            transparent 24%
-        ),
-        linear-gradient(155deg, transparent 60%, rgba(41, 41, 41, 0.08) 60%);
-}
-
-.featured-release--hero::after {
-    background: linear-gradient(155deg, transparent 62%, rgba(0, 0, 0, 0.12) 100%);
-}
-
-.featured-release-body {
-    padding: 1rem;
-}
-
-.hero-release-title-image {
-    display: block;
-    width: min(100%, 24rem);
-    height: auto;
-    object-fit: contain;
-}
-
-.featured-release--hero .hero-release-title-image {
-    margin-inline: auto;
-    filter: contrast(1.05)
-        drop-shadow(0 0 12px color-mix(in srgb, var(--feature-accent, #eb746d) 30%, transparent))
-        drop-shadow(0 2px 6px rgba(0, 0, 0, 0.18));
-}
-
-.featured-release-summary {
-    color: color-mix(in srgb, white 72%, var(--feature-accent, #eb746d) 28%);
-}
-
-.game-section-title-image {
-    display: block;
-    width: min(100%, 22rem);
-    height: auto;
-    object-fit: contain;
-    filter: contrast(1.05);
-    transition: filter 420ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.featured-release-hint {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    width: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    background: transparent;
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-}
-
-.featured-release-hint__icon {
-    display: grid;
-    flex: 0 0 auto;
-    width: 0.9rem;
-    height: 0.9rem;
-    place-items: center;
-    color: color-mix(in srgb, var(--feature-accent, #eb746d) 72%, white);
-}
-
-.featured-release-hint__icon svg {
-    width: 0.9rem;
-    height: 0.9rem;
-}
-
-.featured-release:hover,
-.featured-release:focus-within {
-    transform: translateY(-4px) rotate(-1.6deg);
-}
-
-.featured-release--hero:hover,
-.featured-release--hero:focus-within {
-    box-shadow:
-        0 10px 0 color-mix(in srgb, var(--feature-primary, #292929) 80%, transparent),
-        0 0 0 1px color-mix(in srgb, var(--feature-accent, #eb746d) 26%, white),
-        0 18px 34px rgba(41, 41, 41, 0.18);
-}
-
-.featured-release:hover .featured-release-hint__icon,
-.featured-release:focus-within .featured-release-hint__icon {
-    animation: spotlight-arrow-bob 520ms ease-in-out infinite alternate;
-}
-
-@keyframes spotlight-arrow-bob {
-    from {
-        transform: translateY(-1px);
-    }
-    to {
-        transform: translateY(3px);
-    }
-}
-
-@keyframes hero-character-bob {
-    0% {
-        transform: translateX(calc(-50% + var(--hero-character-offset-x))) scaleX(-1) rotate(0deg);
-    }
-    100% {
-        transform: translateX(calc(-50% + var(--hero-character-offset-x))) translateY(-8px)
-            scaleX(-1) rotate(0deg);
-    }
-}
-
-@keyframes hero-character-shake {
-    0%,
-    100% {
-        transform: translateX(calc(-50% + var(--hero-character-offset-x))) translateY(-8px)
-            scaleX(-1) rotate(0deg);
-    }
-    35% {
-        transform: translateX(calc(-50% + var(--hero-character-offset-x))) translateY(-9px)
-            scaleX(-1) rotate(-4deg);
-    }
-    70% {
-        transform: translateX(calc(-50% + var(--hero-character-offset-x))) translateY(-8px)
-            scaleX(-1) rotate(4deg);
-    }
+    text-decoration-thickness: 3px;
 }
 
 .primary-cta,
@@ -838,7 +441,7 @@
     gap: 0.55rem;
     overflow: hidden;
     border: 2px solid var(--ink);
-    border-radius: 999px;
+    border-radius: var(--radius-md);
     padding: 0.82rem 1.18rem;
     text-decoration: none;
     text-transform: uppercase;
@@ -852,25 +455,14 @@
         box-shadow 180ms ease;
 }
 
-.primary-cta::before,
-.secondary-cta::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 1px 1px, rgba(35, 31, 32, 0.08) 1px, transparent 0) 0 0 / 10px
-            10px,
-        linear-gradient(180deg, rgba(255, 255, 255, 0.38), transparent 55%);
-    pointer-events: none;
-}
-
+/* Primary is solid ink, secondary is white: the two fills that work on any background. */
 .primary-cta {
-    background: linear-gradient(135deg, #b6f1f6, #8de4ec);
-    color: var(--ink);
+    background: var(--ink);
+    color: #fff;
 }
 
 .secondary-cta {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 234, 223, 0.88));
+    background: #fff;
     color: var(--ink);
 }
 
@@ -878,161 +470,6 @@
 .secondary-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 7px 0 rgba(35, 31, 32, 0.18);
-}
-
-.primary-cta--steam {
-    border: 0;
-    padding: calc(0.82rem + 2px) calc(1.18rem + 2px);
-    background: linear-gradient(135deg, #1b2838, #2a475e);
-    color: #f5fbff;
-}
-
-.primary-cta--steam::before {
-    background:
-        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.12) 1px, transparent 0) 0 0 / 10px
-            10px,
-        linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 55%);
-}
-
-.hero-game-cta {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    min-height: 2.75rem;
-    border: 1px solid transparent;
-    border-radius: 0.72rem;
-    padding: 0.7rem 0.95rem;
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        background-color 180ms ease,
-        border-color 180ms ease;
-}
-
-.hero-game-cta img {
-    width: 1rem;
-    height: 1rem;
-    object-fit: contain;
-}
-
-.hero-game-cta--steam {
-    border-color: #343434;
-    background: #292929;
-    box-shadow: 0 3px 8px rgba(35, 31, 32, 0.16);
-    color: #fff8f1;
-}
-
-.hero-game-cta:hover,
-.hero-game-cta:focus-visible {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 12px rgba(35, 31, 32, 0.18);
-}
-
-.hero-game-cta--steam:hover,
-.hero-game-cta--steam:focus-visible {
-    border-color: color-mix(in srgb, #1387b8 72%, white);
-    box-shadow:
-        0 4px 12px rgba(19, 135, 184, 0.26),
-        0 0 0 2px rgba(19, 135, 184, 0.1);
-}
-
-.hero-game-cta:focus-visible {
-    outline: 3px solid var(--brand-teal);
-    outline-offset: 3px;
-}
-
-.hero-site-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.38rem;
-    min-height: 2.75rem;
-    padding: 0.65rem 0.3rem;
-    color: var(--ink);
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    text-decoration-color: color-mix(in srgb, var(--feature-accent) 62%, transparent);
-    text-decoration-line: underline;
-    text-decoration-thickness: 2px;
-    text-transform: uppercase;
-    text-underline-offset: 0.28rem;
-    transition:
-        color 180ms ease,
-        transform 180ms ease,
-        text-decoration-color 180ms ease;
-}
-
-.hero-site-link svg {
-    width: 1rem;
-    height: 1rem;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transition: transform 180ms ease;
-}
-
-.hero-site-link:hover,
-.hero-site-link:focus-visible {
-    color: color-mix(in srgb, var(--feature-accent) 76%, var(--ink));
-    text-decoration-color: currentColor;
-    transform: translateY(-1px);
-}
-
-.hero-site-link:hover svg,
-.hero-site-link:focus-visible svg {
-    transform: translateX(2px);
-}
-
-.hero-site-link:focus-visible {
-    border-radius: 0.35rem;
-    outline: 3px solid var(--brand-teal);
-    outline-offset: 3px;
-}
-.primary-cta--steam::before {
-    inset: 3px;
-    border-radius: inherit;
-}
-
-.primary-cta--steam {
-    box-shadow: 0 5px 12px rgba(35, 31, 32, 0.12);
-}
-
-.primary-cta--steam:hover {
-    box-shadow: 0 6px 14px rgba(35, 31, 32, 0.17);
-}
-
-.primary-cta--demo,
-.hero-game-cta--demo {
-    border: 2px solid #235c3b;
-    background: linear-gradient(135deg, #b6f5a1, #8de4ac);
-    color: #173e29;
-    box-shadow: 0 5px 12px rgba(35, 92, 59, 0.16);
-}
-
-.primary-cta--demo {
-    padding: 0.82rem 1.18rem;
-}
-
-.primary-cta--demo::before {
-    background:
-        radial-gradient(circle at 1px 1px, rgba(23, 62, 41, 0.1) 1px, transparent 0) 0 0 / 10px 10px,
-        linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent 55%);
-}
-
-.primary-cta--demo:hover,
-.hero-game-cta--demo:hover,
-.hero-game-cta--demo:focus-visible {
-    border-color: #173e29;
-    box-shadow: 0 6px 14px rgba(35, 92, 59, 0.24);
 }
 
 .steam-cta-wrap {
@@ -1056,10 +493,10 @@
     top: 0;
     right: 0.65rem;
     padding: 0.24rem 0.55rem;
-    border: 2px solid #235c3b;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #b6f5a1, #8de4ac);
-    color: #173e29;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius-xs);
+    background: var(--chapter-pop, #ffd864);
+    color: var(--ink);
     font-size: 0.56rem;
     font-weight: 950;
     line-height: 1;
@@ -1068,440 +505,6 @@
     white-space: nowrap;
     box-shadow: 0 2px 0 rgba(35, 31, 32, 0.16);
     transform: translateY(-50%) rotate(2deg);
-}
-
-.steam-demo-announcement {
-    width: fit-content;
-    margin-inline: auto;
-    border: 2px solid #235c3b;
-    border-radius: 999px;
-    padding: 0.4rem 0.75rem;
-    background: #b6f5a1;
-    color: #173e29;
-    font-size: 0.7rem;
-    font-weight: 900;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
-
-.game-gallery-stage {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: min(100%, 26rem);
-    margin-inline: auto;
-}
-
-.game-gallery-stage.is-image {
-    cursor: pointer;
-}
-
-.game-gallery-stage__frame {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: 1.45rem;
-    background:
-        linear-gradient(135deg, rgba(81, 166, 175, 0.16), rgba(235, 116, 109, 0.12)),
-        url("./assets/backgrounds/DoodleBackground.svg") center / 24rem repeat,
-        rgba(255, 255, 255, 0.88);
-    box-shadow:
-        0 8px 18px rgba(35, 31, 32, 0.08),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-}
-
-.game-gallery-stage__image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 280ms ease;
-}
-
-.game-gallery-stage__frame iframe,
-.game-gallery-video {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-.game-gallery-stage__frame iframe {
-    border: 0;
-}
-
-.game-gallery-video {
-    position: relative;
-    padding: 0;
-    border: 0;
-    background: #101018;
-    color: white;
-    cursor: pointer;
-}
-
-.game-gallery-video::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 44%, rgba(10, 8, 18, 0.58));
-}
-
-.game-gallery-video__play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    display: grid;
-    width: clamp(3.25rem, 8vw, 4.5rem);
-    aspect-ratio: 1;
-    place-items: center;
-    border: 3px solid white;
-    border-radius: 50%;
-    background: var(--brand-coral);
-    box-shadow: 0 4px 0 rgba(54, 8, 12, 0.82);
-    transform: translate(-50%, -50%);
-    transition: transform 180ms ease, background-color 180ms ease;
-}
-
-.game-gallery-video__play svg {
-    width: 48%;
-    margin-left: 6%;
-}
-
-.game-gallery-video__label {
-    position: absolute;
-    right: 0.85rem;
-    bottom: 0.7rem;
-    z-index: 1;
-    font-size: 0.65rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.game-gallery-video:hover .game-gallery-stage__image {
-    filter: brightness(1.08);
-    transform: scale(1.018);
-}
-
-.game-gallery-video:hover .game-gallery-video__play {
-    background: color-mix(in srgb, var(--brand-coral) 76%, white);
-    transform: translate(-50%, calc(-50% - 2px));
-}
-
-.game-gallery-video:focus-visible {
-    outline: 3px solid var(--brand-gold);
-    outline-offset: -5px;
-}
-
-.game-gallery-stage:hover .game-gallery-stage__image {
-    transform: scale(1.015);
-}
-
-.game-gallery-expand {
-    position: absolute;
-    top: 0.65rem;
-    right: 0.65rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.9rem;
-    height: 1.9rem;
-    border-radius: 999px;
-    border: 2px solid rgba(35, 31, 32, 0.18);
-    background: rgba(247, 234, 223, 0.88);
-    color: var(--ink);
-    backdrop-filter: blur(6px);
-    opacity: 0;
-    transform: scale(0.88);
-    transition:
-        opacity 200ms ease,
-        transform 200ms ease;
-    pointer-events: none;
-}
-
-.game-gallery-stage:hover .game-gallery-expand,
-.game-gallery-stage:focus-visible .game-gallery-expand {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.game-gallery-stage:focus-visible {
-    outline: 2px solid var(--brand-teal);
-    outline-offset: 4px;
-    border-radius: 1.45rem;
-}
-
-.game-gallery-thumb {
-    position: relative;
-    padding: 0;
-    border: 0;
-    border-radius: 1.2rem;
-    overflow: visible;
-    background:
-        linear-gradient(135deg, rgba(81, 166, 175, 0.22), rgba(235, 116, 109, 0.16)),
-        url("./assets/backgrounds/DoodleBackground.svg") center / 14rem repeat;
-    cursor: pointer;
-    flex: 0 0 var(--thumb-width);
-    transition: transform 180ms ease;
-}
-
-.game-gallery-thumb__play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: grid;
-    width: 2rem;
-    aspect-ratio: 1;
-    place-items: center;
-    border: 2px solid white;
-    border-radius: 50%;
-    background: var(--brand-coral);
-    color: white;
-    box-shadow: 0 2px 0 rgba(54, 8, 12, 0.72);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-}
-
-.game-gallery-thumb__play svg {
-    width: 50%;
-    margin-left: 6%;
-}
-
-.game-gallery-thumb:hover,
-.game-gallery-thumb.is-active {
-    transform: scale(1.04);
-}
-
-.game-gallery-thumb:focus-visible {
-    outline: 2px solid var(--brand-teal);
-    outline-offset: 4px;
-}
-
-.game-gallery-thumb__image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-radius: 1.2rem;
-    box-shadow: 0 4px 8px rgba(35, 31, 32, 0.1);
-    transition: box-shadow 180ms ease;
-}
-
-.game-gallery-thumb.is-active .game-gallery-thumb__image {
-    box-shadow:
-        0 4px 8px rgba(35, 31, 32, 0.1),
-        0 0 0 2.5px var(--ink);
-}
-
-.game-gallery-thumb-row {
-    --thumb-width: clamp(6.4rem, 16vw, 7.5rem);
-    display: flex;
-    gap: 0.85rem;
-    overflow-x: auto;
-    justify-content: flex-start;
-    width: min(100%, 26rem);
-    margin-inline: auto;
-    padding: 0.95rem max(0px, calc(50% - (var(--thumb-width) * 1.5) - 0.85rem)) 1rem;
-    scrollbar-width: none;
-    scroll-padding-inline: 50%;
-    scroll-snap-type: x mandatory;
-}
-
-.game-gallery-thumb-row .game-gallery-thumb {
-    scroll-snap-align: center;
-}
-
-.game-gallery-thumb-row::-webkit-scrollbar {
-    display: none;
-}
-
-.game-gallery-rail {
-    position: relative;
-    width: 100%;
-}
-
-.game-gallery-thumb-area {
-    position: relative;
-}
-
-.game-gallery-thumb-area::before,
-.game-gallery-thumb-area::after {
-    content: "";
-    position: absolute;
-    width: 3.5rem;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.game-gallery-thumb-area::before {
-    left: calc(50% - 13rem);
-    background: linear-gradient(90deg, rgba(247, 234, 223, 0.96), rgba(247, 234, 223, 0));
-}
-
-.game-gallery-thumb-area::after {
-    right: calc(50% - 13rem);
-    background: linear-gradient(270deg, rgba(247, 234, 223, 0.96), rgba(247, 234, 223, 0));
-}
-
-.game-gallery-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.1rem;
-    height: 2.1rem;
-    border-radius: 999px;
-    border: 2px solid var(--ink);
-    background: rgba(247, 234, 223, 0.92);
-    color: var(--ink);
-    cursor: pointer;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 3px 0 var(--shadow-ink);
-    transition:
-        transform 180ms ease,
-        background-color 180ms ease,
-        box-shadow 180ms ease;
-}
-
-.game-gallery-arrow:hover {
-    transform: translateY(calc(-50% - 2px));
-    background: white;
-    box-shadow: 0 5px 0 var(--shadow-ink);
-}
-
-.game-gallery-arrow:focus-visible {
-    outline: 2px solid var(--brand-teal);
-    outline-offset: 3px;
-}
-
-.game-gallery-arrow--prev {
-    left: calc(50% - 14.2rem);
-}
-
-.game-gallery-arrow--next {
-    right: calc(50% - 14.2rem);
-}
-
-.game-gallery-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.45rem;
-    margin-top: 0.15rem;
-}
-
-.game-gallery-dot {
-    position: relative;
-    width: 1.75rem;
-    height: 1.75rem;
-    border: 0;
-    border-radius: 999px;
-    background: transparent;
-    cursor: pointer;
-    transition:
-        transform 180ms ease,
-        background-color 180ms ease;
-}
-
-.game-gallery-dot::before {
-    content: "";
-    position: absolute;
-    inset: 0.575rem;
-    border-radius: 999px;
-    background: rgba(35, 31, 32, 0.16);
-}
-
-.game-gallery-dot.is-active::before {
-    background: var(--brand-coral);
-    transform: scale(1.18);
-}
-
-.game-gallery-dot:focus-visible {
-    outline: 2px solid var(--brand-teal);
-    outline-offset: 2px;
-}
-
-@media (min-width: 1024px) {
-    .game-gallery-stack {
-        align-self: stretch;
-        justify-content: flex-start;
-    }
-
-    .game-gallery-stack .game-gallery-stage {
-        width: 100%;
-        max-width: none;
-    }
-
-    .game-gallery-stack .game-gallery-stage__frame {
-        aspect-ratio: 16 / 9;
-        width: 100%;
-    }
-
-    .game-gallery-stack .game-gallery-thumb-row {
-        width: 100%;
-        max-width: none;
-        --thumb-width: clamp(6.75rem, 11vw, 8.5rem);
-    }
-
-    .game-gallery-stack .game-gallery-thumb-area::before {
-        left: 0;
-        width: 3rem;
-    }
-
-    .game-gallery-stack .game-gallery-thumb-area::after {
-        right: 0;
-        width: 3rem;
-    }
-
-    .game-gallery-stack .game-gallery-arrow--prev {
-        left: 0.35rem;
-    }
-
-    .game-gallery-stack .game-gallery-arrow--next {
-        right: 0.35rem;
-    }
-}
-
-.accent-chip {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed color-mix(in srgb, var(--ink) 76%, white);
-    border-radius: 999px;
-    padding: 0.56rem 0.88rem;
-    background:
-        radial-gradient(circle at 1px 1px, rgba(35, 31, 32, 0.1) 1px, transparent 0) 0 0 / 10px 10px,
-        linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(247, 234, 223, 0.9));
-    color: var(--ink);
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        border-color 180ms ease;
-}
-
-.game-tag-chip {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 2px dashed color-mix(in srgb, var(--feature-accent) 34%, var(--ink));
-    border-radius: 999px;
-    padding: 0.35rem 0.65rem;
-    background:
-        radial-gradient(circle at 1px 1px, rgba(35, 31, 32, 0.12) 1px, transparent 0) 0 0 / 10px 10px,
-        linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 227, 214, 0.9));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
-    color: var(--ink);
-    font-size: 0.66rem;
-    font-weight: 900;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
 }
 
 .jam-projects {
@@ -1525,7 +528,7 @@
     min-width: 0;
     overflow: hidden;
     border: 2px solid color-mix(in srgb, var(--ink) 76%, white);
-    border-radius: 0.875rem;
+    border-radius: var(--radius-md);
     background: rgba(255, 252, 248, 0.84);
     box-shadow: 0 5px 0 color-mix(in srgb, var(--ink) 12%, transparent);
     color: var(--ink);
@@ -1545,7 +548,7 @@
 }
 
 .jam-project-card:focus-visible {
-    outline: 3px solid var(--brand-teal);
+    outline: 3px solid var(--brand-red);
     outline-offset: 3px;
 }
 
@@ -1554,9 +557,8 @@
     overflow: hidden;
     aspect-ratio: 2 / 1;
     background:
-        linear-gradient(135deg, rgba(81, 166, 175, 0.42), rgba(235, 116, 109, 0.3)),
         url("./assets/backgrounds/DoodleBackground.svg") center / 20rem repeat,
-        var(--ink);
+        var(--brand-red);
 }
 
 .jam-project-card__image {
@@ -1587,7 +589,7 @@
     right: 0.7rem;
     bottom: 0.7rem;
     border: 1px solid rgba(255, 255, 255, 0.52);
-    border-radius: 999px;
+    border-radius: var(--radius-sm);
     padding: 0.4rem 0.62rem;
     background: rgba(35, 31, 32, 0.78);
     color: white;
@@ -1626,7 +628,7 @@
     display: flex;
     flex-direction: column;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 234, 223, 0.96)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), var(--paper)),
         linear-gradient(
             135deg,
             color-mix(in srgb, var(--card-accent) 16%, transparent),
@@ -1645,7 +647,7 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     padding: 0.4rem;
-    border-radius: 1.6rem;
+    border-radius: var(--radius-md);
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)),
         linear-gradient(
@@ -1689,7 +691,7 @@
     object-fit: cover;
     object-position: center 12%;
     background: transparent;
-    border-radius: 1.25rem;
+    border-radius: var(--radius-md);
     transform: scale(1.05);
     transition: transform 260ms ease;
 }
@@ -1747,7 +749,7 @@
     position: absolute;
     inset: auto 0.4rem 0.4rem 0.4rem;
     height: 40%;
-    border-radius: 0 0 1.25rem 1.25rem;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
     background: linear-gradient(180deg, transparent, rgba(23, 29, 28, 0.14));
     z-index: 2;
     pointer-events: none;
@@ -1803,7 +805,7 @@
 }
 
 .profile-link:focus-visible {
-    outline: 2px solid var(--brand-teal);
+    outline: 2px solid var(--brand-red);
     outline-offset: 3px;
 }
 
@@ -1832,7 +834,7 @@
 
 .contact-form-fallback:focus-visible,
 .about-link:focus-visible {
-    outline: 2px solid var(--brand-teal);
+    outline: 2px solid var(--brand-red);
     outline-offset: 4px;
 }
 
@@ -1888,13 +890,13 @@
 .footer-social-link:focus-visible {
     transform: translateY(-2px);
     color: var(--ink);
-    border-color: color-mix(in srgb, var(--brand-teal) 68%, var(--ink));
-    box-shadow: 0 4px 0 color-mix(in srgb, var(--brand-teal) 22%, transparent);
-    background: color-mix(in srgb, var(--brand-teal) 18%, white);
+    border-color: color-mix(in srgb, var(--brand-red) 68%, var(--ink));
+    box-shadow: 0 4px 0 color-mix(in srgb, var(--brand-red) 22%, transparent);
+    background: color-mix(in srgb, var(--brand-red) 18%, white);
 }
 
 .footer-social-link:focus-visible {
-    outline: 2px solid var(--brand-teal);
+    outline: 2px solid var(--brand-red);
     outline-offset: 3px;
 }
 
@@ -1922,7 +924,7 @@
 .contact-form-shell {
     overflow: hidden;
     border: 2px solid rgba(35, 31, 32, 0.12);
-    border-radius: 1.5rem;
+    border-radius: var(--radius-lg);
     background: rgba(255, 255, 255, 0.9);
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.85),
@@ -1971,7 +973,7 @@
     gap: 0.55rem;
     flex-shrink: 0;
     border: 1.5px solid color-mix(in srgb, var(--ink) 26%, white);
-    border-radius: 0.8rem;
+    border-radius: var(--radius-sm);
     padding: 0.68rem 0.95rem;
     background: rgba(255, 255, 255, 0.68);
     color: var(--ink);
@@ -1989,13 +991,13 @@
 .contact-form-toggle:hover,
 .contact-form-toggle:focus-visible {
     transform: translateY(-1px);
-    border-color: color-mix(in srgb, var(--brand-teal) 58%, var(--ink));
-    background: color-mix(in srgb, var(--brand-teal) 12%, white);
+    border-color: color-mix(in srgb, var(--brand-red) 58%, var(--ink));
+    background: color-mix(in srgb, var(--brand-red) 12%, white);
     box-shadow: 0 4px 10px rgba(35, 31, 32, 0.12);
 }
 
 .contact-form-toggle:focus-visible {
-    outline: 2px solid var(--brand-teal);
+    outline: 2px solid var(--brand-red);
     outline-offset: 3px;
 }
 
@@ -2005,8 +1007,8 @@
 }
 
 .contact-form-toggle.is-open {
-    border-color: color-mix(in srgb, var(--brand-teal) 42%, var(--ink));
-    background: color-mix(in srgb, var(--brand-teal) 10%, white);
+    border-color: color-mix(in srgb, var(--brand-red) 42%, var(--ink));
+    background: color-mix(in srgb, var(--brand-red) 10%, white);
     box-shadow: 0 2px 6px rgba(35, 31, 32, 0.08);
 }
 
@@ -2046,117 +1048,39 @@
     }
 }
 
-@keyframes hero-copy-enter {
-    0% {
-        opacity: 0;
-        transform: translateY(14px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 @media (max-width: 767px) {
-    :root {
-        /* Keep the visible hooves on the card edge, matching the horizontal layout. */
-        --hero-character-overlap: clamp(2.15rem, 8.5vw, 2.5rem);
-    }
-
     /*
      * Avoid oversized WebKit compositor layers on phones. The feature card is
      * taller than the viewport, so animating its blur and glow while gallery
      * images decode can exhaust Safari's page-process memory.
      */
     .section-card {
-        background: rgba(247, 234, 223, 0.96);
+        background: var(--paper);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-    }
-
-    .feature-panel::before {
-        opacity: 0.72;
-        animation: none;
     }
 
     .site-header .brand-lockup {
         padding-inline-start: 0.45rem;
     }
 
-    .about-lockup__brand {
-        justify-items: center;
-    }
 }
 
 @media (max-width: 640px) {
-    :root {
-        /* Move the complete goat + spotlight unit below the stacked hero actions. */
-        --hero-showcase-offset: clamp(7rem, 16vw, 8rem);
-    }
-
-    .hero-section-card {
-        padding-top: clamp(1.25rem, 4vw, 1.75rem);
-    }
-
     .section-card {
-        border-radius: 1rem;
+        border-radius: var(--radius-lg);
         box-shadow: 0 7px 0 var(--shadow-ink);
     }
 
     .primary-cta,
-    .secondary-cta,
-    .hero-game-cta {
+    .secondary-cta {
         width: 100%;
         justify-content: center;
-    }
-
-    .hero-site-link {
-        margin-inline: 0;
-        text-align: left;
     }
 
     .team-roster--originals {
         width: 100%;
         max-width: none;
-    }
-
-    .featured-release {
-        transform: none;
-    }
-
-    .featured-release:hover,
-    .featured-release:focus-within {
-        transform: translateY(-4px);
-    }
-
-    .hero-character-sticker {
-        width: var(--hero-character-sticker-width-mobile);
-    }
-
-    .game-gallery-stage,
-    .game-gallery-thumb-row {
-        width: 100%;
-    }
-
-    .game-gallery-thumb-row {
-        --thumb-width: clamp(6rem, 24vw, 7rem);
-        padding-inline: max(0px, calc(50% - (var(--thumb-width) * 1.5) - 0.85rem));
-    }
-
-    .game-gallery-thumb-area::before {
-        left: 0;
-    }
-
-    .game-gallery-thumb-area::after {
-        right: 0;
-    }
-
-    .game-gallery-arrow--prev {
-        left: 0.3rem;
-    }
-
-    .game-gallery-arrow--next {
-        right: 0.3rem;
     }
 
     .contact-form-embed {
@@ -2169,40 +1093,24 @@
         scroll-behavior: auto;
     }
 
-    .hero-details > *,
-    .hero-copy > *,
-    .hero-actions > *,
-    .site-header-bar {
+        .site-header-bar {
         animation: none !important;
         opacity: 1;
         transform: none;
     }
 
-    .hero-character-sticker,
-    .featured-release-hint__icon,
-    .contact-form-toggle__arrow {
+        .contact-form-toggle__arrow {
         animation: none !important;
     }
 
     .site-header-bar,
     .site-header-link,
-    .game-gallery-stage__image,
-    .game-gallery-expand,
-    .game-gallery-thumb,
-    .game-gallery-thumb__image,
-    .game-gallery-arrow,
-    .game-gallery-video__play,
-    .featured-release-hint__icon,
     .primary-cta,
     .secondary-cta,
-    .hero-game-cta,
-    .hero-site-link,
-    .hero-site-link svg,
     .team-card,
     .team-card__image,
     .profile-link,
     .footer-social-link,
-    .game-tag-chip,
     .jam-project-card,
     .jam-project-card__image,
     .team-card__focus,
@@ -2239,12 +1147,6 @@
 
 }
 
-@media (min-width: 768px) {
-    .about-lockup {
-        grid-template-columns: minmax(12rem, 18rem) 1fr;
-        gap: 2rem;
-    }
-}
 
 @media (min-width: 640px) {
     .team-roster--originals .team-card {
@@ -2280,4 +1182,800 @@
         overflow: visible;
         padding-bottom: 0.25rem;
     }
+}
+
+/* Game chapters: each game gets its own full-width coloured band. */
+.site-main > .games-section {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.games-section__more {
+    margin-top: clamp(0.25rem, 1vw, 0.75rem);
+    padding-inline: max(1rem, env(safe-area-inset-left, 0px));
+}
+
+@media (min-width: 640px) {
+    .games-section__more {
+        padding-inline: max(1.5rem, env(safe-area-inset-left, 0px));
+    }
+}
+
+.game-chapter {
+    /* Each game sets these from its own key art (see games.json). */
+    --chapter: #04b3cf;
+    --chapter-text: var(--ink);
+    --chapter-pop: #ffd864;
+    --chapter-ink: var(--shadow-ink);
+    /* Video grows with the window but stays short enough to keep the buttons on screen. */
+    --screen-width: min(100%, 72rem, max(20rem, calc((100svh - 30rem) * 16 / 9)));
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: clamp(1rem, 2.2vw, 1.4rem);
+    padding: clamp(1.75rem, 4vw, 2.75rem) max(1rem, env(safe-area-inset-left, 0px)) clamp(2rem, 4.5vw, 3.25rem);
+    color: var(--ink);
+    text-align: center;
+    overflow: clip;
+}
+
+.game-chapter + .game-chapter {
+    border-top: 2px solid var(--ink);
+}
+
+.game-chapter__stage {
+    position: relative;
+    width: var(--screen-width);
+}
+
+/* A scaled-back impact burst from the key art: soft rays plus a glow, fading out before the page edge. */
+.game-chapter__stage::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -45% -40%;
+    background:
+        radial-gradient(closest-side, color-mix(in srgb, var(--chapter) 32%, transparent), transparent 70%),
+        repeating-conic-gradient(
+            from 4deg,
+            color-mix(in srgb, var(--chapter) 24%, transparent) 0 7deg,
+            transparent 7deg 22deg
+        );
+    /* Radial fade on all sides, plus a vertical fade so the rays feather out before the next section
+       instead of being cut off by the chapter's edge. */
+    -webkit-mask-image:
+        radial-gradient(closest-side, #000 35%, transparent 100%),
+        linear-gradient(to bottom, #000 45%, transparent 78%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        radial-gradient(closest-side, #000 35%, transparent 100%),
+        linear-gradient(to bottom, #000 45%, transparent 78%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+.game-chapter__sticker {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: clamp(-4.5rem, -5vw, -1rem);
+    width: clamp(7.5rem, 15vw, 13rem);
+    height: auto;
+    transform: translateY(-68%) rotate(5deg);
+    filter: drop-shadow(0 6px 0 rgba(35, 31, 32, 0.3));
+    pointer-events: none;
+}
+
+.game-chapter__head {
+    /* Above the stage: the stage's burst extends up behind the title, and the stage gets its own
+       stacking layer from the landing "thud" animation, so without this it paints over the logo. */
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 0.6rem;
+}
+
+.game-chapter__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1;
+}
+
+.game-chapter__title img {
+    width: clamp(15.5rem, 38vw, 24rem);
+    height: auto;
+    filter: drop-shadow(0 6px 0 var(--chapter-ink));
+}
+
+/* Release callout in the game's own UI style: Comicy, white fill, hard dark drop shadow. */
+.game-chapter__tagline {
+    margin: -0.35rem 0 0;
+    font-family: "Comicy", var(--font-display);
+    font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+    line-height: 1;
+    color: #fff;
+    -webkit-text-stroke: 0.12em var(--ink);
+    paint-order: stroke fill;
+    text-shadow: 0.08em 0.11em 0 var(--ink);
+}
+
+.game-chapter__screen {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 3px solid var(--ink);
+    border-radius: var(--radius-md);
+    background: var(--ink);
+    box-shadow: 0 8px 0 var(--chapter-ink);
+}
+
+.game-chapter__screen iframe,
+.game-chapter__loop {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+}
+
+.game-chapter__slideshow {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+}
+
+/* Screenshots crossfade in place: no zoom, no movement. */
+.game-chapter__slideshow img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 600ms ease;
+}
+
+.game-chapter__slideshow img.is-current {
+    opacity: 1;
+}
+
+.game-chapter__slideshow:focus-visible {
+    outline-offset: -6px;
+}
+
+.game-chapter__copy {
+    max-width: 40rem;
+    margin-top: 0.4rem;
+    font-size: clamp(0.98rem, 1.6vw, 1.1rem);
+    line-height: 1.65;
+}
+
+.game-chapter__copy strong {
+    font-weight: 800;
+}
+
+.game-chapter__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+}
+
+.game-chapter__actions .primary-cta,
+.game-chapter__actions .secondary-cta {
+    cursor: pointer;
+    box-shadow: 0 5px 0 var(--chapter-ink);
+}
+
+.game-chapter__more {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.25rem;
+    margin-top: -0.35rem;
+    font-size: 0.86rem;
+    font-weight: 700;
+}
+
+.game-chapter__more a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25rem;
+}
+
+.game-chapter__more a:hover {
+    text-decoration-thickness: 3px;
+}
+
+.game-chapter__more img {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Thumbnails sit centred under the screen and pick what it shows. Five fit at once; the rest scroll into view.
+   The selected one carries the progress line. */
+.game-chapter__carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+}
+
+.game-chapter__strip {
+    --frame-time: 5s;
+    --thumb-gap: 0.55rem;
+    flex: 0 1 34rem;
+    min-width: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 4 * var(--thumb-gap)) / 5);
+    gap: var(--thumb-gap);
+    margin: 0;
+    /* Room for the selected outline and the hover lift inside the scroll box. */
+    padding: 0.4rem 0.3rem 0.5rem;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.game-chapter__strip::-webkit-scrollbar {
+    display: none;
+}
+
+.game-chapter__step {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    padding: 0;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+    box-shadow: 0 3px 0 var(--shadow-ink);
+    transition: transform 160ms ease;
+}
+
+.game-chapter__step:hover {
+    transform: translateY(-2px);
+}
+
+.game-chapter__step svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.game-chapter__thumb {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+    overflow: hidden;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius-xs);
+    background: var(--ink);
+    cursor: pointer;
+    opacity: 0.55;
+    box-shadow: 0 3px 0 var(--shadow-ink);
+    transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.game-chapter__thumb:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.game-chapter__thumb[aria-current="true"] {
+    opacity: 1;
+    outline: 3px solid var(--chapter-pop);
+    outline-offset: 1px;
+}
+
+.game-chapter__thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.game-chapter__play {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: var(--chapter-pop);
+    transform: translate(-50%, -50%);
+}
+
+.game-chapter__play::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    border-block: 0.35rem solid transparent;
+    border-left: 0.55rem solid var(--ink);
+    transform: translate(-50%, -50%);
+}
+
+.game-chapter__progress-fill {
+    position: absolute;
+    inset: auto 0 0;
+    height: 0.28rem;
+    background: var(--chapter-pop);
+    transform-origin: left center;
+    animation: chapter-progress var(--frame-time) linear forwards;
+}
+
+/* Hovering the screen or the strip pauses the slideshow. */
+.game-chapter__stage:hover .game-chapter__progress-fill {
+    animation-play-state: paused;
+}
+
+@keyframes chapter-progress {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.game-chapter :focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+    /* Four thumbnails on phones so each stays big enough to tap. */
+    .game-chapter__strip {
+        grid-auto-columns: calc((100% - 3 * var(--thumb-gap)) / 4);
+    }
+
+    .game-chapter__sticker {
+        right: -0.4rem;
+        width: 6.5rem;
+    }
+
+    .game-chapter__actions {
+        width: 100%;
+    }
+
+    .game-chapter__actions > * {
+        flex: 1 1 100%;
+    }
+
+    .game-chapter__actions .primary-cta,
+    .game-chapter__actions .steam-cta-wrap {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .game-chapter__slideshow img {
+        transition: none;
+    }
+
+    .game-chapter__thumb,
+    .game-chapter__step {
+        transition: none;
+    }
+}
+
+/* ─── Animation pass ───────────────────────────────────────────────────────
+   One loud moment: the featured game's lockup slams in on load, in order:
+   logo lands (with a squash) → impact burst + screen → OUT NOW! → goat → controls.
+   Everything further down only gets a quiet rise-in as it scrolls into view. */
+
+.games-section > .game-chapter:first-child {
+    --slam-start: 150ms;
+    --impact: 430ms;
+}
+
+.games-section > .game-chapter:first-child .game-chapter__title img {
+    transform-origin: 50% 100%;
+    animation: chapter-slam 640ms var(--slam-start) both;
+}
+
+.games-section > .game-chapter:first-child .game-chapter__stage::before {
+    animation: chapter-burst 900ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--impact) both;
+}
+
+.games-section > .game-chapter:first-child .game-chapter__stage {
+    animation: chapter-thud 300ms ease-out var(--impact) both;
+}
+
+.games-section > .game-chapter:first-child .game-chapter__screen {
+    animation: rise-in 560ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--impact) - 80ms) backwards;
+}
+
+.games-section > .game-chapter:first-child .game-chapter__tagline {
+    animation: tagline-slam 520ms calc(var(--impact) + 170ms) both;
+}
+
+.games-section > .game-chapter:first-child .game-chapter__sticker {
+    animation: sticker-pop 560ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--impact) + 420ms) both;
+}
+
+.games-section > .game-chapter:first-child .game-chapter__carousel {
+    animation: rise-in 520ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--impact) + 480ms) backwards;
+}
+
+.games-section > .game-chapter:first-child .game-chapter__actions {
+    animation: rise-in 520ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--impact) + 560ms) backwards;
+}
+
+.games-section > .game-chapter:first-child .game-chapter__more,
+.games-section > .game-chapter:first-child .game-chapter__copy,
+.games-section > .game-chapter:first-child .game-chapter__tags {
+    animation: rise-in 520ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--impact) + 640ms) backwards;
+}
+
+@keyframes chapter-slam {
+    0% {
+        opacity: 0;
+        transform: translateY(-55%) scale(1.5);
+        animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+    }
+    45% {
+        opacity: 1;
+        transform: translateY(0) scale(1.1, 0.84);
+        animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+    72% {
+        transform: scale(0.97, 1.04);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes tagline-slam {
+    0% {
+        opacity: 0;
+        transform: scale(2.4) rotate(-8deg);
+        animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(0.9) rotate(1.5deg);
+        animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+    76% {
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* A small knock through the stage when the logo lands. Uses `translate` so it never fights other transforms. */
+@keyframes chapter-thud {
+    0% {
+        translate: 0 0;
+    }
+    30% {
+        translate: 0 5px;
+    }
+    65% {
+        translate: 0 -2px;
+    }
+    100% {
+        translate: 0 0;
+    }
+}
+
+@keyframes chapter-burst {
+    from {
+        opacity: 0;
+        transform: scale(0.55) rotate(-14deg);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes sticker-pop {
+    from {
+        opacity: 0;
+        transform: translateY(-30%) rotate(-24deg) scale(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-68%) rotate(5deg);
+    }
+}
+
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        translate: 0 14px;
+    }
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+/* Scroll reveals (see useScrollReveal). Only hidden once JS has opted in, so nothing is lost without it.
+   `translate` + backwards fill leaves each element's own hover transforms untouched afterwards. */
+.reveal-ready .reveal:not(.is-revealed) {
+    opacity: 0;
+}
+
+.reveal-ready .reveal.is-revealed {
+    animation: rise-in 620ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--reveal-index, 0) * 90ms) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .games-section > .game-chapter:first-child .game-chapter__title img,
+    .games-section > .game-chapter:first-child .game-chapter__stage,
+    .games-section > .game-chapter:first-child .game-chapter__stage::before,
+    .games-section > .game-chapter:first-child .game-chapter__screen,
+    .games-section > .game-chapter:first-child .game-chapter__tagline,
+    .games-section > .game-chapter:first-child .game-chapter__sticker,
+    .games-section > .game-chapter:first-child .game-chapter__carousel,
+    .games-section > .game-chapter:first-child .game-chapter__actions,
+    .games-section > .game-chapter:first-child .game-chapter__more,
+    .games-section > .game-chapter:first-child .game-chapter__copy,
+    .games-section > .game-chapter:first-child .game-chapter__tags,
+    .reveal-ready .reveal.is-revealed {
+        animation: none;
+    }
+}
+
+/* ─── GET RAMMED intro (see RamIntro) ──────────────────────────────────────
+   Fred charges in, rams a rival goat, and the rival is launched over the screen
+   leaving a trail. Fred then leaps onto the sticker spot and hands over to the real sticker. */
+
+.game-chapter .game-chapter__stage .game-chapter__sticker.has-intro {
+    animation: none;
+}
+
+.game-chapter__sticker.is-awaiting-intro {
+    opacity: 0;
+}
+
+.ram-intro {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.ram-intro.is-playing {
+    visibility: visible;
+}
+
+.ram-intro__goat,
+.ram-intro__impact,
+.ram-intro__twinkle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 50% 50%;
+    will-change: transform;
+}
+
+.ram-intro__goat {
+    width: var(--goat-w);
+}
+
+.ram-intro__goat img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 6px 0 rgba(35, 31, 32, 0.3));
+}
+
+/* The rival is Fred, flipped to face him and inked charcoal. */
+.ram-intro__goat--rival img {
+    transform: scaleX(-1);
+    filter: grayscale(1) brightness(0.58) contrast(1.25) drop-shadow(0 6px 0 rgba(35, 31, 32, 0.3));
+}
+
+/* Speed lines streaming off Fred's back while he charges. */
+.ram-intro__speed {
+    position: absolute;
+    top: 32%;
+    right: 72%;
+    width: 85%;
+    height: 38%;
+    opacity: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--ink) 0 3px,
+        transparent 3px 10px,
+        color-mix(in srgb, var(--ink) 60%, transparent) 10px 12px,
+        transparent 12px 19px
+    );
+    -webkit-mask-image: linear-gradient(to left, #000, transparent);
+    mask-image: linear-gradient(to left, #000, transparent);
+}
+
+.ram-intro__impact,
+.ram-intro__twinkle {
+    height: auto;
+    overflow: visible;
+    opacity: 0;
+}
+
+.ram-intro__burst-outer {
+    fill: var(--chapter-pop);
+    stroke: var(--ink);
+    stroke-width: 3;
+    stroke-linejoin: round;
+}
+
+.ram-intro__burst-inner {
+    fill: #fff;
+}
+
+.ram-intro__rays line {
+    stroke: var(--ink);
+    stroke-width: 4;
+    stroke-linecap: round;
+}
+
+.ram-intro__twinkle path {
+    fill: #fff;
+    stroke: var(--ink);
+    stroke-width: 5;
+    stroke-linejoin: round;
+}
+
+.ram-intro__trail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    overflow: visible;
+}
+
+.ram-intro__trail line {
+    opacity: 0;
+    stroke-linecap: round;
+}
+
+.ram-intro__trail-ink line {
+    stroke: var(--ink);
+}
+
+.ram-intro__trail-pop line {
+    stroke: var(--chapter-pop);
+}
+
+.ram-intro__trail-core line {
+    stroke: #fff;
+}
+
+
+/* ─── Halftone (comic dots) ────────────────────────────────────────────────
+   One texture, used sparingly: team cards, jam cards and buttons. Each piece sits on a
+   ::before behind the content (z-index -1 inside an isolated box) and fades out with a mask,
+   so it reads as print texture in a corner rather than an all-over pattern. */
+
+.team-card,
+.jam-project-card__body,
+.primary-cta,
+.secondary-cta {
+    isolation: isolate;
+}
+
+.team-card::before,
+.jam-project-card__body::before,
+.primary-cta::before,
+.secondary-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    /* Two offset layers give the staggered Ben-Day grid. Written out here (not as a shared variable)
+       so each element's own --halftone-ink applies. */
+    background-image:
+        radial-gradient(circle, var(--halftone-ink) var(--halftone-dot), transparent calc(var(--halftone-dot) + 0.5px)),
+        radial-gradient(circle, var(--halftone-ink) var(--halftone-dot), transparent calc(var(--halftone-dot) + 0.5px));
+    background-size: var(--halftone-size) var(--halftone-size);
+    background-position:
+        0 0,
+        calc(var(--halftone-size) / 2) calc(var(--halftone-size) / 2);
+    pointer-events: none;
+}
+
+/* Team cards: dots in the person's colour, densest at the top-right corner. */
+.team-card {
+    --halftone-ink: color-mix(in srgb, var(--card-accent, var(--ink)) 45%, transparent);
+    --halftone-size: 0.8rem;
+    --halftone-dot: 0.13rem;
+}
+
+.team-card::before {
+    -webkit-mask-image: linear-gradient(215deg, #000 0%, transparent 55%);
+    mask-image: linear-gradient(215deg, #000 0%, transparent 55%);
+}
+
+/* Jam cards: a band of dots rising from the bottom of the text area. */
+.jam-project-card__body {
+    position: relative;
+    --halftone-ink: rgba(23, 29, 28, 0.13);
+}
+
+.jam-project-card__body::before {
+    -webkit-mask-image: linear-gradient(0deg, #000 0%, transparent 70%);
+    mask-image: linear-gradient(0deg, #000 0%, transparent 70%);
+}
+
+/* Buttons: a fine all-over dot screen. */
+.primary-cta {
+    --halftone-ink: rgba(255, 255, 255, 0.16);
+    --halftone-size: 0.55rem;
+    --halftone-dot: 0.09rem;
+}
+
+.secondary-cta {
+    --halftone-ink: rgba(23, 29, 28, 0.1);
+    --halftone-size: 0.55rem;
+    --halftone-dot: 0.09rem;
+}
+
+.primary-cta::before,
+.secondary-cta::before {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 100%);
+}
+
+/* Genre tags under the game description: small dashed chips (too small to carry the dot screen). */
+.game-chapter__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    max-width: 40rem;
+    margin: -0.4rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.game-chapter__tags li {
+    padding: 0.28rem 0.55rem;
+    border: 1.5px dashed color-mix(in srgb, var(--ink) 55%, transparent);
+    border-radius: var(--radius-xs);
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--ink);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
 }

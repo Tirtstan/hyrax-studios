@@ -41,6 +41,12 @@ export type Game = {
     description: string[];
     status: string;
     accentColor?: string;
+    /** Background colour of the game's chapter, taken from its key art. Keep it light enough for dark text. */
+    chapterColor?: string;
+    /** Highlight colour for the chapter's status pill and badge. */
+    chapterPopColor?: string;
+    /** Short release callout set in the game's own display face under the title art. */
+    tagline?: string;
     tags: string[];
     links: GameLink[];
     assetFolder: string;
@@ -50,6 +56,10 @@ export type Game = {
     galleryFolder?: string;
     gallery: GameGalleryItem[];
     trailer?: GameTrailer;
+    /** Short muted gameplay loop (mp4/webm) in the game's asset folder. Falls back to a screenshot slideshow. */
+    loopVideoFile?: string;
+    /** Plays a one-off entrance with the hero character the first time the chapter's screen comes into view. */
+    introAnimation?: "ram";
 };
 
 export type SmallProject = {

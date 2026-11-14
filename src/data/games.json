@@ -3,11 +3,14 @@
         "id": "get-rammed",
         "featured": true,
         "title": "GET RAMMED",
-        "status": "Featured Game",
+        "status": "Out now on Steam",
+        "tagline": "OUT NOW!",
         "accentColor": "#FF4949",
+        "chapterColor": "#04B3CF",
+        "chapterPopColor": "#FFD864",
         "summary": "",
         "description": [
-            "Play as a goat and ram your friends off the stage in <strong><em>GET RAMMED</em></strong>, a party brawler for <strong>up to 8 players</strong>. Battle across different maps with power-ups and unexpected events. Play locally, online, or with a mix of both."
+            "Play as a goat and ram your friends off the stage in <strong><em>GET RAMMED</em></strong>, a party brawler for <strong>up to 8 players</strong>. Battle across different maps with items and unexpected events. Play locally, online, or with a mix of both."
         ],
         "tags": [
             "Arcade",
@@ -19,17 +22,16 @@
         ],
         "links": [
             {
-                "label": "Steam Wishlist",
+                "label": "Buy on Steam",
                 "kind": "steam",
                 "href": "https://store.steampowered.com/app/4612760/",
-                "pendingLabel": "Steam Wishlist Soon",
+                "badge": "OUT NOW!",
                 "prominent": true
             },
             {
                 "label": "Steam Demo",
                 "kind": "steam",
                 "href": "https://store.steampowered.com/app/4804740/GET_RAMMED_Demo/",
-                "badge": "OUT NOW!",
                 "prominent": true
             },
             {
@@ -42,9 +44,51 @@
         "assetFolder": "Get Rammed",
         "heroCharacterFile": "hero-character.webp",
         "heroCharacterAlt": "A Get Rammed character sticker floating above the featured game card.",
+        "introAnimation": "ram",
         "titleImageFile": "Title.webp",
         "galleryFolder": "Screenshots",
-        "gallery": [],
+        "gallery": [
+            {
+                "type": "image",
+                "file": "Screenshots/screenshot_01.webp",
+                "alt": "Four goats brawl in a wrestling ring with GET RAMMED painted on the canvas as a crowd watches."
+            },
+            {
+                "type": "image",
+                "file": "Screenshots/screenshot_02.webp",
+                "alt": "Six goats fight across cracked rock platforms floating in front of a blazing sun."
+            },
+            {
+                "type": "image",
+                "file": "Screenshots/screenshot_03.webp",
+                "alt": "Goats charge between mine-cart rails over a lava cavern while racing for bells."
+            },
+            {
+                "type": "image",
+                "file": "Screenshots/screenshot_04.webp",
+                "alt": "A COMBO lands as stalactites fall in a molten cave arena."
+            },
+            {
+                "type": "image",
+                "file": "Screenshots/screenshot_05.webp",
+                "alt": "A PERFECT ram connects on a stormy highway as tornadoes tear across the road."
+            },
+            {
+                "type": "image",
+                "file": "Screenshots/screenshot_06.webp",
+                "alt": "Goats slide across a frozen ice floe split by a freezing river and floating planks."
+            },
+            {
+                "type": "image",
+                "file": "Screenshots/screenshot_07.webp",
+                "alt": "Goats ram each other around a tiny grassy planet dotted with flowers."
+            },
+            {
+                "type": "image",
+                "file": "Screenshots/screenshot_08.webp",
+                "alt": "Goats leap between giant lily pads in a swamp arena."
+            }
+        ],
         "trailer": {
             "youtubeId": "2ad83keP6Qk",
             "title": "GET RAMMED reveal trailer",
