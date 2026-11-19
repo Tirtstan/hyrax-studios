@@ -738,7 +738,7 @@
 }
 
 .team-roster--originals {
-    width: min(100%, 42rem);
+    width: 100%;
     max-width: none;
     grid-template-columns: minmax(0, 1fr);
     margin-inline: 0;
@@ -1152,12 +1152,24 @@
     .team-roster--originals .team-card {
         display: grid;
         grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+        grid-template-rows: auto auto 1fr;
         column-gap: 1.25rem;
-        align-content: start;
     }
 
+    /* Portrait spans every row and stretches to the card's full height. */
     .team-roster--originals .team-card__portrait {
         grid-row: 1 / 4;
+        align-self: stretch;
+        height: auto;
+        min-height: 12rem;
+        aspect-ratio: auto;
+    }
+
+    .team-roster--originals .team-card__portrait > .team-card__image {
+        position: absolute;
+        inset: 0.4rem;
+        width: calc(100% - 0.8rem);
+        height: calc(100% - 0.8rem);
     }
 
     .team-roster--originals .team-card__identity {
@@ -1166,12 +1178,21 @@
 
     .team-roster--originals .team-card__links {
         margin-top: 0;
+        align-self: end;
     }
 }
 
 @media (min-width: 1024px) {
     .team-roster:not(.team-roster--originals) .team-card__role {
         min-height: 2.5rem;
+    }
+
+    .team-roster--originals {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .team-roster--originals .team-card {
+        grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
     }
 }
 
