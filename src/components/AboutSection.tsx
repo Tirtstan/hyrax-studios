@@ -1,4 +1,5 @@
 import aboutLogoSrc from '../assets/brand/hyrax-logo-full-black.webp'
+import about from '../data/about.json'
 import { LoadAwareImage } from './LoadAwareImage'
 import { SectionHeading } from './SectionHeading'
 
@@ -19,37 +20,23 @@ export function AboutSection() {
             </div>
 
             <div className="about-lockup__content">
-              <SectionHeading
-                title="Made for playing together"
-                description="We're a Cape Town video game studio making high-energy games that are easy to pick up, hard to put down, and best played with friends."
-              />
+              <SectionHeading title={about.title} description={about.description} />
               <div className="max-w-3xl space-y-4">
-                <p className="text-base leading-8 text-(--muted)">
-                  <strong>
-                    <em>Hyrax Studios</em>
-                  </strong>{' '}
-                  was founded by a small group of classmates in our already small classrooms. We
-                  were initially credited under <em>Rookie Games</em> and debuted our first public
-                  prototype <em>GET RAMMED</em> at{' '}
-                  <a
-                    href="https://playtopiafestival.co.za/2025-2/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="about-link"
-                  >
-                    Playtopia 2025
-                  </a>
-                  , originally developed for an 8-hour game jam and now our first full release, out
-                  on Steam.
-                </p>
-                <p className="text-base leading-8 text-(--muted)">
-                  We make games for people to play together.
-                </p>
+                {about.paragraphs.map((html, index) => (
+                  <p
+                    key={index}
+                    className="text-base leading-8 text-(--muted)"
+                    dangerouslySetInnerHTML={{ __html: html }}
+                  />
+                ))}
               </div>
-              <p className="about-lockup__meta">
-                <span>Founded February 2026</span>
-                <span>Cape Town, South Africa</span>
-              </p>
+              {about.meta.length > 0 ? (
+                <p className="about-lockup__meta">
+                  {about.meta.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </p>
+              ) : null}
             </div>
           </div>
         </article>
