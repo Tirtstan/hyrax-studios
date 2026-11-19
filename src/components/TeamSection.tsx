@@ -137,7 +137,7 @@ export function TeamSection() {
           title="The people"
         />
 
-        <div className="team-roster mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="team-roster mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {activePeople.map((person) => (
             <TeamPersonCard key={person.id} person={person} />
           ))}
